@@ -311,7 +311,7 @@ const handleSubmit = async () => {
         msg.role === 'user' ? 'text-purple-400' : 'text-white font-mono'
       }`}
     >
-      {msg.role === 'user' ? `> ${msg.content}` : msg.content}
+      {msg.content}
     </p>
   ))}
 </section>
