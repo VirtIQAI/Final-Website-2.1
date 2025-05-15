@@ -59,10 +59,8 @@ function App() {
             <Route path={isDanish ? "/om-os" : "/about"} element={<About />} />
             <Route path={isDanish ? "/privatlivspolitik" : "/privacy-policy"} element={<PrivacyPolicy />} />
             <Route path={isDanish ? "/betingelser" : "/terms-of-service"} element={<TermsOfService />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-           
-            {/* 🧪 New test route */}
-  <Route path="/AITest" element={<AITest />} />
+            <Route path="/AITest" element={<AITest />} />
+            <Route path="*" element={<Navigate to="/" replace />} />           
           </Routes>
           <Footer onNewsletterClick={() => setIsNewsletterOpen(true)} />
           <VoiceflowChat />
