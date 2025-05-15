@@ -28,15 +28,19 @@ app.post('/api/chat', async (req, res) => {
     );
 
     res.json(response.data);
- } catch (error) {
-  console.error('🛑 OpenAI error:', {
-    message: error.message,
-    status: error.response?.status,
-    data: error.response?.data,
-  });
+  } catch (error) {
+    console.error('🛑 OpenAI error:', {
+      message: error.message,
+      code: error.code,
+      status: error.response?.status,
+      data: error.response?.data,
+    });
+    res.status(500).json({
+      error: 'Failed to connect to OpenAI API',
+      details: error.response?.data || error.message,
+    });
+  }
 
-  res.status(500).json({ error: 'Failed to connect to OpenAI API' });
-}
 });
 
 const PORT = process.env.PORT || 3001;
