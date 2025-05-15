@@ -2,8 +2,9 @@ import express from 'express';
 import axios from 'axios';
 import dotenv from 'dotenv';
 
+
 dotenv.config();
-console.log("🔧 Starting OpenAI proxy server...");
+console.log('Loaded OpenAI key:', process.env.OPENAI_API_KEY?.slice(0, 10) || 'NOT FOUND');
 
 const app = express();
 app.use(express.json());
