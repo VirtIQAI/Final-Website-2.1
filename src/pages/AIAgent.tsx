@@ -305,14 +305,14 @@ const handleSubmit = async () => {
 {/* AI Agent Process Terminal */}
       <section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
   {terminalOutput.map((msg, index) => (
-    <p
-      key={index}
-      className={`whitespace-pre-wrap my-2 ${
-        msg.role === 'user' ? 'text-purple-400' : 'text-white font-mono'
-      }`}
-    >
-      {msg.content}
-    </p>
+<p
+  key={index}
+  className={`whitespace-pre-wrap my-2 ${
+    msg.role === 'user' ? 'text-purple-400' : 'text-white font-mono'
+  }`}
+>
+  {typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}
+</p>
   ))}
 </section>
 <section className="py-16">
