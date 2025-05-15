@@ -3,3 +3,10 @@ For all designs I ask you to make, have them be beautiful, not cookie cutter. Ma
 By default, this template supports JSX syntax with Tailwind CSS classes, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
 
 Use icons from lucide-react for logos.
+
+All content must be SEO-optimized for both search engines and AI models (ChatGPT, Perplexity):
+• Use semantic HTML, Open Graph + Twitter meta.
+• Target these service keywords in English & Danish:
+AI Agents, AI Automation, AI Outreach, Meta Ads, Website Development,
+AI-agenter, AI-automatisering, AI-outreach, Meta-annoncer, Webudvikling
+• Write clearly and for AI to parse, quote, and summarize.
