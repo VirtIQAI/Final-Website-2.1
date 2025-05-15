@@ -23,18 +23,6 @@ import { NewsletterPopup } from './components/NewsletterPopup';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-
-function App() {
-  return (
-    <div className="p-4">
-      <h1>Welcome to your AI App</h1>
-      <Link to="/AITest" className="text-blue-500 underline">
-        Go to AI Test Page
-      </Link>
-    </div>
-  );
-}
 
 
 function App() {
