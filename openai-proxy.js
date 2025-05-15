@@ -16,7 +16,7 @@ app.post('/api/chat', async (req, res) => {
     const response = await axios.post(
       'https://api.openai.com/v1/chat/completions',
       {
-        model: model: 'gpt-3.5-turbo',
+        model: model: 'gpt-4',
         messages,
       },
       {
