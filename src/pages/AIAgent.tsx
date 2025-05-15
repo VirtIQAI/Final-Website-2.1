@@ -682,6 +682,38 @@ const handleSubmit = async () => {
           </div>
         </div>
       </section>
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mt-16 max-w-2xl mx-auto shadow-xl">
+  <h3 className="text-xl font-semibold text-white mb-4">
+    🔍 Prøv vores AI Agent
+  </h3>
+
+  <div className="space-y-3 mb-4">
+    {terminalOutput.map((entry, i) => (
+      <div
+        key={i}
+        className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded"
+      >
+        {entry}
+      </div>
+    ))}
+  </div>
+
+  <input
+    type="text"
+    value={userInput}
+    onChange={(e) => setUserInput(e.target.value)}
+    placeholder="Stil et spørgsmål eller prøv en kommando..."
+    className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
+  />
+
+  <button
+    onClick={handleSubmit}
+    className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium"
+  >
+    Send
+  </button>
+</div>
+
     </main>
   );
 };
