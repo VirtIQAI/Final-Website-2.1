@@ -37,6 +37,7 @@ function App() {
         <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
           <Header />
           <Routes>
+            <Route path="/AITest" element={<AITest />} />
             <Route path="/" element={
               <main>
                 <Hero />
