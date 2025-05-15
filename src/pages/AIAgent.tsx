@@ -303,6 +303,18 @@ const handleSubmit = async () => {
       </div>
 
 {/* AI Agent Process Terminal */}
+      <section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
+  {terminalOutput.map((msg, index) => (
+    <p
+      key={index}
+      className={`whitespace-pre-wrap my-2 ${
+        msg.role === 'user' ? 'text-purple-400' : 'text-white font-mono'
+      }`}
+    >
+      {msg.role === 'user' ? `> ${msg.content}` : msg.content}
+    </p>
+  ))}
+</section>
 <section className="py-16">
   <div className="container mx-auto px-4">
     <div className="border border-gray-800 rounded-lg overflow-hidden w-full max-w-xl h-full">
