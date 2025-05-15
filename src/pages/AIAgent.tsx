@@ -24,7 +24,7 @@ export const AIAgent: React.FC = () => {
   };
   
 const [userInput, setUserInput] = useState('');
-const [terminalOutput, setTerminalOutput] = useState<string[]>([]);
+const [terminalOutput, setTerminalOutput] = useState<{ role: string; content: string }[]>([]);
 
 const sendToChatGPT = async (userInput: string) => {
   try {
@@ -40,6 +40,12 @@ const sendToChatGPT = async (userInput: string) => {
     });
 
     const data = await response.json();
+    const aiMessage = data.choices?.[0]?.message?.content || 'No response from AI.';
+setTerminalOutput((prev) => [
+  ...prev,
+  { role: 'user', content: userInput },
+  { role: 'assistant', content: aiMessage },
+]);
     return data.choices?.[0]?.message?.content || 'No response from AI.';
   } catch (err) {
     return '⚠️ Error: Could not connect to AI.';
