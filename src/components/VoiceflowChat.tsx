@@ -25,33 +25,66 @@ export const VoiceflowChat: React.FC = () => {
         render: ({ trace, element }) => {
           const formContainer = document.createElement('form');
           formContainer.innerHTML = `
-            <style>
-              label { font-size: 0.8em; color: #888; }
-              input[type="text"], input[type="email"], select {
-                width: 100%;
-                border: none;
-                border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-                background: transparent;
-                margin: 5px 0;
-                outline: none;
-                padding: 8px 0;
-              }
-              .invalid { border-color: red; }
-              .submit {
-                background: linear-gradient(to right, #2e6ee1, #2e7ff1);
-                border: none;
-                color: white;
-                padding: 10px;
-                border-radius: 5px;
-                width: 100%;
-                cursor: pointer;
-                margin-top: 15px;
-              }
-              .checkbox-wrapper {
-                font-size: 0.8em;
-                margin-top: 10px;
-              }
-            </style>
+<style>
+  form {
+    font-family: "Arial", sans-serif;
+    background: #fff;
+    padding: 0;
+  }
+
+  label {
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: block;
+    color: #333;
+  }
+
+  input[type="text"], input[type="email"], select {
+    width: 100%;
+    background: #f6f6f6;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+
+  .checkbox-wrapper {
+    font-size: 0.85em;
+    color: #333;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox-wrapper input[type="checkbox"] {
+    margin-right: 8px;
+  }
+
+  .checkbox-wrapper a {
+    color: #e79b3c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .submit {
+    background: #7c8491;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .invalid {
+    border-color: red !important;
+  }
+</style>
 
             <label>Navn</label>
             <input type="text" class="name" required>
