@@ -114,6 +114,8 @@ script.onload = () => {
       url: 'https://runtime-api.voiceflow.com'
     }
   });
-};
-  return null;
+}; // closes script.onload
+
+}, []); // closes useEffect
+return null;
 };
