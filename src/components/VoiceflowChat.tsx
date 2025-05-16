@@ -115,6 +115,5 @@ script.onload = () => {
     }
   });
 };
-
   return null;
 };
