@@ -16,126 +16,105 @@ useEffect(() => {
   script.type = 'text/javascript';
   script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
-  script.onload = () => {
-    window.voiceflow.chat.load({
-      verify: { projectID: '6780f08c40d0634c3490b8d9' },
-      url: 'https://general-runtime.voiceflow.com',
-      versionID: 'production',
-      voice: {
-        url: 'https://runtime-api.voiceflow.com',
-      }
-    });
+script.onload = () => {
+  const FormExtension = {
+    name: 'Forms',
+    type: 'response',
+    match: ({ trace }) =>
+      trace.type === 'Custom_Form' || trace.payload?.name === 'Custom_Form',
+    render: ({ trace, element }) => {
+      const formContainer = document.createElement('form');
+      formContainer.innerHTML = `
+        <style>
+          label { font-size: 0.8em; color: #888; }
+          input[type="text"], input[type="email"], select {
+            width: 100%;
+            border: none;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+            background: transparent;
+            margin: 5px 0;
+            outline: none;
+            padding: 8px 0;
+          }
+          .invalid { border-color: red; }
+          .submit {
+            background: linear-gradient(to right, #2e6ee1, #2e7ff1);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 15px;
+          }
+          .checkbox-wrapper {
+            font-size: 0.8em;
+            margin-top: 10px;
+          }
+        </style>
 
-    // ✅ Inject custom form extension AFTER Voiceflow loads
-    const customFormScript = document.createElement('script');
-    customFormScript.type = 'text/javascript';
-    customFormScript.text = `
+        <label>Navn</label>
+        <input type="text" class="name" required>
+        <label>E-mail</label>
+        <input type="email" class="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
+        <label>Min profil</label>
+        <select class="profile" required>
+          <option value="">Vælg din profil</option>
+          <option value="Privatperson">Privatperson</option>
+          <option value="Relocation Agent">Relocation Agent</option>
+          <option value="Virksomhed / Ambassade">Virksomhed / Ambassade</option>
+          <option value="Forsikringsselskab">Forsikringsselskab</option>
+        </select>
+        <div class="checkbox-wrapper">
+          <input type="checkbox" class="gdpr" required>
+          Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a>
+        </div>
+        <input type="submit" class="submit" value="Tilmeld">
+      `;
 
-      const FormExtension = {
-        name: 'Forms',
-        type: 'response',
-        match: ({ trace }) =>
-          trace.type === 'Custom_Form' || trace.payload?.name === 'Custom_Form',
-        render: ({ trace, element }) => {
-          const formContainer = document.createElement('form');
-          formContainer.innerHTML = \`
-            <style>
-              label { font-size: 0.8em; color: #888; }
-              input[type="text"], input[type="email"], select {
-                width: 100%;
-                border: none;
-                border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-                background: transparent;
-                margin: 5px 0;
-                outline: none;
-                padding: 8px 0;
-              }
-              .invalid { border-color: red; }
-              .submit {
-                background: linear-gradient(to right, #2e6ee1, #2e7ff1);
-                border: none;
-                color: white;
-                padding: 10px;
-                border-radius: 5px;
-                width: 100%;
-                cursor: pointer;
-                margin-top: 15px;
-              }
-              .checkbox-wrapper {
-                font-size: 0.8em;
-                margin-top: 10px;
-              }
-            </style>
+      formContainer.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name = formContainer.querySelector('.name');
+        const email = formContainer.querySelector('.email');
+        const profile = formContainer.querySelector('.profile');
+        const gdpr = formContainer.querySelector('.gdpr');
 
-            <label for="name">Navn</label>
-            <input type="text" class="name" name="name" required>
-
-            <label for="email">E-mail</label>
-            <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,}$">
-
-            <label for="profile">Min profil</label>
-            <select class="profile" name="profile" required>
-              <option value="">Vælg din profil</option>
-              <option value="Privatperson">Privatperson</option>
-              <option value="Relocation Agent">Relocation Agent</option>
-              <option value="Virksomhed / Ambassade">Virksomhed / Ambassade</option>
-              <option value="Forsikringsselskab">Forsikringsselskab</option>
-            </select>
-
-            <div class="checkbox-wrapper">
-              <input type="checkbox" class="gdpr" name="gdpr" required>
-              Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a>
-            </div>
-
-            <input type="submit" class="submit" value="Tilmeld">
-          \`;
-
-          formContainer.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const name = formContainer.querySelector('.name');
-            const email = formContainer.querySelector('.email');
-            const profile = formContainer.querySelector('.profile');
-            const gdpr = formContainer.querySelector('.gdpr');
-
-            if (!name.checkValidity() || !email.checkValidity() || !profile.checkValidity() || !gdpr.checked) {
-              name.classList.toggle('invalid', !name.checkValidity());
-              email.classList.toggle('invalid', !email.checkValidity());
-              profile.classList.toggle('invalid', !profile.checkValidity());
-              return;
-            }
-
-            formContainer.querySelector('.submit').remove();
-
-            window.voiceflow.chat.interact({
-              type: 'complete',
-              payload: {
-                name: name.value,
-                email: email.value,
-                profile: profile.value,
-                gdpr: gdpr.checked
-              },
-            });
-          });
-
-          element.appendChild(formContainer);
+        if (!name.checkValidity() || !email.checkValidity() || !profile.checkValidity() || !gdpr.checked) {
+          name.classList.toggle('invalid', !name.checkValidity());
+          email.classList.toggle('invalid', !email.checkValidity());
+          profile.classList.toggle('invalid', !profile.checkValidity());
+          return;
         }
-      };
 
-      window.voiceflow.chat.plugins = window.voiceflow.chat.plugins || [];
-      window.voiceflow.chat.plugins.push(FormExtension);
-    `;
+        formContainer.querySelector('.submit').remove();
 
-    document.body.appendChild(customFormScript);
+        window.voiceflow.chat.interact({
+          type: 'complete',
+          payload: {
+            name: name.value,
+            email: email.value,
+            profile: profile.value,
+            gdpr: gdpr.checked
+          }
+        });
+      });
+
+      element.appendChild(formContainer);
+    }
   };
 
-  document.body.appendChild(script);
-
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
-
+  window.voiceflow.chat.load({
+    verify: { projectID: '6780f08c40d0634c3490b8d9' },
+    url: 'https://general-runtime.voiceflow.com',
+    versionID: 'production',
+    assistant: {
+      extensions: [FormExtension]
+    },
+    voice: {
+      url: 'https://runtime-api.voiceflow.com'
+    }
+  });
+};
 
   return null;
 };
