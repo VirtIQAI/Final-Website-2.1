@@ -21,114 +21,94 @@ export const VoiceflowChat: React.FC = () => {
         name: 'Forms',
         type: 'response',
         match: ({ trace }) =>
-          trace.type === 'Custom_Form' || trace.payload?.name === 'Custom_Form',
+          trace.type === 'Custom_Form_Demo' || trace.payload?.name === 'Custom_Form_Demo',
         render: ({ trace, element }) => {
           const formContainer = document.createElement('form');
-formContainer.innerHTML = `
-  <style>
-    *, ::after, ::before {
-      box-sizing: border-box;
-    }
 
-    form {
-      width: 100%;
-      max-width: 384px;
-      padding: 25px;
-      font-family: 'Arial', sans-serif;
-      color: #000;
-    }
+          formContainer.innerHTML = `
+            <style>
+              *, ::after, ::before {
+                box-sizing: border-box;
+              }
 
-    .form-heading {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 25px;
-      text-align: left;
-    }
+              form {
+                font-family: "Arial", sans-serif;
+                color: #f5f5f5;
+                background: #1a1a1a;
+                padding: 10px;
+                max-width: 100%;
+              }
 
-    label {
-      font-size: 14px;
-      margin-bottom: 5px;
-      display: block;
-    }
+              label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: 600;
+                color: #d1d5db;
+                font-size: 13px;
+              }
 
-    input[type="text"], input[type="email"], select {
-      width: 100%;
-      background: transparent;
-      border: 1px solid #000;
-      padding: 10px;
-      font-size: 14px;
-      margin-bottom: 20px;
-      outline: none;
-    }
+              input, textarea, select {
+                width: 100%;
+                padding: 10px;
+                border-radius: 8px;
+                background-color: rgba(31, 41, 55, 0.5);
+                border: 1px solid #374151;
+                color: #fff;
+                margin-bottom: 15px;
+                font-size: 14px;
+              }
 
-    .checkbox-wrapper {
-      display: flex;
-      align-items: center;
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
+              .submit {
+                width: 100%;
+                padding: 12px;
+                background: linear-gradient(to right, #8b5cf6, #7c3aed);
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                margin-top: 10px;
+              }
+            </style>
 
-    .checkbox-wrapper input[type="checkbox"] {
-      margin-right: 8px;
-    }
+            <label>Name*</label>
+            <input type="text" class="name" required>
 
-    .checkbox-wrapper a {
-      color: #e79b3c;
-      text-decoration: none;
-    }
+            <label>Email*</label>
+            <input type="email" class="email" required>
 
-    .submit {
-      background: #7c8491;
-      color: white;
-      border: none;
-      padding: 12px 0;
-      font-size: 14px;
-      font-weight: bold;
-      width: 100%;
-      cursor: pointer;
-    }
+            <label>Company*</label>
+            <input type="text" class="company" required>
 
-    .invalid {
-      border-color: red !important;
-    }
-  </style>
+            <label>Service*</label>
+            <select class="service" required>
+              <option value="">Select a service</option>
+              <option value="Consulting">Consulting</option>
+              <option value="Automation">Automation</option>
+              <option value="Strategy">Strategy</option>
+              <option value="Other">Other</option>
+            </select>
 
-  <div class="form-heading">Tilmeld nyhedsmail</div>
+            <label>What specific problems are you looking to solve?*</label>
+            <textarea class="message" rows="3" required></textarea>
 
-  <label for="name">Navn</label>
-  <input type="text" class="name" name="name" required>
+            <label>Additional Information</label>
+            <textarea class="additionalInfo" rows="3"></textarea>
 
-  <label for="email">E-mail</label>
-  <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
-
-  <label for="profile">Min profil</label>
-  <select class="profile" name="profile" required>
-    <option value="">Vælg din profil</option>
-    <option value="Privatperson">Privatperson</option>
-    <option value="Relocation Agent">Relocation Agent</option>
-    <option value="Virksomhed / Ambassade">Virksomhed / Ambassade</option>
-    <option value="Forsikringsselskab">Forsikringsselskab</option>
-  </select>
-
-  <div class="checkbox-wrapper">
-    <input type="checkbox" class="gdpr" name="gdpr" required>
-    <label for="gdpr">Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a></label>
-  </div>
-
-  <input type="submit" class="submit" value="Tilmeld">
-`;
+            <input type="submit" class="submit" value="Send">
+          `;
 
           formContainer.addEventListener('submit', function (e) {
             e.preventDefault();
+
             const name = formContainer.querySelector('.name');
             const email = formContainer.querySelector('.email');
-            const profile = formContainer.querySelector('.profile');
-            const gdpr = formContainer.querySelector('.gdpr');
+            const company = formContainer.querySelector('.company');
+            const service = formContainer.querySelector('.service');
+            const message = formContainer.querySelector('.message');
+            const additionalInfo = formContainer.querySelector('.additionalInfo');
 
-            if (!name.checkValidity() || !email.checkValidity() || !profile.checkValidity() || !gdpr.checked) {
-              name.classList.toggle('invalid', !name.checkValidity());
-              email.classList.toggle('invalid', !email.checkValidity());
-              profile.classList.toggle('invalid', !profile.checkValidity());
+            if (!name.value || !email.value || !company.value || !service.value || !message.value) {
               return;
             }
 
@@ -139,8 +119,10 @@ formContainer.innerHTML = `
               payload: {
                 name: name.value,
                 email: email.value,
-                profile: profile.value,
-                gdpr: gdpr.checked
+                company: company.value,
+                service: service.value,
+                message: message.value,
+                additionalInfo: additionalInfo.value
               }
             });
           });
@@ -150,7 +132,7 @@ formContainer.innerHTML = `
       };
 
       window.voiceflow.chat.load({
-        verify: { projectID: '67e288d9b38caa87c5ee173d' }, // ✅ your client’s project
+        verify: { projectID: '6780f08c40d0634c3490b8d9' }, // ✅ your project ID
         url: 'https://general-runtime.voiceflow.com',
         versionID: 'production',
         assistant: {
