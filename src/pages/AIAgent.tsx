@@ -573,8 +573,6 @@ return (
     </button>
   </div>
 </div>
-</div> {/* Close chatbot scroll area */}
-</div> {/* Close chatbot container */}
 
 {/* Legal Assistant Chatbot */}
 <div className="relative group h-full">
