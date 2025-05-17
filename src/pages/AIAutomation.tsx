@@ -187,7 +187,7 @@ export const AIAutomation: React.FC = () => {
             </div> {/* closes the left column */}
 <div className="relative flex justify-center">
   <img
-    src="/Darker_Home_4699f79534.webp"
+    src="/public/N8N-workflow.webp"
     alt="n8n workflow visualization"
     className="relative z-10 w-full max-w-2xl rounded-lg shadow-xl"
   />
