@@ -241,48 +241,51 @@ const AIAgent = () => {
         setVisibleShopifyMessages(1);
     }, []);
 
-    return (
-        <>
-            <main className="flex-grow pt-24">
-                <Helmet>
-                    <title>{pageTitle}</title>
-                    <meta name="description" content={pageDescription} />
-                    <meta property="og:title" content={pageTitle} />
-                    <meta property="og:description" content={pageDescription} />
-                    <meta property="og:type" content="website" />
-                    <meta property="og:url" content="https://virtiq.dk/services/ai-agents" />
-                    <meta property="og:image" content="https://virtiq.dk/ai-agents-og.jpg" />
-                    <meta name="twitter:card" content="summary_large_image" />
-                    <meta name="twitter:title" content={pageTitle} />
-                    <meta name="twitter:description" content={pageDescription} />
-                    <meta name="twitter:image" content="https://virtiq.dk/ai-agents-og.jpg" />
-                    <link rel="canonical" href="https://virtiq.dk/services/ai-agents" />
-                    <script type="application/ld+json">
-                        {JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "Service",
-                            name: isDanish ? "AI Agenter" : "AI Agents",
-                            provider: {
-                                "@type": "Organization",
-                                name: "VirtIQ",
-                                url: "https://virtiq.dk",
-                            },
-                            description: pageDescription,
-                            serviceType: "AI Automation Service",
-                            areaServed: "Denmark",
-                            offers: {
-                                "@type": "Offer",
-                                availability: "https://schema.org/InStock",
-                                price: "0",
-                                priceCurrency: "DKK",
-                                seller: {
-                                    "@type": "Organization",
-                                    name: "VirtIQ",
-                                },
-                            },
-                        })}
-                    </script>
-                </Helmet>
+return (
+  <>
+    <main className="flex-grow pt-24">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://virtiq.dk/services/ai-agents" />
+        <meta property="og:image" content="https://virtiq.dk/ai-agents-og.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content="https://virtiq.dk/ai-agents-og.jpg" />
+        <link rel="canonical" href="https://virtiq.dk/services/ai-agents" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: isDanish ? "AI Agenter" : "AI Agents",
+              provider: {
+                "@type": "Organization",
+                name: "VirtIQ",
+                url: "https://virtiq.dk",
+              },
+              description: pageDescription,
+              serviceType: "AI Automation Service",
+              areaServed: "Denmark",
+              offers: {
+                "@type": "Offer",
+                availability: "https://schema.org/InStock",
+                price: "0",
+                priceCurrency: "DKK",
+                seller: {
+                  "@type": "Organization",
+                  name: "VirtIQ",
+                },
+              },
+            }),
+          }}
+        />
+      </Helmet>
 
                 {/* Main Hero Section */}
                 <section className="py-16 md:py-24 relative overflow-hidden bg-black text-white">
