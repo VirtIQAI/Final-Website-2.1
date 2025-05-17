@@ -502,7 +502,7 @@ const handleSubmit = async () => {
       </div>
     </div>
   </div>
-)} {/* ✅ Closing the conditional JSX */}
+})}
                   
                   <div className="px-6 py-4 bg-gray-900/50 border-t border-gray-800">
                     <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
