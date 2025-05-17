@@ -251,7 +251,6 @@ return (
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content="https://virtiq.dk/ai-agents-og.jpg" />
         <link rel="canonical" href="https://virtiq.dk/services/ai-agents" />
-        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -260,7 +259,7 @@ return (
             provider: {
               "@type": "Organization",
               name: "VirtIQ",
-              url: "https://virtiq.dk"
+              url: "https://virtiq.dk",
             },
             description: pageDescription,
             serviceType: "AI Automation Service",
@@ -272,20 +271,19 @@ return (
               priceCurrency: "DKK",
               seller: {
                 "@type": "Organization",
-                name: "VirtIQ"
+                name: "VirtIQ",
               },
             },
           })}
         </script>
       </Helmet>
-      
-   {/* Main Hero Section */}
+
+      {/* Main Hero Section */}
       <section className="py-16 md:py-24 relative overflow-hidden bg-black text-white">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left: Hero Content */}
+            {/* Left Content */}
             <div>
               <div className="inline-block mb-4 py-1 px-3 bg-purple-500/10 backdrop-blur-sm rounded-full border border-purple-500/20">
                 <span className="text-sm font-semibold text-purple-400">
@@ -307,10 +305,9 @@ return (
               </Button>
             </div>
 
-            {/* Right: AI Agent Terminal */}
+            {/* Right Terminal */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl h-full">
               <h3 className="text-xl font-semibold text-white mb-4">🔍 AI Agent</h3>
-
               <div className="space-y-3 mb-4 overflow-y-auto max-h-[300px] custom-scrollbar">
                 {terminalOutput.map((entry, i) => (
                   <div key={i} className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded">
@@ -318,7 +315,6 @@ return (
                   </div>
                 ))}
               </div>
-
               <input
                 type="text"
                 value={userInput}
@@ -326,7 +322,6 @@ return (
                 placeholder="Ask the AI agent something..."
                 className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
               />
-
               <button
                 onClick={handleSubmit}
                 className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium w-full"
