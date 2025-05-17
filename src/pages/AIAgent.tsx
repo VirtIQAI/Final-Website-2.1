@@ -334,55 +334,59 @@ return (
       </section>
   
 {/* AI Agent Process Terminal */}
-      <section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
+<section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
   {terminalOutput.map((msg, index) => (
-<p
-  key={index}
-  className={`whitespace-pre-wrap my-2 ${
-    msg.role === 'user' ? 'text-purple-400' : 'text-white font-mono'
-  }`}
->
-  {typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}
-</p>
+    <p
+      key={index}
+      className={`whitespace-pre-wrap my-2 ${
+        msg.role === 'user' ? 'text-purple-400' : 'text-white font-mono'
+      }`}
+    >
+      {typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}
+    </p>
   ))}
 </section>
+
 <section className="py-16">
   <div className="container mx-auto px-4">
     <div className="border border-gray-800 rounded-lg overflow-hidden w-full max-w-xl h-full">
       
-{/* Title Bar */}
-<div className="bg-gray-800 text-white text-center text-sm font-semibold py-2">
-  AI Agent
-</div>
+      {/* Title Bar */}
+      <div className="bg-gray-800 text-white text-center text-sm font-semibold py-2">
+        AI Agent
+      </div>
 
-{/* Terminal Box */}
-<div className="bg-black text-white font-mono text-base p-6 h-64 flex items-center">
-  <Typewriter
-    words={
-      isDanish
-        ? [
-            '🔄 Indlæser AI-agentproces...',
-            '🟢 Indsamler kunde- og salgsdata...',
-            '⚙️ Opsætter AI-agent med dine mål...',
-            '🧠 Træner agenten med arbejdsgange...',
-            '🚀 Udruller og overvåger ydeevne...',
-          ]
-        : [
-            '🔄 Loading AI Agent Process...',
-            '🟢 Collecting customer and sales data...',
-            '⚙️ Setting up AI agent with your goals...',
-            '🧠 Training agent with workflows...',
-            '🚀 Deploying and monitoring performance...',
-          ]
-    }
-    loop={true}
-    cursor
-    cursorStyle="|"
-    typeSpeed={50}
-    deleteSpeed={40}
-    delaySpeed={2000}
-  />
-</div>
+      {/* Terminal Box */}
+      <div className="bg-black text-white font-mono text-base p-6 h-64 flex items-center">
+        <Typewriter
+          words={
+            isDanish
+              ? [
+                  '🔄 Indlæser AI-agentproces...',
+                  '🟢 Indsamler kunde- og salgsdata...',
+                  '⚙️ Opsætter AI-agent med dine mål...',
+                  '🧠 Træner agenten med arbejdsgange...',
+                  '🚀 Udruller og overvåger ydeevne...',
+                ]
+              : [
+                  '🔄 Loading AI Agent Process...',
+                  '🟢 Collecting customer and sales data...',
+                  '⚙️ Setting up AI agent with your goals...',
+                  '🧠 Training agent with workflows...',
+                  '🚀 Deploying and monitoring performance...',
+                ]
+          }
+          loop={true}
+          cursor
+          cursorStyle="|"
+          typeSpeed={50}
+          deleteSpeed={40}
+          delaySpeed={2000}
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
 <section className="py-16 bg-black text-white">
   <div className="container mx-auto px-4 flex flex-col md:flex-row items-start justify-between gap-10">
@@ -424,23 +428,21 @@ return (
         />
       </div>
     </div>
-    
   </div>
 </section>
 
-
-      <section className="py-16 relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              {isDanish ? 'Live Eksempler på AI-Agenter' : 'Live Examples AI Agents'}
-            </h2>
-            <p className="text-gray-300">
-              {isDanish
-                ? 'Udforsk kraften i AI-agenter gennem vores live eksempler nedenfor'
-                : 'Explore the power of AI agents through our live examples below'}
-            </p>
-          </div>
+<section className="py-16 relative">
+  <div className="container mx-auto px-4">
+    <div className="text-center max-w-3xl mx-auto mb-12">
+      <h2 className="text-3xl font-bold mb-4">
+        {isDanish ? 'Live Eksempler på AI-Agenter' : 'Live Examples AI Agents'}
+      </h2>
+      <p className="text-gray-300">
+        {isDanish
+          ? 'Udforsk kraften i AI-agenter gennem vores live eksempler nedenfor'
+          : 'Explore the power of AI agents through our live examples below'}
+      </p>
+    </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Shopping Assistant Chatbot */}
