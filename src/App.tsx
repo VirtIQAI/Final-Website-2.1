@@ -16,7 +16,7 @@ import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { About } from './pages/About';
 import { AIAutomation } from './pages/AIAutomation';
-import { AIAgent } from './pages/AIAgent';
+import AIAgent from './pages/AIAgent';
 import { WebDevelopment } from './pages/WebDevelopment';
 import { MetaAds } from './pages/MetaAds';
 import { AIOutreach } from './pages/AIOutreach';
