@@ -171,7 +171,7 @@ export const MetaAds: React.FC = () => {
             <div>
               <div className="inline-block mb-4 py-1 px-3 bg-purple-500/10 backdrop-blur-sm rounded-full border border-purple-500/20">
                 <span className="text-sm font-semibold text-purple-400">
-                  {isDanish ? 'META ADS SPECIALISTER' : 'META ADS SPECIALISTS'}
+                  {isDanish ? 'META ADS' : 'META ADS'}
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
