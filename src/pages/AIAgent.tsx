@@ -728,7 +728,6 @@ return (
     </div>
   </div>
 </div>
-</div> {/* section inner wrapper */}
 </section>
 </main>
 </>
