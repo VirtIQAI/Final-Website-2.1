@@ -593,82 +593,69 @@ const handleSubmit = async () => {
               </div>
             </div>
 
-{/* Shopify Insights Assistant */}
-<div className="relative group h-full">
-  <div className="relative h-full">
-    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg opacity-0 group-hover:opacity-100 blur transition duration-300"></div>
-    <div
-      className="relative bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800 group-hover:border-transparent transition-all duration-300"
-      style={{ height: '600px', display: 'flex', flexDirection: 'column' }}
-    >
-      <div className="px-6 py-4 border-b border-gray-800 bg-gray-900/50">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-            <span className="text-sm font-medium text-gray-300">
-              {isDanish ? 'Shopify Indsigtsassistent' : 'Shopify Insights Assistant'}
-            </span>
-          </div>
-          <span className="text-xs font-medium text-purple-400">
-            {isDanish ? 'Intern Use Case' : 'Internal Use Case'}
-          </span>
-        </div>
-      </div>
-
-      <div
-        className="p-6 space-y-4"
-        style={{
-          flex: 1,
-          overflowY: 'auto',
-          scrollbarWidth: 'thin',
-          scrollbarColor: '#4B5563 #1F2937',
-        }}
-      >
-        {shopifyMessages.slice(0, visibleShopifyMessages).map((message, index) => (
-          <div
-            key={index}
-            className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-            style={{
-              animation: `fadeIn 0.5s ease-in-out forwards`,
-              animationDelay: `${index * 0.5}s`,
-            }}
-          >
-            <div
-              className={`max-w-[80%] px-4 py-2 rounded-lg ${
-                message.type === 'user'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-gray-800 text-gray-200'
-              }`}
-            >
-              <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+            {/* Shopify Insights Assistant */}
+            <div className="relative group h-full">
+              <div className="relative h-full">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg opacity-0 group-hover:opacity-100 blur transition duration-300"></div>
+                <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800 group-hover:border-transparent transition-all duration-300" style={{ height: '600px', display: 'flex', flexDirection: 'column' }}>
+                  <div className="px-6 py-4 border-b border-gray-800 bg-gray-900/50">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                        <span className="text-sm font-medium text-gray-300">
+                          {isDanish ? 'Shopify Indsigtsassistent' : 'Shopify Insights Assistant'}
+                        </span>
+                      </div>
+                      <span className="text-xs font-medium text-purple-400">
+                        {isDanish ? 'Intern Use Case' : 'Internal Use Case'}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6 space-y-4" style={{ flex: 1, overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#4B5563 #1F2937' }}>
+                    {shopifyMessages.slice(0, visibleShopifyMessages).map((message, index) => (
+                      <div
+                        key={index}
+                        className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                        style={{
+                          animation: `fadeIn 0.5s ease-in-out forwards`,
+                          animationDelay: `${index * 0.5}s`
+                        }}
+                      >
+                        <div
+                          className={`max-w-[80%] px-4 py-2 rounded-lg ${
+                            message.type === 'user'
+                              ? 'bg-purple-600 text-white'
+                              : 'bg-gray-800 text-gray-200'
+                          }`}
+                        >
+                          <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="px-6 py-4 bg-gray-900/50 border-t border-gray-800">
+                    <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
+                      <input
+                        type="text"
+                        placeholder={isDanish ? 'Skriv din besked...' : 'Type your message...'}
+                        className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
+                        disabled
+                      />
+                      <button className="ml-2 text-purple-400 hover:text-purple-300 transition-colors">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      <div className="px-6 py-4 bg-gray-900/50 border-t border-gray-800">
-        <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
-          <input
-            type="text"
-            placeholder={isDanish ? 'Skriv din besked...' : 'Type your message...'}
-            className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
-            disabled
-          />
-          <button className="ml-2 text-purple-400 hover:text-purple-300 transition-colors">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-              />
-            </svg>
-          </button>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+      </section>
 
 return (
   <section className="py-16 bg-black text-white">
@@ -719,5 +706,7 @@ return (
         </div>
       </div>
     </div>
-    
+  </section>
+);
+
 export default AIAgent;
