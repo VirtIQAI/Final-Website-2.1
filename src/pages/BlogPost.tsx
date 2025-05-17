@@ -2,52 +2,62 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 
+// Blog data structure
 const blogPosts = {
   'unlocking-power-custom-gpts': {
     title: 'Unlocking the Power of Custom GPTs in ChatGPT',
-    content: `
-      <p>In the evolving landscape of artificial intelligence, OpenAI's introduction of custom GPTs within ChatGPT marks a significant milestone. These tailored AI agents are designed to perform specific tasks, offering users a more personalized and efficient experience.</p>
-
-      <h2>What Are Custom GPTs?</h2>
-      <p>Custom GPTs are specialized versions of ChatGPT that can be configured to handle particular tasks or cater to specific industries. By customizing the behavior and knowledge base of these agents, users can achieve more targeted and effective interactions.</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
-        <img src="/Assets/Custom GPTs/2.svg" alt="Custom GPT Example 1" class="rounded-lg w-full" />
-        <img src="/Assets/Custom GPTs/3.svg" alt="Custom GPT Example 2" class="rounded-lg w-full" />
-        <img src="/Assets/Custom GPTs/4.svg" alt="Custom GPT Example 3" class="rounded-lg w-full" />
-      </div>
-
-      <h2>Practical Applications</h2>
-      <p>The versatility of custom GPTs opens up a myriad of possibilities across various sectors:</p>
-
-      <ul>
-        <li><strong>Customer Support:</strong> Automate responses to common inquiries, providing instant support and freeing up human resources for complex issues.</li>
-        <li><strong>Content Creation:</strong> Generate tailored content for blogs, social media, and marketing campaigns, ensuring consistency and relevance.</li>
-        <li><strong>E-commerce Assistance:</strong> Guide customers through product selections, answer FAQs, and streamline the purchasing process.</li>
-        <li><strong>Education:</strong> Offer personalized tutoring or information dissemination in academic settings.</li>
-        <li><strong>Healthcare:</strong> Provide preliminary information and guidance, directing patients to appropriate resources or professionals.</li>
-      </ul>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
-        <img src="/Assets/Custom GPTs/5.svg" alt="Custom GPT Application 1" class="rounded-lg w-full" />
-        <img src="/Assets/Custom GPTs/6.svg" alt="Custom GPT Application 2" class="rounded-lg w-full" />
-        <img src="/Assets/Custom GPTs/7.svg" alt="Custom GPT Application 3" class="rounded-lg w-full" />
-      </div>
-
-      <h2>Creating Your Own Custom GPT</h2>
-      <p>OpenAI has made the process of creating custom GPTs accessible to users without requiring extensive programming knowledge. By following a guided setup, users can define the behavior, knowledge base, and interaction style of their custom GPTs. This empowers individuals and businesses to develop AI agents that align with their specific needs and objectives.</p>
-
-      <h2>Conclusion</h2>
-      <p>The integration of custom GPTs within ChatGPT represents a significant advancement in AI personalization. By leveraging these tailored agents, users can enhance efficiency, improve user engagement, and offer experiences that are finely tuned to their unique requirements.</p>
-    `,
     date: '2025-04-22',
     readTime: '5 min read',
     category: 'AI Technology',
     author: {
       name: 'Lucas Vange',
       role: 'CEO & Founder',
-      image: '/Assets/1.jpg'
-    }
+      image: '/blog-assets/lucas-vange.jpg',
+    },
+    images: ['/blog-assets/1.svg', '/blog-assets/2.svg', '/blog-assets/3.svg', '/blog-assets/4.svg', '/blog-assets/5.svg', '/blog-assets/6.svg', '/blog-assets/7.svg'],
+    content: (
+      <>
+        <p>
+          In the evolving landscape of artificial intelligence, OpenAI's introduction of custom GPTs within ChatGPT marks a significant milestone. These tailored AI agents are designed to perform specific tasks, offering users a more personalized and efficient experience.
+        </p>
+
+        <h2>What Are Custom GPTs?</h2>
+        <p>
+          Custom GPTs are specialized versions of ChatGPT that can be configured to handle particular tasks or cater to specific industries. By customizing the behavior and knowledge base of these agents, users can achieve more targeted and effective interactions.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
+          <img src="/blog-assets/2.svg" alt="Custom GPT Example 1" className="rounded-lg w-full" />
+          <img src="/blog-assets/3.svg" alt="Custom GPT Example 2" className="rounded-lg w-full" />
+          <img src="/blog-assets/4.svg" alt="Custom GPT Example 3" className="rounded-lg w-full" />
+        </div>
+
+        <h2>Practical Applications</h2>
+        <ul className="list-disc pl-6">
+          <li><strong>Customer Support:</strong> Automate responses to common inquiries, providing instant support and freeing up human resources.</li>
+          <li><strong>Content Creation:</strong> Generate tailored content for blogs, social media, and marketing campaigns.</li>
+          <li><strong>E-commerce Assistance:</strong> Guide customers through product selections, answer FAQs, and streamline purchases.</li>
+          <li><strong>Education:</strong> Offer personalized tutoring or information dissemination.</li>
+          <li><strong>Healthcare:</strong> Direct patients to appropriate resources or professionals.</li>
+        </ul>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-8">
+          <img src="/blog-assets/5.svg" alt="Custom GPT Application 1" className="rounded-lg w-full" />
+          <img src="/blog-assets/6.svg" alt="Custom GPT Application 2" className="rounded-lg w-full" />
+          <img src="/blog-assets/7.svg" alt="Custom GPT Application 3" className="rounded-lg w-full" />
+        </div>
+
+        <h2>Creating Your Own Custom GPT</h2>
+        <p>
+          OpenAI has made the process of creating custom GPTs accessible to users without requiring extensive programming knowledge. This empowers individuals and businesses to develop agents aligned to their needs.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          Custom GPTs represent a significant advancement in AI personalization. By leveraging these agents, users can enhance engagement and efficiency.
+        </p>
+      </>
+    )
   }
 };
 
@@ -118,10 +128,9 @@ export const BlogPost: React.FC = () => {
               </div>
             </div>
 
-            <div
-              className="prose prose-invert prose-purple max-w-none"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className="prose prose-invert prose-purple max-w-none">
+              {post.content}
+            </div>
           </div>
         </div>
       </article>
