@@ -704,9 +704,9 @@ return (
             Send
           </button>
         </div>
-      </div>
     </div>
-  </section>
+  </div>
+</div>
 );
 
 export default AIAgent;
