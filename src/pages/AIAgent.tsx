@@ -302,6 +302,57 @@ const handleSubmit = async () => {
         </Button>
       </div>
 
+        <section className="py-16 bg-black text-white">
+    <div className="container mx-auto px-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Left: Hero content */}
+        <div>
+          <span className="text-sm uppercase tracking-widest text-purple-400 font-semibold">
+            AI Agents Experts
+          </span>
+          <h1 className="text-4xl font-bold mt-4 mb-4">
+            Transform Your Business with Intelligent AI Agents
+          </h1>
+          <p className="text-gray-300 mb-6">
+            Discover diverse applications of AI agents tailored to elevate your business operations
+          </p>
+          <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium shadow-md">
+            Get Started Now
+          </button>
+        </div>
+
+        {/* Right: Terminal */}
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl">
+          <h3 className="text-xl font-semibold text-white mb-4">🔍 AI Agent</h3>
+
+          <div className="space-y-3 mb-4">
+            {terminalOutput.map((entry, i) => (
+              <div key={i} className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded">
+                {entry}
+              </div>
+            ))}
+          </div>
+
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Ask the AI agent something..."
+            className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
+          />
+
+          <button
+            onClick={handleSubmit}
+            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium w-full"
+          >
+            Send
+          </button>
+        </div>
+    </div>
+  </div>
+</div>
+);
+
 {/* AI Agent Process Terminal */}
       <section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
   {terminalOutput.map((msg, index) => (
@@ -656,57 +707,5 @@ const handleSubmit = async () => {
           </div>
         </div>
               </div>
-
-return (
-  <section className="py-16 bg-black text-white">
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Left: Hero content */}
-        <div>
-          <span className="text-sm uppercase tracking-widest text-purple-400 font-semibold">
-            AI Agents Experts
-          </span>
-          <h1 className="text-4xl font-bold mt-4 mb-4">
-            Transform Your Business with Intelligent AI Agents
-          </h1>
-          <p className="text-gray-300 mb-6">
-            Discover diverse applications of AI agents tailored to elevate your business operations
-          </p>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium shadow-md">
-            Get Started Now
-          </button>
-        </div>
-
-        {/* Right: Terminal */}
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl">
-          <h3 className="text-xl font-semibold text-white mb-4">🔍 AI Agent</h3>
-
-          <div className="space-y-3 mb-4">
-            {terminalOutput.map((entry, i) => (
-              <div key={i} className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded">
-                {entry}
-              </div>
-            ))}
-          </div>
-
-          <input
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            placeholder="Ask the AI agent something..."
-            className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
-          />
-
-          <button
-            onClick={handleSubmit}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium w-full"
-          >
-            Send
-          </button>
-        </div>
-    </div>
-  </div>
-</div>
-);
 
 export default AIAgent;
