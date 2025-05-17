@@ -278,7 +278,8 @@ return (
           })}
         </script>
       </Helmet>
-
+      
+   {/* Main Hero Section */}
       <section className="py-16 md:py-24 relative overflow-hidden bg-black text-white">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
