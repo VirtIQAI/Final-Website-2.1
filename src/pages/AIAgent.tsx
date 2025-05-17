@@ -722,4 +722,5 @@ return (
         Send
       </button>
     </div> {/* ✅ closes the AI agent UI box */}
+  </>
 );       {/* ✅ closes the return expression */}
