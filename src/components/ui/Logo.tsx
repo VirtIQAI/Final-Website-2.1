@@ -1,14 +1,20 @@
 import React from 'react';
-import { Zap } from 'lucide-react';
 
 export const Logo: React.FC = () => {
   return (
     <div className="flex items-center">
-      <div className="w-10 h-10 rounded-xl overflow-hidden bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center mr-2">
-        <Zap size={24} className="text-white" />
-      </div>
+      <img
+        src="/assets/logo.png" // Update this if you move it elsewhere
+        alt="VirtIQ Logo"
+        className="h-10 w-10 object-contain mr-2 transition-all duration-300 dark:brightness-125"
+      />
       <div>
-        <span className="font-bold text-xl text-white">Virt<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">IQ</span></span>
+        <span className="font-bold text-xl text-white">
+          Virt
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
+            IQ
+          </span>
+        </span>
         <span className="text-xs block text-gray-400 -mt-1">AI Agency</span>
       </div>
     </div>
