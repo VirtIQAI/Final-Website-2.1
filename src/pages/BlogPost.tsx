@@ -12,7 +12,7 @@ const blogPosts = {
     author: {
       name: 'Lucas Vange',
       role: 'CEO & Founder',
-      image: '/public/lucas-vange.jpg',
+      image: '/lucas-vange.jpg',
     },
     images: ['/blog-assets/1.svg', '/blog-assets/2.svg', '/blog-assets/3.svg', '/blog-assets/4.svg', '/blog-assets/5.svg', '/blog-assets/6.svg', '/blog-assets/7.svg'],
     content: (
