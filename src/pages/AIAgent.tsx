@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
-export const AIAgent: React.FC = () => {
+  const AIAgent: React.FC = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
