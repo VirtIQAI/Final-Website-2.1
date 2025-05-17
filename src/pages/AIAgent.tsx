@@ -453,57 +453,56 @@ const handleSubmit = async () => {
                       </div>
                     ))}
 
-                    {visibleMessages >= chatMessages.length && (
-                      <div className="mt-6">
-                        <div className="relative">
-                          <div className="overflow-hidden rounded-lg">
-                            <div
-                              className="flex transition-transform duration-300 ease-in-out"
-                              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                            >
-                              {products.map((product) => (
-                                <div
-                                  key={product.id}
-                                  className="w-full flex-shrink-0 bg-gray-800 rounded-lg p-4"
-                                >
-                                  <div className="w-full h-64 mb-4 bg-gray-700 rounded-lg overflow-hidden">
-                                    <img 
-                                      src={product.image} 
-                                      alt={product.name}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  </div>
-                                  <h3 className="text-lg font-semibold text-white mb-2">{product.name}</h3>
-                                  <p className="text-gray-400 text-sm mb-2">{product.description}</p>
-                                  <p className="text-purple-400 font-medium mb-4">{product.price}</p>
-                                  <Button variant="primary" size="sm" fullWidth>
-                                    {isDanish ? 'Køb Produkt' : 'Buy Product'}
-                                  </Button>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
+{visibleMessages >= chatMessages.length && (
+  <div className="mt-6">
+    <div className="relative">
+      <div className="overflow-hidden rounded-lg">
+        <div
+          className="flex transition-transform duration-300 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="w-full flex-shrink-0 bg-gray-800 rounded-lg p-4"
+            >
+              <div className="w-full h-64 mb-4 bg-gray-700 rounded-lg overflow-hidden">
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">{product.name}</h3>
+              <p className="text-gray-400 text-sm mb-2">{product.description}</p>
+              <p className="text-purple-400 font-medium mb-4">{product.price}</p>
+              <Button variant="primary" size="sm" fullWidth>
+                {isDanish ? 'Køb Produkt' : 'Buy Product'}
+              </Button>
+            </div>
+          ))}
+        </div>
+      </div>
 
-                          <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2">
-                            <button
-                              onClick={prevSlide}
-                              className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
-                              aria-label={isDanish ? 'Forrige slide' : 'Previous slide'}
-                            >
-                              <ChevronLeft size={20} />
-                            </button>
-                            <button
-                              onClick={nextSlide}
-                              className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
-                              aria-label={isDanish ? 'Næste slide' : 'Next slide'}
-                            >
-                              <ChevronRight size={20} />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+      <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2">
+        <button
+          onClick={prevSlide}
+          className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
+          aria-label={isDanish ? 'Forrige slide' : 'Previous slide'}
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
+          aria-label={isDanish ? 'Næste slide' : 'Next slide'}
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
+    </div>
+  </div>
+)} {/* ✅ Closing the conditional JSX */}
                   
                   <div className="px-6 py-4 bg-gray-900/50 border-t border-gray-800">
                     <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
