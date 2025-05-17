@@ -721,7 +721,6 @@ const handleSubmit = async () => {
   </button>
 </div>
 
-    </main>
   );
 };
 
