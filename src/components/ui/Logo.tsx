@@ -3,11 +3,11 @@ import React from 'react';
 export const Logo: React.FC = () => {
   return (
     <div className="flex items-center">
-      <img
-        src="/assets/logo.png" // Update this if you move it elsewhere
-        alt="VirtIQ Logo"
-        className="h-10 w-10 object-contain mr-2 transition-all duration-300 dark:brightness-125"
-      />
+<img
+  src="/logo-transparent.png"
+  alt="VirtIQ Logo"
+  className="h-10 w-10 object-contain mr-2 transition-all duration-300 dark:brightness-125"
+/>
       <div>
         <span className="font-bold text-xl text-white">
           Virt
