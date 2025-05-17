@@ -719,7 +719,6 @@ return (
         </div>
       </div>
     </div>
-  </section>
 );
 
 export default AIAgent;
