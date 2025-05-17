@@ -658,71 +658,55 @@ const handleSubmit = async () => {
       </section>
 
 return (
-  <>
-    <section className="py-16 relative">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-8">
-              {isDanish ? 'Alt Du Behøver til AI-Agenter' : 'Everything You Need for AI Agents'}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {capabilities.map((capability, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <CheckCircle2 className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                  <span className="text-gray-300">{capability}</span>
-                </div>
-              ))}
-            </div>
+  <section className="py-16 bg-black text-white">
+    <div className="container mx-auto px-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Left: Hero content */}
+        <div>
+          <span className="text-sm uppercase tracking-widest text-purple-400 font-semibold">
+            AI Agents Experts
+          </span>
+          <h1 className="text-4xl font-bold mt-4 mb-4">
+            Transform Your Business with Intelligent AI Agents
+          </h1>
+          <p className="text-gray-300 mb-6">
+            Discover diverse applications of AI agents tailored to elevate your business operations
+          </p>
+          <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium shadow-md">
+            Get Started Now
+          </button>
+        </div>
+
+        {/* Right: Terminal */}
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl">
+          <h3 className="text-xl font-semibold text-white mb-4">🔍 AI Agent</h3>
+
+          <div className="space-y-3 mb-4">
+            {terminalOutput.map((entry, i) => (
+              <div key={i} className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded">
+                {entry}
+              </div>
+            ))}
           </div>
 
-          <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
-            <h3 className="text-2xl font-bold mb-4">
-              {isDanish ? 'Klar til at Transformere Din Virksomhed?' : 'Ready to Transform Your Business?'}
-            </h3>
-            <p className="text-gray-300 mb-6">
-              {isDanish
-                ? 'Få en gratis konsultation og lær hvordan vores AI-agenter kan hjælpe med at automatisere og forbedre din virksomheds drift.'
-                : 'Get a free consultation and learn how our AI agents can help automate and improve your business operations.'}
-            </p>
-            <Button variant="primary" size="lg" fullWidth onClick={handleDemoClick} className="justify-center">
-              {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
-            </Button>
-          </div>
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Ask the AI agent something..."
+            className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
+          />
+
+          <button
+            onClick={handleSubmit}
+            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium w-full"
+          >
+            Send
+          </button>
         </div>
       </div>
-    </section>
-
-    <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mt-16 max-w-2xl mx-auto shadow-xl">
-      <h3 className="text-xl font-semibold text-white mb-4">🔍 Prøv vores AI Agent</h3>
-
-      <div className="space-y-3 mb-4">
-        {terminalOutput.map((entry, i) => (
-          <div
-            key={i}
-            className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded"
-          >
-            {entry}
-          </div>
-        ))}
-      </div>
-
-      <input
-        type="text"
-        value={userInput}
-        onChange={(e) => setUserInput(e.target.value)}
-        placeholder="Stil et spørgsmål eller prøv en kommando..."
-        className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
-      />
-
-      <button
-        onClick={handleSubmit}
-        className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium"
-      >
-        Send
-      </button>
     </div>
-  </>
+  </section>
 );
 
 export default AIAgent;
