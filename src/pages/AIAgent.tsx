@@ -235,122 +235,110 @@ const handleSubmit = async () => {
     setVisibleShopifyMessages(1);
   }, []);
 
-  return (
-    <main className="flex-grow pt-24">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://virtiq.dk/services/ai-agents`} />
-        <meta property="og:image" content="https://virtiq.dk/ai-agents-og.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
-        <meta name="twitter:image" content="https://virtiq.dk/ai-agents-og.jpg" />
-        <link rel="canonical" href="https://virtiq.dk/services/ai-agents" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": isDanish ? "AI Agenter" : "AI Agents",
-            "provider": {
+ return (
+  <main className="flex-grow pt-24">
+    <Helmet>
+      <title>{pageTitle}</title>
+      <meta name="description" content={pageDescription} />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={pageDescription} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`https://virtiq.dk/services/ai-agents`} />
+      <meta property="og:image" content="https://virtiq.dk/ai-agents-og.jpg" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={pageDescription} />
+      <meta name="twitter:image" content="https://virtiq.dk/ai-agents-og.jpg" />
+      <link rel="canonical" href="https://virtiq.dk/services/ai-agents" />
+      
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": isDanish ? "AI Agenter" : "AI Agents",
+          "provider": {
+            "@type": "Organization",
+            "name": "VirtIQ",
+            "url": "https://virtiq.dk"
+          },
+          "description": pageDescription,
+          "serviceType": "AI Automation Service",
+          "areaServed": "Denmark",
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "price": "0",
+            "priceCurrency": "DKK",
+            "seller": {
               "@type": "Organization",
-              "name": "VirtIQ",
-              "url": "https://virtiq.dk"
-            },
-            "description": pageDescription,
-            "serviceType": "AI Automation Service",
-            "areaServed": "Denmark",
-            "offers": {
-              "@type": "Offer",
-              "availability": "https://schema.org/InStock",
-              "price": "0",
-              "priceCurrency": "DKK",
-              "seller": {
-                "@type": "Organization",
-                "name": "VirtIQ"
-              }
+              "name": "VirtIQ"
             }
-          })}
-        </script>
-      </Helmet>
-     <section className="py-16 md:py-24 relative overflow-hidden">
-  <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
-  <div className="container mx-auto px-4 relative z-10">
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <div className="inline-block mb-4 py-1 px-3 bg-purple-500/10 backdrop-blur-sm rounded-full border border-purple-500/20">
-          <span className="text-sm font-semibold text-purple-400">
-            {isDanish ? 'AI AGENTS' : 'AI AGENTS'}
-          </span>
-        </div>
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">
-          {isDanish
-            ? 'Transformer Din Virksomhed med Intelligente AI-Agenter'
-            : 'Transform Your Business with Intelligent AI Agents'}
-        </h1>
-        <p className="text-xl text-gray-300 mb-8">
-          {isDanish
-            ? 'Opdag forskellige anvendelser af AI-agenter skræddersyet til at løfte din virksomheds drift'
-            : 'Discover diverse applications of AI agents tailored to elevate your business operations'}
-        </p>
-        <Button variant="primary" size="lg" onClick={handleDemoClick} className="justify-center">
-          {isDanish ? 'Kom i Gang Nu' : 'Get Started Now'}
-        </Button>
-      </div>
+          }
+        })}
+      </script>
+    </Helmet>
 
-        <section className="py-16 bg-black text-white">
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Left: Hero content */}
-        <div>
-          <span className="text-sm uppercase tracking-widest text-purple-400 font-semibold">
-            AI Agents Experts
-          </span>
-          <h1 className="text-4xl font-bold mt-4 mb-4">
-            Transform Your Business with Intelligent AI Agents
-          </h1>
-          <p className="text-gray-300 mb-6">
-            Discover diverse applications of AI agents tailored to elevate your business operations
-          </p>
-          <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium shadow-md">
-            Get Started Now
-          </button>
-        </div>
-
-        {/* Right: Terminal */}
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl">
-          <h3 className="text-xl font-semibold text-white mb-4">🔍 AI Agent</h3>
-
-          <div className="space-y-3 mb-4">
-            {terminalOutput.map((entry, i) => (
-              <div key={i} className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded">
-                {entry}
-              </div>
-            ))}
+    <section className="py-16 md:py-24 relative overflow-hidden bg-black text-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left: Hero Content */}
+          <div>
+            <div className="inline-block mb-4 py-1 px-3 bg-purple-500/10 backdrop-blur-sm rounded-full border border-purple-500/20">
+              <span className="text-sm font-semibold text-purple-400">
+                {isDanish ? 'AI AGENTS' : 'AI AGENTS'}
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              {isDanish
+                ? 'Transformer Din Virksomhed med Intelligente AI-Agenter'
+                : 'Transform Your Business with Intelligent AI Agents'}
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
+              {isDanish
+                ? 'Opdag forskellige anvendelser af AI-agenter skræddersyet til at løfte din virksomheds drift'
+                : 'Discover diverse applications of AI agents tailored to elevate your business operations'}
+            </p>
+            <Button variant="primary" size="lg" onClick={handleDemoClick} className="justify-center">
+              {isDanish ? 'Kom i Gang Nu' : 'Get Started Now'}
+            </Button>
           </div>
 
-          <input
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            placeholder="Ask the AI agent something..."
-            className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
-          />
+          {/* Right: AI Agent Terminal */}
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl h-full">
+            <h3 className="text-xl font-semibold text-white mb-4">🔍 AI Agent</h3>
 
-          <button
-            onClick={handleSubmit}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium w-full"
-          >
-            Send
-          </button>
+            <div className="space-y-3 mb-4 overflow-y-auto max-h-[300px] custom-scrollbar">
+              {terminalOutput.map((entry, i) => (
+                <div key={i} className="bg-gray-800 text-sm text-gray-100 px-4 py-2 rounded">
+                  {entry}
+                </div>
+              ))}
+            </div>
+
+            <input
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              placeholder="Ask the AI agent something..."
+              className="bg-black border border-gray-700 text-white w-full p-2 rounded mb-3 placeholder-gray-400"
+            />
+
+            <button
+              onClick={handleSubmit}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded font-medium w-full"
+            >
+              Send
+            </button>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
+  </main>
+);
+
   </div>
-</div>
 
 {/* AI Agent Process Terminal */}
       <section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
