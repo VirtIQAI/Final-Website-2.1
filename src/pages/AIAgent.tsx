@@ -236,6 +236,7 @@ const handleSubmit = async () => {
   }, []);
 
  return (
+   <>
   <main className="flex-grow pt-24">
     <Helmet>
       <title>{pageTitle}</title>
@@ -336,7 +337,8 @@ const handleSubmit = async () => {
       </div>
     </section>
   </main>
-);
+ </>
+     );
   
 {/* AI Agent Process Terminal */}
       <section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
