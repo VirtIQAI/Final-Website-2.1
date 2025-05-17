@@ -337,7 +337,7 @@ const handleSubmit = async () => {
     </section>
   </main>
 );
-
+  
 {/* AI Agent Process Terminal */}
       <section className="bg-black text-white p-6 max-w-3xl mx-auto rounded-lg overflow-y-auto h-[500px] custom-scrollbar">
   {terminalOutput.map((msg, index) => (
