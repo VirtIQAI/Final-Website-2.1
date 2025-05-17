@@ -353,33 +353,10 @@ const handleSubmit = async () => {
   />
 </div>
 
-{/* AI Agent Dynamic Terminal */}
-<div className="bg-neutral-900 text-white font-mono p-4 rounded-md border border-gray-700 mt-6 w-full max-w-3xl mx-auto">
-  <div className="mb-4 space-y-1 text-green-400">
-    {terminalOutput.map((line, idx) => (
-      <div key={idx} className="whitespace-pre-wrap">{line}</div>
-    ))}
-  </div>
-  <input
-    value={userInput}
-    onChange={(e) => setUserInput(e.target.value)}
-    onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-    placeholder="Ask the AI agent something..."
-    className="bg-black text-green-300 p-2 w-full rounded-md border border-gray-600 outline-none"
-  />
-       
-      </div>
-    </div>
-  </div>
-</section>
-
-    </div> {/* ✅ closes space-y-10 container */}
-  </div>   {/* ✅ closes container */}
-</section> {/* ✅ closes section */}
-
-    <section className="py-16 bg-black text-white">
+<section className="py-16 bg-black text-white">
   <div className="container mx-auto px-4 flex flex-col md:flex-row items-start justify-between gap-10">
-    {/* Left Side: Headline & CTA */}
+    
+    {/* Left Side: Text & CTA */}
     <div className="flex-1 max-w-xl space-y-6">
       <span className="inline-block bg-purple-500/10 text-purple-400 px-4 py-1 rounded-full uppercase text-xs font-semibold">
         {isDanish ? 'AI Agent Eksperter' : 'AI Agents Experts'}
@@ -404,7 +381,7 @@ const handleSubmit = async () => {
       <div className="bg-neutral-900 text-white font-mono p-4 rounded-md border border-gray-700 shadow-lg">
         <div className="mb-4 space-y-1 text-green-400 min-h-[120px]">
           {terminalOutput.map((line, idx) => (
-            <div key={idx} className="whitespace-pre-wrap">{line}</div>
+            <div key={idx} className="whitespace-pre-wrap">{line.content}</div>
           ))}
         </div>
         <input
@@ -416,6 +393,7 @@ const handleSubmit = async () => {
         />
       </div>
     </div>
+    
   </div>
 </section>
 
