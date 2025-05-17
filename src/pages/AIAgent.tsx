@@ -719,7 +719,6 @@ const handleSubmit = async () => {
   >
     Send
   </button>
-</div>
 
   );
 };
