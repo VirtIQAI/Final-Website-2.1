@@ -655,7 +655,6 @@ const handleSubmit = async () => {
             </div>
           </div>
         </div>
-      </section>
 
 return (
   <section className="py-16 bg-black text-white">
