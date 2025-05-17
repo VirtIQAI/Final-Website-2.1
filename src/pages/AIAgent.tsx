@@ -353,61 +353,50 @@ const handleSubmit = async () => {
   />
 </div>
 
-{/* AI Agent Dynamic Terminal */}
-<div className="bg-neutral-900 text-white font-mono p-4 rounded-md border border-gray-700 mt-6 w-full max-w-3xl mx-auto">
-  <div className="mb-4 space-y-1 text-green-400">
-    {terminalOutput.map((line, idx) => (
-      <div key={idx} className="whitespace-pre-wrap">{line}</div>
-    ))}
-  </div>
-  <input
-    value={userInput}
-    onChange={(e) => setUserInput(e.target.value)}
-    onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-    placeholder="Ask the AI agent something..."
-    className="bg-black text-green-300 p-2 w-full rounded-md border border-gray-600 outline-none"
-  />
-       
+<section className="py-16 bg-black text-white">
+  <div className="container mx-auto px-4 flex flex-col md:flex-row items-start justify-between gap-10">
+    
+    {/* Left Side: Text & CTA */}
+    <div className="flex-1 max-w-xl space-y-6">
+      <span className="inline-block bg-purple-500/10 text-purple-400 px-4 py-1 rounded-full uppercase text-xs font-semibold">
+        {isDanish ? 'AI Agent Eksperter' : 'AI Agents Experts'}
+      </span>
+      <h1 className="text-4xl font-bold">
+        {isDanish
+          ? 'Transformer Din Virksomhed med Intelligente AI Agenter'
+          : 'Transform Your Business with Intelligent AI Agents'}
+      </h1>
+      <p className="text-gray-400">
+        {isDanish
+          ? 'Opdag de mange anvendelser af AI-agenter til at løfte din forretning.'
+          : 'Discover diverse applications of AI agents tailored to elevate your business operations.'}
+      </p>
+      <Button onClick={handleDemoClick}>
+        {isDanish ? 'Kom i gang nu' : 'Get Started Now'}
+      </Button>
+    </div>
+
+    {/* Right Side: AI Agent Terminal */}
+    <div className="flex-1 max-w-md w-full">
+      <div className="bg-neutral-900 text-white font-mono p-4 rounded-md border border-gray-700 shadow-lg">
+        <div className="mb-4 space-y-1 text-green-400 min-h-[120px]">
+          {terminalOutput.map((line, idx) => (
+            <div key={idx} className="whitespace-pre-wrap">{line.content}</div>
+          ))}
+        </div>
+        <input
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+          placeholder="Ask the AI agent something..."
+          className="bg-black text-green-300 p-2 w-full rounded-md border border-gray-600 outline-none"
+        />
       </div>
     </div>
+    
   </div>
 </section>
 
-    </div> {/* ✅ closes space-y-10 container */}
-  </div>   {/* ✅ closes container */}
-</section> {/* ✅ closes section */}
-
-      <section className="py-16 relative bg-gray-900/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              {isDanish ? 'Kraftfulde Funktioner' : 'Powerful Features'}
-            </h2>
-            <p className="text-gray-300">
-              {isDanish
-                ? 'Alt hvad du behøver for at skabe succesfulde AI-agenter'
-                : 'Everything you need to create successful AI agents'}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="relative group"
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg opacity-0 group-hover:opacity-100 blur transition duration-300"></div>
-                <div className="relative bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl border border-gray-800 group-hover:border-transparent transition-all duration-300 h-full">
-                  <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mb-4 service-icon">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="py-16 relative">
         <div className="container mx-auto px-4">
