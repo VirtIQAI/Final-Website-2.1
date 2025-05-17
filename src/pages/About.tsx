@@ -23,7 +23,7 @@ export const About: React.FC = () => {
     {
       name: 'Lucas Vange',
       role: isDanish ? 'CEO & Founder' : 'CEO & Founder',
-      image: '/Assets/1.jpg',
+ image: '/lucas-vange.jpg',
       socials: [
         { icon: <Phone className="w-5 h-5" />, href: 'tel:+4530240676' },
         { icon: <Mail className="w-5 h-5" />, href: 'mailto:lucas@virtiq.dk' },
