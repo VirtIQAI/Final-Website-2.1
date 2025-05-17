@@ -575,7 +575,6 @@ return (
 </div>
 </div> {/* Close chatbot scroll area */}
 </div> {/* Close chatbot container */}
-</div> {/* Close grid item */}
 
 
 {/* Legal Assistant Chatbot */}
