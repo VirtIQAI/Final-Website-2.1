@@ -728,7 +728,6 @@ return (
     </div>
   </div>
 </div>
-</div> {/* grid: closes grid-cols-3 */}
 </div> {/* container */}
 </div> {/* section inner wrapper */}
 </section>
