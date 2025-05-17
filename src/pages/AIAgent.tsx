@@ -722,7 +722,7 @@ return (
         Send
       </button>
     </div>
-  );
-};
+  </>
+);
 
 export default AIAgent;
