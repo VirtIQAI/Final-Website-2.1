@@ -722,7 +722,7 @@ return (
         Send
       </button>
     </div>
-  </>
+  </> // ✅ properly closes the React fragment
 );
 
 export default AIAgent;
