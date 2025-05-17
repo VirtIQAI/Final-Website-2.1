@@ -273,8 +273,8 @@ return (
               seller: {
                 "@type": "Organization",
                 name: "VirtIQ"
-              }
-            }
+              },
+            },
           })}
         </script>
       </Helmet>
