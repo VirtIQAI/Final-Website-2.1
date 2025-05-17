@@ -11,11 +11,8 @@ export const Logo: React.FC = () => {
       <div>
         <span className="font-bold text-xl text-white">
           Virt
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 font-semibold">
-            I
-          </span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 font-extrabold tracking-tight">
-            Q
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500">
+            IQ
           </span>
         </span>
         <span className="text-xs block text-gray-400 -mt-1">AI Agency</span>
