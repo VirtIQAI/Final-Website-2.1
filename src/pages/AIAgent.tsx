@@ -444,99 +444,110 @@ return (
       </p>
     </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Shopping Assistant Chatbot */}
-            <div className="relative group h-full">
-              <div className="relative h-full">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg opacity-0 group-hover:opacity-100 blur transition duration-300"></div>
-                <div className="relative bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800 group-hover:border-transparent transition-all duration-300" style={{ height: '600px', display: 'flex', flexDirection: 'column' }}>
-                  <div className="px-6 py-4 border-b border-gray-800 bg-gray-900/50">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <div className="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                        <span className="text-sm font-medium text-gray-300">
-                          {isDanish ? 'Indkøbsassistent' : 'Shopping Assistant'}
-                        </span>
-                      </div>
-                      <span className="text-xs font-medium text-purple-400">
-                        {isDanish ? 'Ekstern Use Case' : 'External Use Case'}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6 space-y-4" style={{ flex: 1, overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#4B5563 #1F2937' }}>
-                    {chatMessages.slice(0, visibleMessages).map((message, index) => (
-                      <div
-                        key={index}
-                        className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                        style={{
-                          animation: `fadeIn 0.5s ease-in-out forwards`,
-                          animationDelay: `${index * 0.5}s`
-                        }}
-                      >
-                        <div
-                          className={`max-w-[80%] px-4 py-2 rounded-lg ${
-                            message.type === 'user'
-                              ? 'bg-purple-600 text-white'
-                              : 'bg-gray-800 text-gray-200'
-                          }`}
-                        >
-                          <p className="text-sm">{message.text}</p>
-                        </div>
-                      </div>
-                    ))}
+ <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  {/* Shopping Assistant Chatbot */}
+  <div className="relative group h-full">
+    <div className="relative h-full">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg opacity-0 group-hover:opacity-100 blur transition duration-300" />
+      
+      <div
+        className="relative bg-gray-900/50 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-800 group-hover:border-transparent transition-all duration-300"
+        style={{ height: '600px', display: 'flex', flexDirection: 'column' }}
+      >
+        <div className="px-6 py-4 border-b border-gray-800 bg-gray-900/50">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse" />
+              <span className="text-sm font-medium text-gray-300">
+                {isDanish ? 'Indkøbsassistent' : 'Shopping Assistant'}
+              </span>
+            </div>
+            <span className="text-xs font-medium text-purple-400">
+              {isDanish ? 'Ekstern Use Case' : 'External Use Case'}
+            </span>
+          </div>
+        </div>
 
-{visibleMessages >= chatMessages.length && (
-  <div className="mt-6">
-    <div className="relative">
-      <div className="overflow-hidden rounded-lg">
         <div
-          className="flex transition-transform duration-300 ease-in-out"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          className="p-6 space-y-4"
+          style={{ flex: 1, overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#4B5563 #1F2937' }}
         >
-          {products.map((product) => (
+          {chatMessages.slice(0, visibleMessages).map((message, index) => (
             <div
-              key={product.id}
-              className="w-full flex-shrink-0 bg-gray-800 rounded-lg p-4"
+              key={index}
+              className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+              style={{
+                animation: `fadeIn 0.5s ease-in-out forwards`,
+                animationDelay: `${index * 0.5}s`,
+              }}
             >
-              <div className="w-full h-64 mb-4 bg-gray-700 rounded-lg overflow-hidden">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
+              <div
+                className={`max-w-[80%] px-4 py-2 rounded-lg ${
+                  message.type === 'user'
+                    ? 'bg-purple-600 text-white'
+                    : 'bg-gray-800 text-gray-200'
+                }`}
+              >
+                <p className="text-sm">{message.text}</p>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">{product.name}</h3>
-              <p className="text-gray-400 text-sm mb-2">{product.description}</p>
-              <p className="text-purple-400 font-medium mb-4">{product.price}</p>
-              <Button variant="primary" size="sm" fullWidth>
-                {isDanish ? 'Køb Produkt' : 'Buy Product'}
-              </Button>
             </div>
           ))}
+
+          {visibleMessages >= chatMessages.length && (
+            <div className="mt-6">
+              <div className="relative">
+                <div className="overflow-hidden rounded-lg">
+                  <div
+                    className="flex transition-transform duration-300 ease-in-out"
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                  >
+                    {products.map((product) => (
+                      <div
+                        key={product.id}
+                        className="w-full flex-shrink-0 bg-gray-800 rounded-lg p-4"
+                      >
+                        <div className="w-full h-64 mb-4 bg-gray-700 rounded-lg overflow-hidden">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <h3 className="text-lg font-semibold text-white mb-2">{product.name}</h3>
+                        <p className="text-gray-400 text-sm mb-2">{product.description}</p>
+                        <p className="text-purple-400 font-medium mb-4">{product.price}</p>
+                        <Button variant="primary" size="sm" fullWidth>
+                          {isDanish ? 'Køb Produkt' : 'Buy Product'}
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2">
+                  <button
+                    onClick={prevSlide}
+                    className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
+                    aria-label={isDanish ? 'Forrige slide' : 'Previous slide'}
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
+                    aria-label={isDanish ? 'Næste slide' : 'Next slide'}
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-2">
-        <button
-          onClick={prevSlide}
-          className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
-          aria-label={isDanish ? 'Forrige slide' : 'Previous slide'}
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
-          aria-label={isDanish ? 'Næste slide' : 'Next slide'}
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
     </div>
-  </div> 
-)}
-
+  </div>
+</div>
                   
                   <div className="px-6 py-4 bg-gray-900/50 border-t border-gray-800">
                     <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
