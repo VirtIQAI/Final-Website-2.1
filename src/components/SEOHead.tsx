@@ -8,6 +8,9 @@ interface SEOHeadProps {
   ogImage?: string;
   article?: boolean;
   noindex?: boolean;
+  alternateLanguages?: {
+    [key: string]: string;
+  };
 }
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
@@ -17,6 +20,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   ogImage = 'https://virtiq.dk/og-image.jpg',
   article = false,
   noindex = false,
+  alternateLanguages,
 }) => {
   const schema = {
     '@context': 'https://schema.org',
@@ -42,6 +46,12 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       <link rel="canonical" href={canonicalUrl} />
       
       {noindex && <meta name="robots" content="noindex,nofollow" />}
+      
+      {/* Hreflang tags */}
+      {alternateLanguages && Object.entries(alternateLanguages).map(([lang, url]) => (
+        <link key={lang} rel="alternate" hrefLang={lang} href={url} />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
       
       {/* Open Graph */}
       <meta property="og:title" content={title} />
