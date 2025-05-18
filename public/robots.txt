@@ -4,3 +4,13 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://virtiq.dk/sitemap.xml
+
+# Prevent crawling of admin areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Allow crawling of assets
+Allow: /static/
+Allow: /images/
+Allow: /blog-assets/

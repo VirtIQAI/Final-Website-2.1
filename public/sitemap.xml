@@ -3,7 +3,7 @@
   <url>
     <loc>https://virtiq.dk/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
   </url>
   <url>
     <loc>https://virtiq.dk/services/ai-agents</loc>
