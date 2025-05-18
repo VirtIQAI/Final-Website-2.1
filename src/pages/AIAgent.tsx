@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle2, MessageSquare, ShoppingCart, Scale, BarChart } from 'lucide-react';
 
-export default function AIAgent() {
+export const AIAgent: React.FC = () => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
@@ -40,25 +40,28 @@ export default function AIAgent() {
   });
 
   useEffect(() => {
-    const startAnimation = () => {
+    const animateMessages = () => {
       Object.keys(initialMessages).forEach(chatType => {
-        let count = 0;
-        const interval = setInterval(() => {
-          if (count < initialMessages[chatType].length) {
+        const messages = initialMessages[chatType];
+        let currentIndex = 0;
+
+        const showNextMessage = () => {
+          if (currentIndex < messages.length) {
             setVisibleMessages(prev => ({
               ...prev,
-              [chatType]: count + 1
+              [chatType]: currentIndex + 1
             }));
-            count++;
-          } else {
-            clearInterval(interval);
+            currentIndex++;
+            setTimeout(showNextMessage, 1000);
           }
-        }, 1000);
+        };
+
+        showNextMessage();
       });
     };
 
-    // Start initial animation
-    startAnimation();
+    // Initial animation
+    animateMessages();
 
     // Reset and restart animation every 15 seconds
     const resetInterval = setInterval(() => {
@@ -67,12 +70,12 @@ export default function AIAgent() {
         legal: 0,
         shopify: 0
       });
-      setTimeout(startAnimation, 500);
+      
+      // Brief pause before restarting animation
+      setTimeout(animateMessages, 500);
     }, 15000);
 
-    return () => {
-      clearInterval(resetInterval);
-    };
+    return () => clearInterval(resetInterval);
   }, []);
 
   const features = [
@@ -119,7 +122,11 @@ export default function AIAgent() {
 
   return (
     <main className="flex-grow pt-24">
-      {/* Hero Section */}
+      <Helmet>
+        <title>{isDanish ? 'AI Agents - Intelligent Automatisering | VirtIQ' : 'AI Agents - Intelligent Automation | VirtIQ'}</title>
+        <meta name="description" content={isDanish ? 'Transformer din virksomhed med intelligente AI-agenter. Automatiser komplekse opgaver, forbedre beslutningsprocesser og optimer kundeservice med vores avancerede AI-løsninger.' : 'Transform your business with intelligent AI agents. Automate complex tasks, improve decision-making processes, and optimize customer service with our advanced AI solutions.'} />
+      </Helmet>
+
       <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
@@ -374,6 +381,4 @@ export default function AIAgent() {
       </section>
     </main>
   );
-}
-
-export { AIAgent }
+};

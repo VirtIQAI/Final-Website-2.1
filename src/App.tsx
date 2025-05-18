@@ -25,7 +25,6 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { useTranslation } from 'react-i18next';
 
-
 function App() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const { i18n } = useTranslation();
@@ -37,7 +36,7 @@ function App() {
         <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
           <Header />
           <Routes>
-                  <Route path="/" element={
+            <Route path="/" element={
               <main>
                 <Hero />
                 <Services />
