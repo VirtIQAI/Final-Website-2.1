@@ -30,41 +30,41 @@ export const AIAgent: React.FC = () => {
       { type: 'user', text: "I'm looking for some cool t-shirts for summer, which are clean and give good vibes" },
       { type: 'bot', text: 'Here are some of our most popular summer t-shirts:' }
     ],
-  legal: [
-  {
-    type: 'bot',
-    text: "I'm a legal assistant specialised in The Danish Rent Act. Let me know how I can assist you today"
-  },
-  {
-    type: 'user',
-    text: 'Can I kick out my tenant?'
-  },
-  {
-    type: 'bot',
-    text: `**Terminating or Cancelling a Tenancy**\nTerminating or cancelling a tenant requires that you, as the landlord, comply with the rules set out in the Danish Rent Act. It is important to distinguish between termination and cancellation, as they have different requirements and consequences:\n\n**Termination of a Tenant**\nAs a landlord, you may only terminate a tenant in specific situations, such as:\n\n• If you need to use the property for your own residence.\n• If the property is to be demolished or significantly renovated.\n• If the tenant breaches the agreement (e.g., repeatedly violates house rules).\n\nThe termination must be in writing and include a justification.\nThe tenant typically has the right to remain during a notice period (usually 3 months, depending on the situation).\n\n**Cancellation of the Tenancy**\nCancellation means the tenancy ends immediately. This can only occur in specific cases, such as:\n\n• If the tenant fails to pay rent.\n• If the tenant seriously breaches the agreement (e.g., damages the property or uses it illegally).\n\nYou must send a written cancellation with a clear explanation.\nIn cases of unpaid rent, you must first send a reminder with a 14-day deadline.\n\n**Important to Know**\nIf the tenant does not leave voluntarily, you cannot evict them yourself. You must instead contact the bailiff's court, which can assist with eviction.\n\nIt is always a good idea to seek legal advice before terminating or cancelling a tenancy, as mistakes can lead to compensation claims from the tenant.`
-  }
-],
-  shopify: [
-  {
-    type: 'bot',
-    text: 'Welcome back, Chris! 👋 How can I help you with your store insights today?'
-  },
-  {
-    type: 'user',
-    text: 'What products have performed best this week, and what have performed the worst? What is trending? Have we delivered on time?'
-  },
-  {
-    type: 'bot',
-    text: `Here's your store performance analysis for this week:\n\n📈 Top Performers:\n• Summer Collection T-Shirt: 127 units sold (+45% from last week)\n• Eco-Friendly Hoodie: 98 units sold (+32%)\n• Urban Streetwear Cap: 76 units sold (+28%)\n\n📉 Underperforming Products:\n• Vintage Denim Jacket: 12 units (-60% from last week)\n• Classic Polo Shirt: 15 units (-45%)\n• Winter Collection Items: Generally low performance (seasonal impact)\n\n🔥 Trending Now:\n• Sustainable Fashion Category: +85% growth\n• Limited Edition Sneakers: High demand (92% sell-through rate)\n• Custom Print T-Shirts: Growing social media mentions\n\n📦 Delivery Performance:\n• On-time Delivery Rate: 96.5%\n• Average Delivery Time: 2.3 days\n• Late Deliveries: 7 orders (all contacted and resolved)\n\nWould you like me to generate a detailed report or focus on any specific area?`
-  },
-  {
-    type: 'user',
-    text: 'Show me the revenue projection compared to last year'
-  },
-  {
-    type: 'bot',
-    text: `Here's your Year-over-Year Revenue Comparison with Projections:\n\n📊 Revenue Performance:\n• YTD Revenue: $350K\n• Previous Year: $250K\n• YoY Growth: +40%\n\n🎯 Projection through December:\n• Current Trajectory: $500K\n• Last Year: $300K\n• Expected Growth: +67%\n\n📈 Key Growth Drivers:\n• New Product Lines: +35% contribution\n• Improved Conversion Rate: +15%\n• Higher AOV: +12%\n\nBased on current trends and seasonality, we're projecting strong Q4 performance. Would you like to see a breakdown by product category or marketing channel?`
-  }
+    legal: [
+      {
+        type: 'bot',
+        text: "I'm a legal assistant specialised in The Danish Rent Act. Let me know how I can assist you today"
+      },
+      {
+        type: 'user',
+        text: 'Can I kick out my tenant?'
+      },
+      {
+        type: 'bot',
+        text: `**Terminating or Cancelling a Tenancy**\nTerminating or cancelling a tenant requires that you, as the landlord, comply with the rules set out in the Danish Rent Act. It is important to distinguish between termination and cancellation, as they have different requirements and consequences:\n\n**Termination of a Tenant**\nAs a landlord, you may only terminate a tenant in specific situations, such as:\n\n• If you need to use the property for your own residence.\n• If the property is to be demolished or significantly renovated.\n• If the tenant breaches the agreement (e.g., repeatedly violates house rules).\n\nThe termination must be in writing and include a justification.\nThe tenant typically has the right to remain during a notice period (usually 3 months, depending on the situation).\n\n**Cancellation of the Tenancy**\nCancellation means the tenancy ends immediately. This can only occur in specific cases, such as:\n\n• If the tenant fails to pay rent.\n• If the tenant seriously breaches the agreement (e.g., damages the property or uses it illegally).\n\nYou must send a written cancellation with a clear explanation.\nIn cases of unpaid rent, you must first send a reminder with a 14-day deadline.\n\n**Important to Know**\nIf the tenant does not leave voluntarily, you cannot evict them yourself. You must instead contact the bailiff's court, which can assist with eviction.\n\nIt is always a good idea to seek legal advice before terminating or cancelling a tenancy, as mistakes can lead to compensation claims from the tenant.`
+      }
+    ],
+    shopify: [
+      {
+        type: 'bot',
+        text: 'Welcome back, Chris! 👋 How can I help you with your store insights today?'
+      },
+      {
+        type: 'user',
+        text: 'What products have performed best this week, and what have performed the worst? What is trending? Have we delivered on time?'
+      },
+      {
+        type: 'bot',
+        text: `Here's your store performance analysis for this week:\n\n📈 Top Performers:\n• Summer Collection T-Shirt: 127 units sold (+45% from last week)\n• Eco-Friendly Hoodie: 98 units sold (+32%)\n• Urban Streetwear Cap: 76 units sold (+28%)\n\n📉 Underperforming Products:\n• Vintage Denim Jacket: 12 units (-60% from last week)\n• Classic Polo Shirt: 15 units (-45%)\n• Winter Collection Items: Generally low performance (seasonal impact)\n\n🔥 Trending Now:\n• Sustainable Fashion Category: +85% growth\n• Limited Edition Sneakers: High demand (92% sell-through rate)\n• Custom Print T-Shirts: Growing social media mentions\n\n📦 Delivery Performance:\n• On-time Delivery Rate: 96.5%\n• Average Delivery Time: 2.3 days\n• Late Deliveries: 7 orders (all contacted and resolved)\n\nWould you like me to generate a detailed report or focus on any specific area?`
+      },
+      {
+        type: 'user',
+        text: 'Show me the revenue projection compared to last year'
+      },
+      {
+        type: 'bot',
+        text: `Here's your Year-over-Year Revenue Comparison with Projections:\n\n📊 Revenue Performance:\n• YTD Revenue: $350K\n• Previous Year: $250K\n• YoY Growth: +40%\n\n🎯 Projection through December:\n• Current Trajectory: $500K\n• Last Year: $300K\n• Expected Growth: +67%\n\n📈 Key Growth Drivers:\n• New Product Lines: +35% contribution\n• Improved Conversion Rate: +15%\n• Higher AOV: +12%\n\nBased on current trends and seasonality, we're projecting strong Q4 performance. Would you like to see a breakdown by product category or marketing channel?`
+      }
     ]
   };
 
@@ -121,28 +121,28 @@ export const AIAgent: React.FC = () => {
 
   const features = [
     {
-      icon: <MessageSquare className="w-8 h-8" />,
+      icon: <MessageSquare className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'Kundesupport' : 'Customer Support',
       description: isDanish 
         ? 'AI-drevet support der yder øjeblikkelig, døgnåben kundeservice'
         : 'AI-powered support agents provide instant, 24/7 customer service'
     },
     {
-      icon: <ShoppingCart className="w-8 h-8" />,
+      icon: <ShoppingCart className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'E-handels Assistent' : 'E-commerce Assistant',
       description: isDanish
         ? 'Personlige købsanbefalinger og support'
         : 'Personalized shopping recommendations and support'
     },
     {
-      icon: <Scale className="w-8 h-8" />,
+      icon: <Scale className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'Juridisk Rådgivning' : 'Legal Advisory',
       description: isDanish
         ? 'Specialiseret juridisk indsigt og compliance-assistance'
         : 'Specialized legal insights and compliance assistance'
     },
     {
-      icon: <BarChart className="w-8 h-8" />,
+      icon: <BarChart className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'Forretningsintelligens' : 'Business Intelligence',
       description: isDanish
         ? 'Realtidsanalyse af data og forretningsmæssige indsigter'
@@ -267,7 +267,7 @@ export const AIAgent: React.FC = () => {
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
                         message.type === 'user'
                           ? 'bg-purple-600 text-white'
-                          : 'bg-gray-800 text-gray-200'
+                          : 'bg-gray-800 text-white'
                       }`}
                     >
                       <div className="prose prose-invert text-sm whitespace-pre-line">
@@ -313,7 +313,7 @@ export const AIAgent: React.FC = () => {
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
                         message.type === 'user'
                           ? 'bg-purple-600 text-white'
-                          : 'bg-gray-800 text-gray-200'
+                          : 'bg-gray-800 text-white'
                       }`}
                     >
                       <div className="prose prose-invert text-sm whitespace-pre-line">
@@ -359,7 +359,7 @@ export const AIAgent: React.FC = () => {
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
                         message.type === 'user'
                           ? 'bg-purple-600 text-white'
-                          : 'bg-gray-800 text-gray-200'
+                          : 'bg-gray-800 text-white'
                       }`}
                     >
                       <div className="prose prose-invert text-sm whitespace-pre-line">
