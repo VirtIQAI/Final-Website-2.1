@@ -29,11 +29,20 @@ export const AIAgent: React.FC = () => {
       { type: 'user', text: "I'm looking for some cool t-shirts for summer, which are clean and give good vibes" },
       { type: 'bot', text: 'Here are some of our most popular summer t-shirts:' }
     ],
-    legal: [
-      { type: 'bot', text: "I'm a legal assistant specialised in The Danish Rent Act. Let me know how I can assist you today" },
-      { type: 'user', text: 'Can I kick out my tenant?' },
-      { type: 'bot', text: 'Terminating or Cancelling a Tenancy\n\nTerminating or cancelling a tenant requires that you, as the landlord, comply with the rules set out in the Danish Rent Act. It is important to distinguish between termination and cancellation, as they have different requirements and consequences:\n\nTermination of a Tenant\nAs a landlord, you may only terminate a tenant in specific situations, such as:\n\nIf you need to use the property for your own residence.' }
-    ],
+  legal: [
+  {
+    type: 'bot',
+    text: "I'm a legal assistant specialised in The Danish Rent Act. Let me know how I can assist you today"
+  },
+  {
+    type: 'user',
+    text: 'Can I kick out my tenant?'
+  },
+  {
+    type: 'bot',
+    text: `**Terminating or Cancelling a Tenancy**\nTerminating or cancelling a tenant requires that you, as the landlord, comply with the rules set out in the Danish Rent Act. It is important to distinguish between termination and cancellation, as they have different requirements and consequences:\n\n**Termination of a Tenant**\nAs a landlord, you may only terminate a tenant in specific situations, such as:\n\n• If you need to use the property for your own residence.\n• If the property is to be demolished or significantly renovated.\n• If the tenant breaches the agreement (e.g., repeatedly violates house rules).\n\nThe termination must be in writing and include a justification.\nThe tenant typically has the right to remain during a notice period (usually 3 months, depending on the situation).\n\n**Cancellation of the Tenancy**\nCancellation means the tenancy ends immediately. This can only occur in specific cases, such as:\n\n• If the tenant fails to pay rent.\n• If the tenant seriously breaches the agreement (e.g., damages the property or uses it illegally).\n\nYou must send a written cancellation with a clear explanation.\nIn cases of unpaid rent, you must first send a reminder with a 14-day deadline.\n\n**Important to Know**\nIf the tenant does not leave voluntarily, you cannot evict them yourself. You must instead contact the bailiff's court, which can assist with eviction.\n\nIt is always a good idea to seek legal advice before terminating or cancelling a tenancy, as mistakes can lead to compensation claims from the tenant.`
+  }
+]
   shopify: [
   {
     type: 'bot',
