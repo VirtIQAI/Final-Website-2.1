@@ -21,66 +21,87 @@ export const usePageTracking = () => {
     // Send to Google Analytics
     window.gtag('event', 'page_view', {
       page_path: path,
-      page_title: document.title
+      page_title: document.title,
+      page_location: window.location.href
     });
 
     // Send to Google Tag Manager
     window.dataLayer.push({
-      event: 'page_view',
-      page_path: path,
-      page_title: document.title
+      event: 'virtualPageview',
+      page: {
+        path: path,
+        title: document.title,
+        url: window.location.href
+      }
     });
   }, [location]);
 };
 
 // Track button clicks
-export const trackButtonClick = (buttonName: string, category: string = 'Button Click') => {
-  // Send to Google Analytics
-  window.gtag('event', 'button_click', {
+export const trackButtonClick = (buttonName: string, category: string = 'Button Click', additionalData = {}) => {
+  const eventData = {
     event_category: category,
-    event_label: buttonName
-  });
+    event_label: buttonName,
+    ...additionalData
+  };
+
+  // Send to Google Analytics
+  window.gtag('event', 'button_click', eventData);
 
   // Send to Google Tag Manager
   window.dataLayer.push({
-    event: 'button_click',
-    event_category: category,
-    event_label: buttonName
+    event: 'buttonClick',
+    button: {
+      name: buttonName,
+      category: category,
+      ...additionalData
+    }
   });
 };
 
 // Track form submissions
-export const trackFormSubmission = (formName: string, success: boolean = true) => {
-  // Send to Google Analytics
-  window.gtag('event', 'form_submission', {
+export const trackFormSubmission = (formName: string, success: boolean = true, formData = {}) => {
+  const eventData = {
     event_category: 'Form',
     event_label: formName,
-    value: success ? 1 : 0
-  });
+    value: success ? 1 : 0,
+    form_data: formData
+  };
+
+  // Send to Google Analytics
+  window.gtag('event', 'form_submission', eventData);
 
   // Send to Google Tag Manager
   window.dataLayer.push({
-    event: 'form_submission',
-    event_category: 'Form',
-    event_label: formName,
-    value: success ? 1 : 0
+    event: 'formSubmission',
+    form: {
+      name: formName,
+      success: success,
+      ...formData
+    }
   });
 };
 
 // Track outbound links
 export const trackOutboundLink = (url: string, linkText: string = '') => {
-  // Send to Google Analytics
-  window.gtag('event', 'outbound_link', {
+  const eventData = {
     event_category: 'Outbound Link',
     event_label: linkText || url,
-    transport_type: 'beacon'
-  });
+    transport_type: 'beacon',
+    link_url: url,
+    link_text: linkText
+  };
+
+  // Send to Google Analytics
+  window.gtag('event', 'outbound_link', eventData);
 
   // Send to Google Tag Manager
   window.dataLayer.push({
-    event: 'outbound_link',
-    event_category: 'Outbound Link',
-    event_label: linkText || url
+    event: 'outboundLink',
+    link: {
+      url: url,
+      text: linkText
+    }
   });
 };
 
@@ -97,19 +118,23 @@ export const initScrollTracking = () => {
       if (scrollPercent >= marker && !scrollDepthMarkers.has(marker)) {
         scrollDepthMarkers.add(marker);
         
-        // Send to Google Analytics
-        window.gtag('event', 'scroll_depth', {
+        const eventData = {
           event_category: 'Scroll',
           event_label: `Scrolled ${marker}%`,
-          value: marker
-        });
+          value: marker,
+          non_interaction: true
+        };
+
+        // Send to Google Analytics
+        window.gtag('event', 'scroll_depth', eventData);
 
         // Send to Google Tag Manager
         window.dataLayer.push({
-          event: 'scroll_depth',
-          event_category: 'Scroll',
-          event_label: `Scrolled ${marker}%`,
-          value: marker
+          event: 'scrollDepth',
+          scroll: {
+            depth: marker,
+            ...eventData
+          }
         });
       }
     });
@@ -117,4 +142,50 @@ export const initScrollTracking = () => {
 
   window.addEventListener('scroll', checkScrollDepth, { passive: true });
   return () => window.removeEventListener('scroll', checkScrollDepth);
+};
+
+// Track errors
+export const trackError = (error: Error, context: string = '') => {
+  const eventData = {
+    event_category: 'Error',
+    event_label: error.message,
+    error_stack: error.stack,
+    error_context: context,
+    non_interaction: true
+  };
+
+  // Send to Google Analytics
+  window.gtag('event', 'error', eventData);
+
+  // Send to Google Tag Manager
+  window.dataLayer.push({
+    event: 'jsError',
+    error: {
+      message: error.message,
+      stack: error.stack,
+      context: context
+    }
+  });
+};
+
+// Track user engagement
+export const trackEngagement = (action: string, label: string = '', value: number = 0) => {
+  const eventData = {
+    event_category: 'Engagement',
+    event_label: label,
+    value: value
+  };
+
+  // Send to Google Analytics
+  window.gtag('event', action, eventData);
+
+  // Send to Google Tag Manager
+  window.dataLayer.push({
+    event: 'userEngagement',
+    engagement: {
+      action,
+      label,
+      value
+    }
+  });
 };
