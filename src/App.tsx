@@ -1,4 +1,3 @@
-import AITest from './pages/AITest';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
@@ -68,6 +67,10 @@ function App() {
             ? 'Transform din virksomhed med AI-drevne løsninger. Ekspertise inden for AI-automatisering, intelligente agenter og Meta-annonceoptimering. Start med en gratis konsultation.'
             : 'Transform your business with AI-powered solutions. Expert services in AI automation, intelligent agents, and Meta ads optimization. Get started with a free consultation.'}
           canonicalUrl="https://virtiq.dk"
+          alternateLanguages={{
+            'en': 'https://virtiq.dk',
+            'da': 'https://virtiq.dk'
+          }}
         />
         <StructuredData data={organizationSchema} />
         <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
@@ -95,7 +98,6 @@ function App() {
             <Route path={isDanish ? "/om-os" : "/about"} element={<About />} />
             <Route path={isDanish ? "/privatlivspolitik" : "/privacy-policy"} element={<PrivacyPolicy />} />
             <Route path={isDanish ? "/betingelser" : "/terms-of-service"} element={<TermsOfService />} />
-            <Route path="/AITest" element={<AITest />} />
             <Route path="*" element={<Navigate to="/" replace />} />           
           </Routes>
           <Footer onNewsletterClick={() => setIsNewsletterOpen(true)} />
