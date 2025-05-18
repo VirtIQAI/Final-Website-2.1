@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { VitePluginSitemap } from 'vite-plugin-sitemap';
+import VitePluginSitemapPkg from 'vite-plugin-sitemap';
+
+const VitePluginSitemap = VitePluginSitemapPkg.VitePluginSitemap;
 
 export default defineConfig({
   plugins: [
