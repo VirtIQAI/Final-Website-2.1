@@ -3,6 +3,7 @@ import { Button } from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { CheckCircle2 } from 'lucide-react';
 
 const AIAgent: React.FC = () => {
   const navigate = useNavigate();
@@ -31,6 +32,17 @@ const AIAgent: React.FC = () => {
       { type: 'bot', text: "Here's your store performance analysis for this week:\n\n📈 Top Performers:\n• Summer Collection T-Shirt: 127 units sold (+45% from last week)\n• Eco-Friendly Hoodie: 98 units sold (+32%)\n• Urban Streetwear Cap: 76 units sold (+28%)\n\n📉 Underperforming Products:\n• Vintage Denim Jacket: 12 units (-60% from last week)\n• Classic Polo Shirt: 15 units (-45%)" }
     ]
   });
+
+  const features = [
+    { name: isDanish ? 'Naturlig sprogbehandling' : 'Natural language processing' },
+    { name: isDanish ? 'Flersproget support' : 'Multi-language support' },
+    { name: isDanish ? 'Læringsmuligheder' : 'Learning capabilities' },
+    { name: isDanish ? 'Integrationsmuligheder' : 'Integration options' },
+    { name: isDanish ? 'Kontekstuel forståelse' : 'Contextual understanding' },
+    { name: isDanish ? 'Realtidssvar' : 'Real-time responses' },
+    { name: isDanish ? 'Tilpasset vidensbase' : 'Custom knowledge base' },
+    { name: isDanish ? 'Analyse og rapportering' : 'Analytics and reporting' }
+  ];
 
   return (
     <main className="flex-grow pt-24">
@@ -178,6 +190,40 @@ const AIAgent: React.FC = () => {
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-8">
+                {isDanish ? 'Alt Du Behøver til AI Agenter' : 'Everything You Need for AI Agents'}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle2 className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <span className="text-gray-300">{feature.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
+              <h3 className="text-2xl font-bold mb-4">
+                {isDanish ? 'Klar til at Transformere Din Virksomhed?' : 'Ready to Transform Your Business?'}
+              </h3>
+              <p className="text-gray-300 mb-6">
+                {isDanish
+                  ? 'Få en gratis konsultation og lær hvordan vores AI-agenter kan hjælpe med at automatisere og forbedre din virksomheds drift.'
+                  : 'Get a free consultation and learn how our AI agents can help automate and improve your business operations.'}
+              </p>
+              <Button variant="primary" size="lg" fullWidth onClick={handleDemoClick}>
+                {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
+              </Button>
             </div>
           </div>
         </div>
