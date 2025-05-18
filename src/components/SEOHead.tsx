@@ -17,7 +17,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
   canonicalUrl,
-  ogImage = 'https://virtiq.dk/og-image.jpg',
+  ogImage = 'https://virtiq.dk/logo-transparent.png',
   article = false,
   noindex = false,
   alternateLanguages,
@@ -34,7 +34,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       name: 'VirtIQ',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://virtiq.dk/logo.png',
+        url: 'https://virtiq.dk/logo-transparent.png',
       },
     },
   };
@@ -47,7 +47,6 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       
-      {/* Hreflang tags */}
       {alternateLanguages && Object.entries(alternateLanguages).map(([lang, url]) => (
         <link key={lang} rel="alternate" hrefLang={lang} href={url} />
       ))}
