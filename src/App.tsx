@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -25,11 +25,21 @@ import { TermsOfService } from './pages/TermsOfService';
 import { useTranslation } from 'react-i18next';
 import { SEOHead } from './components/SEOHead';
 import { StructuredData } from './components/StructuredData';
+import { usePageTracking, initScrollTracking } from './lib/analytics';
 
 function App() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
+
+  // Initialize analytics tracking
+  usePageTracking();
+  
+  useEffect(() => {
+    // Initialize scroll depth tracking
+    const cleanup = initScrollTracking();
+    return () => cleanup();
+  }, []);
 
   const organizationSchema = {
     '@context': 'https://schema.org',
