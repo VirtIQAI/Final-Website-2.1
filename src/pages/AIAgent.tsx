@@ -276,8 +276,8 @@ export const AIAgent: React.FC = () => {
             </h2>
             <p className="text-gray-300">
               {isDanish
-                ? 'Udforsk kraften i AI-agenter gennem vores live eksempler nedenfor'
-                : 'Explore the power of AI agents through our live examples below'}
+                ? 'Udforsk kraften i AI-Agents gennem vores live eksempler nedenfor'
+                : 'Explore the power of AI Agents through our live examples below'}
             </p>
           </div>
 
