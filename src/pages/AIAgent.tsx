@@ -130,7 +130,7 @@ export const AIAgent: React.FC = () => {
     // Initial animation
     animateMessages();
 
-    // Reset and restart animation every 15 seconds
+    // Reset and restart animation every 30 seconds
     const resetInterval = setInterval(() => {
       // Clear any remaining timeouts
       timeouts.forEach(timeout => clearTimeout(timeout));
