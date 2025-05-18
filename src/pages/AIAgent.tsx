@@ -123,6 +123,17 @@ export const AIAgent: React.FC = () => {
     }
   ];
 
+  const capabilities = [
+    isDanish ? 'Naturlig sprogbehandling' : 'Natural language processing',
+    isDanish ? 'Flersproget support' : 'Multi-language support',
+    isDanish ? 'Læringsmuligheder' : 'Learning capabilities',
+    isDanish ? 'Integrationsmuligheder' : 'Integration options',
+    isDanish ? 'Kontekstuel forståelse' : 'Contextual understanding',
+    isDanish ? 'Realtidssvar' : 'Real-time responses',
+    isDanish ? 'Tilpasset vidensbase' : 'Custom knowledge base',
+    isDanish ? 'Analyse og rapportering' : 'Analytics and reporting'
+  ];
+
   return (
     <main className="flex-grow pt-24">
       <Helmet>
@@ -149,7 +160,7 @@ export const AIAgent: React.FC = () => {
                 {isDanish ? 'AI AGENTS' : 'AI AGENTS'}
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               {isDanish
                 ? 'Transformer Din Virksomhed med Intelligente AI-Agenter'
                 : 'Transform Your Business with Intelligent AI Agents'}
@@ -341,6 +352,39 @@ export const AIAgent: React.FC = () => {
                 <p className="text-gray-400">{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-8">
+                {isDanish ? 'Alt Du Behøver til AI Agenter' : 'Everything You Need for AI Agents'}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {capabilities.map((capability, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle2 className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <span className="text-gray-300">{capability}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
+              <h3 className="text-2xl font-bold mb-4">
+                {isDanish ? 'Klar til at Transformere Din Virksomhed?' : 'Ready to Transform Your Business?'}
+              </h3>
+              <p className="text-gray-300 mb-6">
+                {isDanish
+                  ? 'Få en gratis konsultation og lær hvordan vores AI-agenter kan hjælpe med at automatisere og forbedre din virksomheds drift.'
+                  : 'Get a free consultation and learn how our AI agents can help automate and improve your business operations.'}
+              </p>
+              <Button variant="primary" size="lg" fullWidth onClick={handleDemoClick}>
+                {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
+              </Button>
+            </div>
           </div>
         </div>
       </section>
