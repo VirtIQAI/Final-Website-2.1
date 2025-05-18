@@ -263,14 +263,22 @@ export const AIAgent: React.FC = () => {
                     key={index}
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
 >
-  <div
-    className={`max-w-[80%] px-4 py-2 rounded-lg ${
-      message.type === 'user'
-        ? 'bg-purple-600 text-white'
-        : 'bg-gray-800 text-white'
-    }`}
-  >
-    <ReactMarkdown className="prose prose-invert text-white text-sm whitespace-pre-line">
+<div
+  className={`max-w-[80%] px-4 py-2 rounded-lg ${
+    message.type === 'user'
+      ? 'bg-purple-600 text-white'
+      : 'bg-gray-800 text-white'
+  }`}
+>
+  <div className="text-sm whitespace-pre-line prose prose-invert text-white">
+    <ReactMarkdown
+      components={{
+        p: ({ children }) => <p className="my-2">{children}</p>,
+        strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+        ul: ({ children }) => <ul className="list-disc ml-4">{children}</ul>,
+        li: ({ children }) => <li className="my-1">{children}</li>,
+      }}
+    >
       {message.text}
     </ReactMarkdown>
   </div>
