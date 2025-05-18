@@ -36,7 +36,13 @@ function App() {
     '@type': 'Organization',
     name: 'VirtIQ',
     url: 'https://virtiq.dk',
-    logo: 'https://virtiq.dk/logo.png',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://virtiq.dk/logo-transparent.png',
+      width: '512',
+      height: '512',
+      caption: 'VirtIQ Logo'
+    },
     description: isDanish 
       ? 'Førende AI-bureau der specialiserer sig i AI-automatisering, chatbots og digitale løsninger'
       : 'Leading AI agency specializing in AI automation, chatbots, and digital solutions',
@@ -71,6 +77,7 @@ function App() {
             'en': 'https://virtiq.dk',
             'da': 'https://virtiq.dk'
           }}
+          ogImage="https://virtiq.dk/logo-transparent.png"
         />
         <StructuredData data={organizationSchema} />
         <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
