@@ -77,6 +77,33 @@ const AIAgent: React.FC = () => {
 
   return (
     <main className="flex-grow pt-24">
+      {/* Hero Section */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl">
+            <div className="inline-block mb-4 py-1 px-3 bg-purple-500/10 backdrop-blur-sm rounded-full border border-purple-500/20">
+              <span className="text-sm font-semibold text-purple-400">
+                {isDanish ? 'AI AGENT EKSPERTER' : 'AI AGENTS EXPERTS'}
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              {isDanish
+                ? 'Transformer Din Virksomhed med Intelligente AI-Agenter'
+                : 'Transform Your Business with Intelligent AI Agents'}
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
+              {isDanish
+                ? 'Opdag forskellige anvendelser af AI-agenter skræddersyet til at løfte din virksomheds drift'
+                : 'Discover diverse applications of AI agents tailored to elevate your business operations'}
+            </p>
+            <Button variant="primary" size="lg" onClick={handleDemoClick}>
+              {isDanish ? 'Kom i Gang Nu' : 'Get Started Now'}
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Powerful Features Section */}
       <section className="py-16 relative">
         <div className="container mx-auto px-4">
