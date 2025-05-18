@@ -181,6 +181,36 @@ export const AIAgent: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-4">
+              {isDanish ? 'Kraftfulde Funktioner' : 'Powerful Features'}
+            </h2>
+            <p className="text-gray-300">
+              {isDanish
+                ? 'Alt hvad du behøver for at skabe succesfulde AI-agenter'
+                : 'Everything you need to create successful AI agents'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4">
               {isDanish ? 'Live Eksempler på AI Agenter' : 'Live Examples AI Agents'}
             </h2>
             <p className="text-gray-300">
@@ -322,36 +352,6 @@ export const AIAgent: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              {isDanish ? 'Kraftfulde Funktioner' : 'Powerful Features'}
-            </h2>
-            <p className="text-gray-300">
-              {isDanish
-                ? 'Alt hvad du behøver for at skabe succesfulde AI-agenter'
-                : 'Everything you need to create successful AI agents'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
-              >
-                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
