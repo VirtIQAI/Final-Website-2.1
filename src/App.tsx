@@ -24,15 +24,52 @@ import { NewsletterPopup } from './components/NewsletterPopup';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
 import { useTranslation } from 'react-i18next';
+import { SEOHead } from './components/SEOHead';
+import { StructuredData } from './components/StructuredData';
 
 function App() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
 
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'VirtIQ',
+    url: 'https://virtiq.dk',
+    logo: 'https://virtiq.dk/logo.png',
+    description: isDanish 
+      ? 'Førende AI-bureau der specialiserer sig i AI-automatisering, chatbots og digitale løsninger'
+      : 'Leading AI agency specializing in AI automation, chatbots, and digital solutions',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'DK'
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+4530240676',
+      contactType: 'customer service',
+      email: 'lucas@virtiq.dk',
+      availableLanguage: ['Danish', 'English']
+    },
+    sameAs: [
+      'https://www.facebook.com/profile.php?id=61571678866111',
+      'https://www.instagram.com/virtiq.dk/',
+      'https://www.linkedin.com/company/106651496/admin/dashboard/'
+    ]
+  };
+
   return (
     <ThemeProvider>
       <Router>
+        <SEOHead
+          title={isDanish ? 'VirtIQ - Førende AI Bureau | Intelligente Automatiseringsløsninger' : 'VirtIQ - Leading AI Agency | Intelligent Automation Solutions'}
+          description={isDanish 
+            ? 'Transform din virksomhed med AI-drevne løsninger. Ekspertise inden for AI-automatisering, intelligente agenter og Meta-annonceoptimering. Start med en gratis konsultation.'
+            : 'Transform your business with AI-powered solutions. Expert services in AI automation, intelligent agents, and Meta ads optimization. Get started with a free consultation.'}
+          canonicalUrl="https://virtiq.dk"
+        />
+        <StructuredData data={organizationSchema} />
         <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
           <Header />
           <Routes>
