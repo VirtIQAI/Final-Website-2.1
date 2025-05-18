@@ -4,12 +4,45 @@ import { Button } from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle2, MessageSquare, ShoppingCart, Scale, BarChart } from 'lucide-react';
+import { CheckCircle2, MessageSquare, ShoppingCart, Scale, BarChart, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const AIAgent: React.FC = () => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const products = [
+    {
+      id: 1,
+      name: 'Aperol Spritz Summer Tee',
+      description: 'Sleek and sophisticated minimalist design. Premium eco-friendly materials with perfect fit and comfort.',
+      price: '449 DKK',
+      image: '/Shopping Assistant/T-shirt_aperolspritz.png'
+    },
+    {
+      id: 2,
+      name: 'Beach Paradise Tee',
+      description: 'Sleek and sophisticated minimalist design. Premium eco-friendly materials with perfect fit and comfort.',
+      price: '399 DKK',
+      image: '/Shopping Assistant/T-shirt_summer.png'
+    },
+    {
+      id: 3,
+      name: 'Summer Vibes Collection',
+      description: 'Sleek and sophisticated minimalist design. Premium eco-friendly materials with perfect fit and comfort.',
+      price: '399 DKK',
+      image: '/Shopping Assistant/T-shirt_waves.png'
+    }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % products.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
+  };
 
   const pageTitle = isDanish 
     ? 'AI Agents - Intelligent Automatisering | VirtIQ'
@@ -285,6 +318,55 @@ export const AIAgent: React.FC = () => {
                     </div>
                   </div>
                 ))}
+                {visibleMessages.shopping >= 4 && (
+                  <div className="mt-4">
+                    <div className="relative">
+                      <div className="flex items-center justify-between mb-4">
+                        <button
+                          onClick={prevSlide}
+                          className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
+                          aria-label="Previous slide"
+                        >
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button
+                          onClick={nextSlide}
+                          className="p-2 rounded-full bg-gray-800 text-white hover:bg-purple-600 transition-colors"
+                          aria-label="Next slide"
+                        >
+                          <ChevronRight size={20} />
+                        </button>
+                      </div>
+                      <div className="overflow-hidden rounded-lg">
+                        <div
+                          className="flex transition-transform duration-300 ease-in-out"
+                          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                        >
+                          {products.map((product) => (
+                            <div
+                              key={product.id}
+                              className="w-full flex-shrink-0 bg-gray-800 rounded-lg p-4"
+                            >
+                              <div className="aspect-w-1 aspect-h-1 w-full mb-4 bg-gray-700 rounded-lg overflow-hidden">
+                                <img 
+                                  src={product.image}
+                                  alt={product.name}
+                                  className="w-full h-48 object-cover"
+                                />
+                              </div>
+                              <h3 className="text-lg font-semibold text-white mb-2">{product.name}</h3>
+                              <p className="text-gray-300 text-sm mb-2">{product.description}</p>
+                              <p className="text-purple-400 font-medium mb-4">{product.price}</p>
+                              <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                                Buy Product
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="p-4 border-t border-gray-800">
                 <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
