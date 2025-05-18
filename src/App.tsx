@@ -27,13 +27,16 @@ import { SEOHead } from './components/SEOHead';
 import { StructuredData } from './components/StructuredData';
 import { usePageTracking, initScrollTracking } from './lib/analytics';
 
+// Create a component to handle analytics
+const AnalyticsProvider = () => {
+  usePageTracking();
+  return null;
+};
+
 function App() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
-
-  // Initialize analytics tracking
-  usePageTracking();
   
   useEffect(() => {
     // Initialize scroll depth tracking
@@ -90,6 +93,7 @@ function App() {
           ogImage="https://virtiq.dk/logo-transparent.png"
         />
         <StructuredData data={organizationSchema} />
+        <AnalyticsProvider />
         <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
           <Header />
           <Routes>
