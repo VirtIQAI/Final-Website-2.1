@@ -262,29 +262,30 @@ export const AIAgent: React.FC = () => {
                   <div
                     key={index}
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
-                    <div
-                      className={`max-w-[80%] px-4 py-2 rounded-lg ${
-                        message.type === 'user'
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-gray-800 text-white'
-                      }`}
-                    >
-                      <div className="prose prose-invert text-sm whitespace-pre-line">
-                        <ReactMarkdown>{message.text}</ReactMarkdown>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="p-4 border-t border-gray-800">
-                <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
-                  <input
-                    type="text"
-                    placeholder="Type your message..."
-                    className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
-                    disabled
-                  />
+>
+  <div
+    className={`max-w-[80%] px-4 py-2 rounded-lg ${
+      message.type === 'user'
+        ? 'bg-purple-600 text-white'
+        : 'bg-gray-800 text-white'
+    }`}
+  >
+    <ReactMarkdown className="prose prose-invert text-white text-sm whitespace-pre-line">
+      {message.text}
+    </ReactMarkdown>
+  </div>
+</div>
+))}
+
+</div>
+<div className="p-4 border-t border-gray-800">
+  <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
+    <input
+      type="text"
+      placeholder="Type your message..."
+      className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
+      disabled
+    />
                   <button className="ml-2 text-purple-400 hover:text-purple-300 transition-colors">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
