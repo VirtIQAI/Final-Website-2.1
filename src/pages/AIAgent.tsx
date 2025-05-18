@@ -270,9 +270,9 @@ export const AIAgent: React.FC = () => {
                           : 'bg-gray-800 text-gray-200'
                       }`}
                     >
-                     <ReactMarkdown className="prose prose-invert text-sm whitespace-pre-line">
-  {message.text}
-</ReactMarkdown>
+                      <div className="prose prose-invert text-sm whitespace-pre-line">
+                        <ReactMarkdown>{message.text}</ReactMarkdown>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -316,7 +316,9 @@ export const AIAgent: React.FC = () => {
                           : 'bg-gray-800 text-gray-200'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-line">{message.text}</p>
+                      <div className="prose prose-invert text-sm whitespace-pre-line">
+                        <ReactMarkdown>{message.text}</ReactMarkdown>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -360,7 +362,9 @@ export const AIAgent: React.FC = () => {
                           : 'bg-gray-800 text-gray-200'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-line">{message.text}</p>
+                      <div className="prose prose-invert text-sm whitespace-pre-line">
+                        <ReactMarkdown>{message.text}</ReactMarkdown>
+                      </div>
                     </div>
                   </div>
                 ))}
