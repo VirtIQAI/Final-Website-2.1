@@ -126,7 +126,7 @@ export default function AIAgent() {
           <div className="max-w-3xl">
             <div className="inline-block mb-4 py-1 px-3 bg-purple-500/10 backdrop-blur-sm rounded-full border border-purple-500/20">
               <span className="text-sm font-semibold text-purple-400">
-                {isDanish ? 'AI AGENT EKSPERTER' : 'AI AGENTS EXPERTS'}
+                {isDanish ? 'AI AGENTS' : 'AI AGENTS'}
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
