@@ -270,7 +270,9 @@ export const AIAgent: React.FC = () => {
                           : 'bg-gray-800 text-gray-200'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-line">{message.text}</p>
+                     <ReactMarkdown className="prose prose-invert text-sm whitespace-pre-line">
+  {message.text}
+</ReactMarkdown>
                     </div>
                   </div>
                 ))}
