@@ -119,18 +119,6 @@ const AIAgent: React.FC = () => {
 
   return (
     <main className="flex-grow pt-24">
-      <Helmet>
-        <title>{isDanish ? 'AI Agenter - Fremtidens Kundeservice' : 'AI Agents - The Future of Customer Service'}</title>
-        <meta
-          name="description"
-          content={
-            isDanish
-              ? 'Transformer din virksomhed med intelligente AI-agenter. Automatiser kundeservice, juridisk rådgivning og forretningsintelligens.'
-              : 'Transform your business with intelligent AI agents. Automate customer service, legal advisory, and business intelligence.'
-          }
-        />
-      </Helmet>
-
       {/* Hero Section */}
       <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
@@ -199,4 +187,193 @@ const AIAgent: React.FC = () => {
             <p className="text-gray-300">
               {isDanish
                 ? 'Udforsk kraften i AI-agenter gennem vores live eksempler nedenfor'
-                
+                : 'Explore the power of AI agents through our live examples below'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Shopping Assistant */}
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800 overflow-hidden">
+              <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  <span className="text-sm font-medium">Shopping Assistant</span>
+                </div>
+                <span className="text-xs text-purple-400">External Use Case</span>
+              </div>
+              <div className="p-4 h-[400px] overflow-y-auto space-y-4">
+                {initialMessages.shopping.slice(0, visibleMessages.shopping).map((message, index) => (
+                  <div
+                    key={index}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
+                    style={{
+                      animation: 'fadeIn 0.5s ease-in-out forwards',
+                      animationDelay: `${index * 0.5}s`
+                    }}
+                  >
+                    <div
+                      className={`max-w-[80%] px-4 py-2 rounded-lg ${
+                        message.type === 'user'
+                          ? 'bg-purple-600 text-white'
+                          : 'bg-gray-800 text-gray-200'
+                      }`}
+                    >
+                      <p className="text-sm whitespace-pre-line">{message.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="p-4 border-t border-gray-800">
+                <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
+                  <input
+                    type="text"
+                    placeholder="Type your message..."
+                    className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
+                    disabled
+                  />
+                  <button className="ml-2 text-purple-400 hover:text-purple-300 transition-colors">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Legal Assistant */}
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800 overflow-hidden">
+              <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  <span className="text-sm font-medium">Legal Assistant</span>
+                </div>
+                <span className="text-xs text-purple-400">External Use Case</span>
+              </div>
+              <div className="p-4 h-[400px] overflow-y-auto space-y-4">
+                {initialMessages.legal.slice(0, visibleMessages.legal).map((message, index) => (
+                  <div
+                    key={index}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
+                    style={{
+                      animation: 'fadeIn 0.5s ease-in-out forwards',
+                      animationDelay: `${index * 0.5}s`
+                    }}
+                  >
+                    <div
+                      className={`max-w-[80%] px-4 py-2 rounded-lg ${
+                        message.type === 'user'
+                          ? 'bg-purple-600 text-white'
+                          : 'bg-gray-800 text-gray-200'
+                      }`}
+                    >
+                      <p className="text-sm whitespace-pre-line">{message.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="p-4 border-t border-gray-800">
+                <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
+                  <input
+                    type="text"
+                    placeholder="Type your message..."
+                    className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
+                    disabled
+                  />
+                  <button className="ml-2 text-purple-400 hover:text-purple-300 transition-colors">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Shopify Insights Assistant */}
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800 overflow-hidden">
+              <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  <span className="text-sm font-medium">Shopify Insights Assistant</span>
+                </div>
+                <span className="text-xs text-purple-400">Internal Use Case</span>
+              </div>
+              <div className="p-4 h-[400px] overflow-y-auto space-y-4">
+                {initialMessages.shopify.slice(0, visibleMessages.shopify).map((message, index) => (
+                  <div
+                    key={index}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
+                    style={{
+                      animation: 'fadeIn 0.5s ease-in-out forwards',
+                      animationDelay: `${index * 0.5}s`
+                    }}
+                  >
+                    <div
+                      className={`max-w-[80%] px-4 py-2 rounded-lg ${
+                        message.type === 'user'
+                          ? 'bg-purple-600 text-white'
+                          : 'bg-gray-800 text-gray-200'
+                      }`}
+                    >
+                      <p className="text-sm whitespace-pre-line">{message.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="p-4 border-t border-gray-800">
+                <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
+                  <input
+                    type="text"
+                    placeholder="Type your message..."
+                    className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
+                    disabled
+                  />
+                  <button className="ml-2 text-purple-400 hover:text-purple-300 transition-colors">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-8">
+                {isDanish ? 'Alt Du Behøver til AI Agenter' : 'Everything You Need for AI Agents'}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <CheckCircle2 className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                    <span className="text-gray-300">{feature.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
+              <h3 className="text-2xl font-bold mb-4">
+                {isDanish ? 'Klar til at Transformere Din Virksomhed?' : 'Ready to Transform Your Business?'}
+              </h3>
+              <p className="text-gray-300 mb-6">
+                {isDanish
+                  ? 'Få en gratis konsultation og lær hvordan vores AI-agenter kan hjælpe med at automatisere og forbedre din virksomheds drift.'
+                  : 'Get a free consultation and learn how our AI agents can help automate and improve your business operations.'}
+              </p>
+              <Button variant="primary" size="lg" fullWidth onClick={handleDemoClick}>
+                {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default AIAgent;
