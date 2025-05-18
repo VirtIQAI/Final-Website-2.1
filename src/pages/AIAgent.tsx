@@ -28,21 +28,21 @@ export const AIAgent: React.FC = () => {
   const products = [
     {
       id: 1,
-      name: 'Aperol Spritz Summer Tee',
+      name: 'Aperol Spritz Collection',
       price: '449 DKK',
       description: 'Retro-style light blue tee with bold orange typography. Perfect for summer parties and beach days. Premium cotton blend for ultimate comfort.',
       image: '/Shopping Assistant/T-shirt_aperolspritz.png'
     },
     {
       id: 2,
-      name: 'Beach Paradise Tee',
+      name: 'Beach Paradise Collection',
       price: '399 DKK',
       description: 'White cotton tee featuring a vibrant beach scene design. Made from 100% organic cotton.',
       image: '/Shopping Assistant/T-shirt_summer.png'
     },
     {
       id: 3,
-      name: 'Summer Vibes Collection',
+      name: 'Boat Collection',
       price: '399 DKK',
       description: 'Classic fit tee with modern summer graphics. Breathable fabric perfect for hot days.',
       image: '/Shopping Assistant/T-shirt_waves.png'
