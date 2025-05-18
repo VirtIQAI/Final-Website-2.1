@@ -49,9 +49,6 @@
     Content-Type = "application/xml"
     Cache-Control = "public, max-age=3600"
 
-[[plugins]]
-  package = "@netlify/plugin-sitemap"
-
 [build.environment]
   NODE_VERSION = "20"
 
