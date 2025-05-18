@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -14,7 +14,7 @@ const AIAgent: React.FC = () => {
     navigate('/#contact');
   };
 
-  const [messages] = useState({
+  const initialMessages = {
     shopping: [
       { type: 'bot', text: 'Welcome to our store 🚀' },
       { type: 'bot', text: 'What can we do for you?' },
@@ -31,7 +31,61 @@ const AIAgent: React.FC = () => {
       { type: 'user', text: 'What products have performed best this week, and what have performed the worst? What is trending? Have we delivered on time?' },
       { type: 'bot', text: "Here's your store performance analysis for this week:\n\n📈 Top Performers:\n• Summer Collection T-Shirt: 127 units sold (+45% from last week)\n• Eco-Friendly Hoodie: 98 units sold (+32%)\n• Urban Streetwear Cap: 76 units sold (+28%)\n\n📉 Underperforming Products:\n• Vintage Denim Jacket: 12 units (-60% from last week)\n• Classic Polo Shirt: 15 units (-45%)" }
     ]
+  };
+
+  const [messages, setMessages] = useState(initialMessages);
+  const [visibleMessages, setVisibleMessages] = useState({
+    shopping: 0,
+    legal: 0,
+    shopify: 0
   });
+
+  // Reset chats every 15 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisibleMessages({
+        shopping: 0,
+        legal: 0,
+        shopify: 0
+      });
+      
+      // Reset and start displaying messages again
+      Object.keys(initialMessages).forEach(chatType => {
+        let messageIndex = 0;
+        const displayNextMessage = () => {
+          if (messageIndex < initialMessages[chatType].length) {
+            setVisibleMessages(prev => ({
+              ...prev,
+              [chatType]: messageIndex + 1
+            }));
+            messageIndex++;
+            setTimeout(displayNextMessage, 1000);
+          }
+        };
+        setTimeout(displayNextMessage, 500);
+      });
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Initial message display
+  useEffect(() => {
+    Object.keys(initialMessages).forEach(chatType => {
+      let messageIndex = 0;
+      const displayNextMessage = () => {
+        if (messageIndex < initialMessages[chatType].length) {
+          setVisibleMessages(prev => ({
+            ...prev,
+            [chatType]: messageIndex + 1
+          }));
+          messageIndex++;
+          setTimeout(displayNextMessage, 1000);
+        }
+      };
+      setTimeout(displayNextMessage, 500);
+    });
+  }, []);
 
   const features = [
     { name: isDanish ? 'Naturlig sprogbehandling' : 'Natural language processing' },
@@ -160,10 +214,14 @@ const AIAgent: React.FC = () => {
                 <span className="text-xs text-purple-400">External Use Case</span>
               </div>
               <div className="p-4 h-[400px] overflow-y-auto space-y-4">
-                {messages.shopping.map((message, index) => (
+                {messages.shopping.slice(0, visibleMessages.shopping).map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
+                    style={{
+                      animation: 'fadeIn 0.5s ease-in-out forwards',
+                      animationDelay: `${index * 0.5}s`
+                    }}
                   >
                     <div
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
@@ -204,10 +262,14 @@ const AIAgent: React.FC = () => {
                 <span className="text-xs text-purple-400">External Use Case</span>
               </div>
               <div className="p-4 h-[400px] overflow-y-auto space-y-4">
-                {messages.legal.map((message, index) => (
+                {messages.legal.slice(0, visibleMessages.legal).map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
+                    style={{
+                      animation: 'fadeIn 0.5s ease-in-out forwards',
+                      animationDelay: `${index * 0.5}s`
+                    }}
                   >
                     <div
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
@@ -248,10 +310,14 @@ const AIAgent: React.FC = () => {
                 <span className="text-xs text-purple-400">Internal Use Case</span>
               </div>
               <div className="p-4 h-[400px] overflow-y-auto space-y-4">
-                {messages.shopify.map((message, index) => (
+                {messages.shopify.slice(0, visibleMessages.shopify).map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
+                    style={{
+                      animation: 'fadeIn 0.5s ease-in-out forwards',
+                      animationDelay: `${index * 0.5}s`
+                    }}
                   >
                     <div
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
