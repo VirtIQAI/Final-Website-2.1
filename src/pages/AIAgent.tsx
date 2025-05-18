@@ -61,7 +61,7 @@ export const AIAgent: React.FC = () => {
     shopping: [
       { type: 'bot', text: 'Welcome to our store 🚀' },
       { type: 'bot', text: 'What can we do for you?' },
-      { type: 'user', text: "I'm looking for some cool t-shirts for summer, which are clean and give good vibes" },
+      { type: 'user', text: "I'm looking for some cool tees for summer, they need to be clean and give good vibes" },
       { type: 'bot', text: 'Here are some of our most popular summer t-shirts:' }
     ],
     legal: [
