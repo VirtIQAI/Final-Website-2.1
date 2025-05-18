@@ -13,6 +13,10 @@ const AIAgent: React.FC = () => {
   const fullText = isDanish ? 'Indsamler kunde- og virksomhedsdata...' : 'Collecting customer and business data...';
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const handleDemoClick = () => {
+    navigate('/#contact');
+  };
+
   useEffect(() => {
     if (currentIndex < fullText.length) {
       const timeout = setTimeout(() => {
