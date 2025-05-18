@@ -3,7 +3,7 @@ import { Button } from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, MessageSquare, ShoppingCart, Scale, BarChart } from 'lucide-react';
 
 const AIAgent: React.FC = () => {
   const navigate = useNavigate();
@@ -44,8 +44,71 @@ const AIAgent: React.FC = () => {
     { name: isDanish ? 'Analyse og rapportering' : 'Analytics and reporting' }
   ];
 
+  const powerfulFeatures = [
+    {
+      icon: <MessageSquare className="w-8 h-8" />,
+      title: isDanish ? 'Kundesupport' : 'Customer Support',
+      description: isDanish 
+        ? 'AI-drevet support der yder øjeblikkelig, døgnåben kundeservice'
+        : 'AI-powered support agents provide instant, 24/7 customer service'
+    },
+    {
+      icon: <ShoppingCart className="w-8 h-8" />,
+      title: isDanish ? 'E-handels Assistent' : 'E-commerce Assistant',
+      description: isDanish
+        ? 'Personlige købsanbefalinger og support'
+        : 'Personalized shopping recommendations and support'
+    },
+    {
+      icon: <Scale className="w-8 h-8" />,
+      title: isDanish ? 'Juridisk Rådgivning' : 'Legal Advisory',
+      description: isDanish
+        ? 'Specialiseret juridisk indsigt og compliance-assistance'
+        : 'Specialized legal insights and compliance assistance'
+    },
+    {
+      icon: <BarChart className="w-8 h-8" />,
+      title: isDanish ? 'Forretningsintelligens' : 'Business Intelligence',
+      description: isDanish
+        ? 'Realtidsanalyse af data og forretningsmæssige indsigter'
+        : 'Real-time data analysis and business insights'
+    }
+  ];
+
   return (
     <main className="flex-grow pt-24">
+      {/* Powerful Features Section */}
+      <section className="py-16 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              {isDanish ? 'Kraftfulde Funktioner' : 'Powerful Features'}
+            </h2>
+            <p className="text-gray-300">
+              {isDanish
+                ? 'Alt hvad du behøver for at skabe succesfulde AI-agenter'
+                : 'Everything you need to create successful AI agents'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {powerfulFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 text-purple-400">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Live Examples Section */}
       <section className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
