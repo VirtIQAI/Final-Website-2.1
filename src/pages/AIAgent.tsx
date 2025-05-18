@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle2, MessageSquare, ShoppingCart, Scale, BarChart } from 'lucide-react';
 
-const AIAgent: React.FC = () => {
+export default function AIAgent() {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
@@ -374,6 +374,4 @@ const AIAgent: React.FC = () => {
       </section>
     </main>
   );
-};
-
-export default AIAgent;
+}
