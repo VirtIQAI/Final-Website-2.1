@@ -33,44 +33,13 @@ const AIAgent: React.FC = () => {
     ]
   };
 
-  const [messages, setMessages] = useState(initialMessages);
   const [visibleMessages, setVisibleMessages] = useState({
     shopping: 0,
     legal: 0,
     shopify: 0
   });
 
-  // Reset chats every 15 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisibleMessages({
-        shopping: 0,
-        legal: 0,
-        shopify: 0
-      });
-      
-      // Reset and start displaying messages again
-      Object.keys(initialMessages).forEach(chatType => {
-        let messageIndex = 0;
-        const displayNextMessage = () => {
-          if (messageIndex < initialMessages[chatType].length) {
-            setVisibleMessages(prev => ({
-              ...prev,
-              [chatType]: messageIndex + 1
-            }));
-            messageIndex++;
-            setTimeout(displayNextMessage, 1000);
-          }
-        };
-        setTimeout(displayNextMessage, 500);
-      });
-    }, 15000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Initial message display
-  useEffect(() => {
+  const startMessageAnimation = () => {
     Object.keys(initialMessages).forEach(chatType => {
       let messageIndex = 0;
       const displayNextMessage = () => {
@@ -83,8 +52,27 @@ const AIAgent: React.FC = () => {
           setTimeout(displayNextMessage, 1000);
         }
       };
-      setTimeout(displayNextMessage, 500);
+      displayNextMessage();
     });
+  };
+
+  useEffect(() => {
+    // Start initial animation
+    startMessageAnimation();
+
+    // Set up interval for resetting
+    const interval = setInterval(() => {
+      setVisibleMessages({
+        shopping: 0,
+        legal: 0,
+        shopify: 0
+      });
+      
+      // Wait a brief moment before starting the animation again
+      setTimeout(startMessageAnimation, 500);
+    }, 15000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const features = [
@@ -214,7 +202,7 @@ const AIAgent: React.FC = () => {
                 <span className="text-xs text-purple-400">External Use Case</span>
               </div>
               <div className="p-4 h-[400px] overflow-y-auto space-y-4">
-                {messages.shopping.slice(0, visibleMessages.shopping).map((message, index) => (
+                {initialMessages.shopping.slice(0, visibleMessages.shopping).map((message, index) => (
                   <div
                     key={index}
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
@@ -262,7 +250,7 @@ const AIAgent: React.FC = () => {
                 <span className="text-xs text-purple-400">External Use Case</span>
               </div>
               <div className="p-4 h-[400px] overflow-y-auto space-y-4">
-                {messages.legal.slice(0, visibleMessages.legal).map((message, index) => (
+                {initialMessages.legal.slice(0, visibleMessages.legal).map((message, index) => (
                   <div
                     key={index}
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
@@ -310,7 +298,7 @@ const AIAgent: React.FC = () => {
                 <span className="text-xs text-purple-400">Internal Use Case</span>
               </div>
               <div className="p-4 h-[400px] overflow-y-auto space-y-4">
-                {messages.shopify.slice(0, visibleMessages.shopify).map((message, index) => (
+                {initialMessages.shopify.slice(0, visibleMessages.shopify).map((message, index) => (
                   <div
                     key={index}
                     className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
