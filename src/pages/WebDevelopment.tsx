@@ -1,27 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Code, Zap, Layout, Smartphone, Globe, Shield, Sparkles, CheckCircle2 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-
-const TerminalLine: React.FC<{ content: string; delay: number }> = ({ content, delay }) => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  if (!visible) return null;
-
-  return (
-    <div className="font-mono text-sm">
-      <span className="text-green-400">$ </span>
-      {content}
-    </div>
-  );
-};
 
 export const WebDevelopment: React.FC = () => {
   const workflowRef = useRef<HTMLDivElement>(null);
@@ -159,22 +141,6 @@ export const WebDevelopment: React.FC = () => {
     isDanish ? 'E-handelsløsninger' : 'E-commerce solutions'
   ];
 
-  const terminalLines = [
-    { content: "npm create vite@latest my-project -- --template react-ts", delay: 0 },
-    { content: "cd my-project", delay: 1000 },
-    { content: "npm install", delay: 2000 },
-    { content: "Installing dependencies...", delay: 2500 },
-    { content: "added 234 packages in 12s", delay: 4000 },
-    { content: "npm install tailwindcss postcss autoprefixer -D", delay: 5000 },
-    { content: "npx tailwindcss init -p", delay: 6000 },
-    { content: "Creating Tailwind configuration...", delay: 6500 },
-    { content: "Created Tailwind CSS config", delay: 7000 },
-    { content: "npm run dev", delay: 8000 },
-    { content: "VITE v5.0.0  ready in 321 ms", delay: 9000 },
-    { content: "➜  Local:   http://localhost:5173/", delay: 9500 },
-    { content: "➜  Network: http://192.168.1.5:5173/", delay: 9700 },
-  ];
-
   return (
     <main className="flex-grow pt-24">
       <Helmet>
@@ -254,15 +220,16 @@ export const WebDevelopment: React.FC = () => {
                       <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
                   </div>
-                  <div className="p-8 pt-16 font-mono text-sm">
-                    {terminalLines.map((line, index) => (
-                      <TerminalLine 
-                        key={index}
-                        content={line.content}
-                        delay={line.delay}
-                      />
-                    ))}
-                    <div className="mt-2 inline-block w-2 h-4 bg-gray-400 animate-pulse"></div>
+                  <div className="p-8 pt-16">
+                    <div className="animate-pulse space-y-4">
+                      <div className="h-4 bg-gray-700 rounded w-3/4"></div>
+                      <div className="h-4 bg-gray-700 rounded"></div>
+                      <div className="h-4 bg-gray-700 rounded w-5/6"></div>
+                    </div>
+                    <div className="mt-8 grid grid-cols-2 gap-4">
+                      <div className="h-24 bg-gray-800 rounded-lg animate-pulse"></div>
+                      <div className="h-24 bg-gray-800 rounded-lg animate-pulse"></div>
+                    </div>
                   </div>
                 </div>
               </div>
