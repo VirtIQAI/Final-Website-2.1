@@ -284,7 +284,7 @@ return (
               },
             }),
           }}
-        </script>
+        />
       </Helmet>
 
                 {/* Main Hero Section */}
