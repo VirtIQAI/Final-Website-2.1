@@ -55,7 +55,6 @@ export const AIAgent: React.FC = () => {
     type: 'bot',
     text: `Here's your Year-over-Year Revenue Comparison with Projections:\n\n📊 Revenue Performance:\n• YTD Revenue: $350K\n• Previous Year: $250K\n• YoY Growth: +40%\n\n🎯 Projection through December:\n• Current Trajectory: $500K\n• Last Year: $300K\n• Expected Growth: +67%\n\n📈 Key Growth Drivers:\n• New Product Lines: +35% contribution\n• Improved Conversion Rate: +15%\n• Higher AOV: +12%\n\nBased on current trends and seasonality, we're projecting strong Q4 performance. Would you like to see a breakdown by product category or marketing channel?`
   }
-]
     ]
   };
 
