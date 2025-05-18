@@ -34,10 +34,28 @@ export const AIAgent: React.FC = () => {
       { type: 'user', text: 'Can I kick out my tenant?' },
       { type: 'bot', text: 'Terminating or Cancelling a Tenancy\n\nTerminating or cancelling a tenant requires that you, as the landlord, comply with the rules set out in the Danish Rent Act. It is important to distinguish between termination and cancellation, as they have different requirements and consequences:\n\nTermination of a Tenant\nAs a landlord, you may only terminate a tenant in specific situations, such as:\n\nIf you need to use the property for your own residence.' }
     ],
-    shopify: [
-      { type: 'bot', text: 'Welcome back, Chris! 👋 How can I help you with your store insights today?' },
-      { type: 'user', text: 'What products have performed best this week, and what have performed the worst? What is trending? Have we delivered on time?' },
-      { type: 'bot', text: "Here's your store performance analysis for this week:\n\n📈 Top Performers:\n• Summer Collection T-Shirt: 127 units sold (+45% from last week)\n• Eco-Friendly Hoodie: 98 units sold (+32%)\n• Urban Streetwear Cap: 76 units sold (+28%)\n\n📉 Underperforming Products:\n• Vintage Denim Jacket: 12 units (-60% from last week)\n• Classic Polo Shirt: 15 units (-45%)" }
+  shopify: [
+  {
+    type: 'bot',
+    text: 'Welcome back, Chris! 👋 How can I help you with your store insights today?'
+  },
+  {
+    type: 'user',
+    text: 'What products have performed best this week, and what have performed the worst? What is trending? Have we delivered on time?'
+  },
+  {
+    type: 'bot',
+    text: `Here's your store performance analysis for this week:\n\n📈 Top Performers:\n• Summer Collection T-Shirt: 127 units sold (+45% from last week)\n• Eco-Friendly Hoodie: 98 units sold (+32%)\n• Urban Streetwear Cap: 76 units sold (+28%)\n\n📉 Underperforming Products:\n• Vintage Denim Jacket: 12 units (-60% from last week)\n• Classic Polo Shirt: 15 units (-45%)\n• Winter Collection Items: Generally low performance (seasonal impact)\n\n🔥 Trending Now:\n• Sustainable Fashion Category: +85% growth\n• Limited Edition Sneakers: High demand (92% sell-through rate)\n• Custom Print T-Shirts: Growing social media mentions\n\n📦 Delivery Performance:\n• On-time Delivery Rate: 96.5%\n• Average Delivery Time: 2.3 days\n• Late Deliveries: 7 orders (all contacted and resolved)\n\nWould you like me to generate a detailed report or focus on any specific area?`
+  },
+  {
+    type: 'user',
+    text: 'Show me the revenue projection compared to last year'
+  },
+  {
+    type: 'bot',
+    text: `Here's your Year-over-Year Revenue Comparison with Projections:\n\n📊 Revenue Performance:\n• YTD Revenue: $350K\n• Previous Year: $250K\n• YoY Growth: +40%\n\n🎯 Projection through December:\n• Current Trajectory: $500K\n• Last Year: $300K\n• Expected Growth: +67%\n\n📈 Key Growth Drivers:\n• New Product Lines: +35% contribution\n• Improved Conversion Rate: +15%\n• Higher AOV: +12%\n\nBased on current trends and seasonality, we're projecting strong Q4 performance. Would you like to see a breakdown by product category or marketing channel?`
+  }
+]
     ]
   };
 
