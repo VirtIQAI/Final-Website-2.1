@@ -10,6 +10,14 @@ export const AIAgent: React.FC = () => {
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
 
+  const pageTitle = isDanish 
+    ? 'AI Agents - Intelligent Automatisering | VirtIQ'
+    : 'AI Agents - Intelligent Automation | VirtIQ';
+  
+  const pageDescription = isDanish
+    ? 'Transformer din virksomhed med intelligente AI-agenter. Automatiser komplekse opgaver, forbedre beslutningsprocesser og optimer kundeservice med vores avancerede AI-løsninger.'
+    : 'Transform your business with intelligent AI agents. Automate complex tasks, improve decision-making processes, and optimize customer service with our advanced AI solutions.';
+
   const handleDemoClick = () => {
     navigate('/#contact');
   };
@@ -40,23 +48,21 @@ export const AIAgent: React.FC = () => {
   });
 
   useEffect(() => {
+    let timeouts: NodeJS.Timeout[] = [];
+    
     const animateMessages = () => {
       Object.keys(initialMessages).forEach(chatType => {
         const messages = initialMessages[chatType];
-        let currentIndex = 0;
-
-        const showNextMessage = () => {
-          if (currentIndex < messages.length) {
+        
+        messages.forEach((_, index) => {
+          const timeout = setTimeout(() => {
             setVisibleMessages(prev => ({
               ...prev,
-              [chatType]: currentIndex + 1
+              [chatType]: index + 1
             }));
-            currentIndex++;
-            setTimeout(showNextMessage, 1000);
-          }
-        };
-
-        showNextMessage();
+          }, index * 1000);
+          timeouts.push(timeout);
+        });
       });
     };
 
@@ -65,31 +71,28 @@ export const AIAgent: React.FC = () => {
 
     // Reset and restart animation every 15 seconds
     const resetInterval = setInterval(() => {
+      // Clear any remaining timeouts
+      timeouts.forEach(timeout => clearTimeout(timeout));
+      timeouts = [];
+      
+      // Reset messages
       setVisibleMessages({
         shopping: 0,
         legal: 0,
         shopify: 0
       });
       
-      // Brief pause before restarting animation
+      // Start new animation after a brief pause
       setTimeout(animateMessages, 500);
     }, 15000);
 
-    return () => clearInterval(resetInterval);
+    return () => {
+      clearInterval(resetInterval);
+      timeouts.forEach(timeout => clearTimeout(timeout));
+    };
   }, []);
 
   const features = [
-    { name: isDanish ? 'Naturlig sprogbehandling' : 'Natural language processing' },
-    { name: isDanish ? 'Flersproget support' : 'Multi-language support' },
-    { name: isDanish ? 'Læringsmuligheder' : 'Learning capabilities' },
-    { name: isDanish ? 'Integrationsmuligheder' : 'Integration options' },
-    { name: isDanish ? 'Kontekstuel forståelse' : 'Contextual understanding' },
-    { name: isDanish ? 'Realtidssvar' : 'Real-time responses' },
-    { name: isDanish ? 'Tilpasset vidensbase' : 'Custom knowledge base' },
-    { name: isDanish ? 'Analyse og rapportering' : 'Analytics and reporting' }
-  ];
-
-  const powerfulFeatures = [
     {
       icon: <MessageSquare className="w-8 h-8" />,
       title: isDanish ? 'Kundesupport' : 'Customer Support',
@@ -123,8 +126,18 @@ export const AIAgent: React.FC = () => {
   return (
     <main className="flex-grow pt-24">
       <Helmet>
-        <title>{isDanish ? 'AI Agents - Intelligent Automatisering | VirtIQ' : 'AI Agents - Intelligent Automation | VirtIQ'}</title>
-        <meta name="description" content={isDanish ? 'Transformer din virksomhed med intelligente AI-agenter. Automatiser komplekse opgaver, forbedre beslutningsprocesser og optimer kundeservice med vores avancerede AI-løsninger.' : 'Transform your business with intelligent AI agents. Automate complex tasks, improve decision-making processes, and optimize customer service with our advanced AI solutions.'} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://virtiq.dk/services/ai-agents" />
+        <meta property="og:image" content="https://virtiq.dk/ai-agents-og.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content="https://virtiq.dk/ai-agents-og.jpg" />
+        <link rel="canonical" href="https://virtiq.dk/services/ai-agents" />
       </Helmet>
 
       <section className="py-16 md:py-24 relative overflow-hidden">
@@ -153,38 +166,6 @@ export const AIAgent: React.FC = () => {
         </div>
       </section>
 
-      {/* Powerful Features Section */}
-      <section className="py-16 relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              {isDanish ? 'Kraftfulde Funktioner' : 'Powerful Features'}
-            </h2>
-            <p className="text-gray-300">
-              {isDanish
-                ? 'Alt hvad du behøver for at skabe succesfulde AI-agenter'
-                : 'Everything you need to create successful AI agents'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {powerfulFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
-              >
-                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 text-purple-400">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Live Examples Section */}
       <section className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
@@ -212,11 +193,7 @@ export const AIAgent: React.FC = () => {
                 {initialMessages.shopping.slice(0, visibleMessages.shopping).map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
-                    style={{
-                      animation: 'fadeIn 0.5s ease-in-out forwards',
-                      animationDelay: `${index * 0.5}s`
-                    }}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
@@ -260,11 +237,7 @@ export const AIAgent: React.FC = () => {
                 {initialMessages.legal.slice(0, visibleMessages.legal).map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
-                    style={{
-                      animation: 'fadeIn 0.5s ease-in-out forwards',
-                      animationDelay: `${index * 0.5}s`
-                    }}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
@@ -308,11 +281,7 @@ export const AIAgent: React.FC = () => {
                 {initialMessages.shopify.slice(0, visibleMessages.shopify).map((message, index) => (
                   <div
                     key={index}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} opacity-0 animate-fade-in`}
-                    style={{
-                      animation: 'fadeIn 0.5s ease-in-out forwards',
-                      animationDelay: `${index * 0.5}s`
-                    }}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
                       className={`max-w-[80%] px-4 py-2 rounded-lg ${
@@ -346,36 +315,32 @@ export const AIAgent: React.FC = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-16 relative">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-8">
-                {isDanish ? 'Alt Du Behøver til AI Agenter' : 'Everything You Need for AI Agents'}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <CheckCircle2 className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                    <span className="text-gray-300">{feature.name}</span>
-                  </div>
-                ))}
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              {isDanish ? 'Kraftfulde Funktioner' : 'Powerful Features'}
+            </h2>
+            <p className="text-gray-300">
+              {isDanish
+                ? 'Alt hvad du behøver for at skabe succesfulde AI-agenter'
+                : 'Everything you need to create successful AI agents'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
               </div>
-            </div>
-            <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
-              <h3 className="text-2xl font-bold mb-4">
-                {isDanish ? 'Klar til at Transformere Din Virksomhed?' : 'Ready to Transform Your Business?'}
-              </h3>
-              <p className="text-gray-300 mb-6">
-                {isDanish
-                  ? 'Få en gratis konsultation og lær hvordan vores AI-agenter kan hjælpe med at automatisere og forbedre din virksomheds drift.'
-                  : 'Get a free consultation and learn how our AI agents can help automate and improve your business operations.'}
-              </p>
-              <Button variant="primary" size="lg" fullWidth onClick={handleDemoClick}>
-                {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
-              </Button>
-            </div>
+            ))}
           </div>
         </div>
       </section>
