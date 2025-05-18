@@ -1,0 +1,17 @@
+{
+  "name": "VirtIQ - Leading AI Agency",
+  "short_name": "VirtIQ",
+  "description": "Transform your business with AI-powered solutions. Expert services in AI automation, intelligent agents, and Meta ads optimization.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#8B5CF6",
+  "icons": [
+    {
+      "src": "/logo-transparent.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
