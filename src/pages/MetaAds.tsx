@@ -11,12 +11,12 @@ export const MetaAds: React.FC = () => {
   const isDanish = i18n.language === 'da';
 
   const pageTitle = isDanish 
-    ? 'Meta Annoncer - Professionel Facebook & Instagram Annoncering | VirtIQ'
-    : 'Meta Ads - Professional Facebook & Instagram Advertising | VirtIQ';
+    ? 'Facebook & Instagram Annoncer - Professionel Meta Annoncering | VirtIQ'
+    : 'Facebook & Instagram Ads - Professional Meta Advertising | VirtIQ';
   
   const pageDescription = isDanish
-    ? 'Optimer dine Meta-annoncer med datadrevet strategi og AI-indsigt. Få højere ROAS, bedre målretning og øget konvertering på Facebook og Instagram med VirtIQs ekspertise.'
-    : 'Optimize your Meta ads with data-driven strategy and AI insights. Get higher ROAS, better targeting, and increased conversions on Facebook and Instagram with VirtIQ\'s expertise.';
+    ? 'Optimer dine Facebook-annoncer og Instagram-annoncer med datadrevet strategi og AI-indsigt. Få højere ROAS, bedre målretning og øget konvertering på tværs af Meta-platforme med VirtIQs ekspertise.'
+    : 'Optimize your Facebook ads and Instagram ads with data-driven strategy and AI insights. Get higher ROAS, better targeting, and increased conversions across Meta platforms with VirtIQ\'s expertise.';
 
   const handleDemoClick = () => {
     navigate('/#contact');
@@ -26,12 +26,12 @@ export const MetaAds: React.FC = () => {
     {
       label: isDanish ? 'Gennemsnitlig ROAS' : 'Average ROAS',
       value: '4.2x',
-      description: isDanish ? 'Return on ad spend på tværs af kampagner' : 'Return on ad spend across campaigns'
+      description: isDanish ? 'Return on ad spend på Facebook og Instagram' : 'Return on ad spend across Facebook and Instagram'
     },
     {
       label: isDanish ? 'CTR Forbedring' : 'CTR Improvement',
       value: '+127%',
-      description: isDanish ? 'Stigning i klikrate' : 'Click-through rate increase'
+      description: isDanish ? 'Stigning i klikrate på Meta-annoncer' : 'Click-through rate increase on Meta ads'
     },
     {
       label: isDanish ? 'CPA Reduktion' : 'CPA Reduction',
@@ -41,37 +41,37 @@ export const MetaAds: React.FC = () => {
     {
       label: isDanish ? 'Konverteringsrate' : 'Conversion Rate',
       value: '+85%',
-      description: isDanish ? 'Stigning i konverteringer' : 'Increase in conversion rates'
+      description: isDanish ? 'Stigning i konverteringer fra sociale medier' : 'Increase in social media conversions'
     }
   ];
 
   const process = [
     {
-      title: isDanish ? 'Kontoanalyse' : 'Account Analysis',
+      title: isDanish ? 'Facebook & Instagram Analyse' : 'Facebook & Instagram Analysis',
       description: isDanish 
-        ? 'Vi analyserer din eksisterende Meta Ads-konto for at identificere muligheder og forbedringspunkter.'
-        : 'We audit your existing Meta Ads account to identify opportunities and areas for improvement.',
+        ? 'Vi analyserer dine eksisterende Facebook-annoncer og Instagram-annoncer for at identificere muligheder og forbedringspunkter.'
+        : 'We audit your existing Facebook ads and Instagram ads to identify opportunities and areas for improvement.',
       icon: <Users className="w-6 h-6 text-purple-400" />
     },
     {
-      title: isDanish ? 'Strategiudvikling' : 'Strategy Development',
+      title: isDanish ? 'Meta Annoncestrategi' : 'Meta Ads Strategy',
       description: isDanish
-        ? 'Skræddersyet strategi baseret på dine mål, målgruppe og konkurrencesituation.'
-        : 'Custom strategy based on your goals, target audience, and competitive landscape.',
+        ? 'Skræddersyet strategi baseret på dine mål, målgruppe og konkurrencesituation på Facebook og Instagram.'
+        : 'Custom strategy based on your goals, target audience, and competitive landscape on Facebook and Instagram.',
       icon: <Target className="w-6 h-6 text-purple-400" />
     },
     {
       title: isDanish ? 'Kampagneopsætning' : 'Campaign Setup',
       description: isDanish
-        ? 'Professionel kampagnestruktur med avanceret tracking og optimeringsindstillinger.'
-        : 'Professional campaign structure with advanced tracking and optimization settings.',
+        ? 'Professionel opsætning af Facebook og Instagram kampagner med avanceret tracking.'
+        : 'Professional Facebook and Instagram campaign setup with advanced tracking.',
       icon: <BarChart className="w-6 h-6 text-purple-400" />
     },
     {
       title: isDanish ? 'Optimering & Skalering' : 'Optimization & Scaling',
       description: isDanish
-        ? 'Kontinuerlig overvågning og optimering for at skalere vindende kampagner.'
-        : 'Continuous monitoring and optimization to scale winning campaigns.',
+        ? 'Kontinuerlig optimering af dine Meta-annoncer for maksimal performance.'
+        : 'Continuous optimization of your Meta ads for maximum performance.',
       icon: <TrendingUp className="w-6 h-6 text-purple-400" />
     }
   ];
@@ -81,87 +81,81 @@ export const MetaAds: React.FC = () => {
       icon: <Target className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'Præcis Målretning' : 'Precision Targeting',
       description: isDanish
-        ? 'Nå dine ideelle kunder med avanceret målgruppesegmentering og målretningsmuligheder.'
-        : 'Reach your ideal customers with advanced audience segmentation and targeting capabilities.'
+        ? 'Nå dine ideelle kunder på Facebook og Instagram med avanceret målgruppesegmentering.'
+        : 'Reach your ideal customers on Facebook and Instagram with advanced audience segmentation.'
     },
     {
       icon: <BarChart className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'Datadrevet Optimering' : 'Data-Driven Optimization',
       description: isDanish
-        ? 'Kontinuerlig kampagneoptimering baseret på realtidsdata og AI-indsigt.'
-        : 'Continuous campaign optimization based on real-time performance data and AI insights.'
+        ? 'Kontinuerlig optimering af dine Meta-annoncer baseret på realtidsdata.'
+        : 'Continuous optimization of your Meta ads based on real-time performance data.'
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'Skalerbar Vækst' : 'Scalable Growth',
       description: isDanish
-        ? 'Skaler dine kampagner effektivt mens du opretholder eller forbedrer ROAS.'
-        : 'Scale your campaigns efficiently while maintaining or improving ROAS.'
+        ? 'Skaler dine Facebook og Instagram kampagner effektivt mens du opretholder ROAS.'
+        : 'Scale your Facebook and Instagram campaigns efficiently while maintaining ROAS.'
     },
     {
       icon: <Zap className="w-8 h-8 text-purple-400" />,
       title: isDanish ? 'Hurtig Test' : 'Rapid Testing',
       description: isDanish
-        ? 'Hurtig iteration på annoncekreariver og tekst for at finde vindende kombinationer.'
-        : 'Quick iteration on ad creative and copy to find winning combinations.'
+        ? 'Hurtig A/B-test af annoncer på tværs af Meta-platforme.'
+        : 'Quick A/B testing of ads across Meta platforms.'
     }
   ];
 
   const features = [
-    isDanish ? 'Avanceret målgruppemålretning' : 'Advanced audience targeting',
-    isDanish ? 'Tilpasset konverteringssporing' : 'Custom conversion tracking',
+    isDanish ? 'Facebook annoncemålretning' : 'Facebook ad targeting',
+    isDanish ? 'Instagram annoncering' : 'Instagram advertising',
     isDanish ? 'Kreativ A/B-test' : 'Creative A/B testing',
-    isDanish ? 'Automatiseret budforvaltning' : 'Automated bid management',
-    isDanish ? 'Performanceanalyse' : 'Performance analytics',
-    isDanish ? 'ROI-sporing' : 'ROI tracking',
-    isDanish ? 'Kampagneoptimering' : 'Campaign optimization',
-    isDanish ? 'Regelmæssige performancerapporter' : 'Regular performance reports'
+    isDanish ? 'Meta budgetoptimering' : 'Meta budget optimization',
+    isDanish ? 'Social medie analyse' : 'Social media analytics',
+    isDanish ? 'ROI tracking på tværs af platforme' : 'Cross-platform ROI tracking',
+    isDanish ? 'Facebook & Instagram optimering' : 'Facebook & Instagram optimization',
+    isDanish ? 'Performance rapportering' : 'Performance reporting'
   ];
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'name': isDanish ? 'Facebook & Instagram Annoncer' : 'Facebook & Instagram Ads',
+    'description': pageDescription,
+    'provider': {
+      '@type': 'Organization',
+      'name': 'VirtIQ',
+      'url': 'https://virtiq.dk'
+    },
+    'areaServed': 'Denmark',
+    'serviceType': 'Social Media Advertising'
+  };
 
   return (
     <main className="flex-grow pt-24">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://virtiq.dk/services/meta-ads" />
         <meta property="og:image" content="https://virtiq.dk/meta-ads-og.jpg" />
-        
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content="https://virtiq.dk/meta-ads-og.jpg" />
-        
         <link rel="canonical" href="https://virtiq.dk/services/meta-ads" />
         
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": isDanish ? "Meta Annoncer" : "Meta Ads",
-            "provider": {
-              "@type": "Organization",
-              "name": "VirtIQ",
-              "url": "https://virtiq.dk"
-            },
-            "description": pageDescription,
-            "serviceType": "Social Media Advertising",
-            "areaServed": "Denmark",
-            "offers": {
-              "@type": "Offer",
-              "availability": "https://schema.org/InStock",
-              "price": "0",
-              "priceCurrency": "DKK",
-              "seller": {
-                "@type": "Organization",
-                "name": "VirtIQ"
-              }
-            }
-          })}
+          {JSON.stringify(schema)}
         </script>
+
+        {/* Additional meta tags for Facebook and Instagram keywords */}
+        <meta name="keywords" content={isDanish 
+          ? 'Facebook annoncer, Instagram annoncer, Meta annoncering, Facebook ads, Instagram ads, sociale medier markedsføring, Meta platforme, Facebook marketing, Instagram marketing'
+          : 'Facebook ads, Instagram ads, Meta advertising, social media marketing, Meta platforms, Facebook marketing, Instagram marketing'} />
       </Helmet>
 
       <section className="py-16 md:py-24 relative overflow-hidden">
@@ -171,18 +165,18 @@ export const MetaAds: React.FC = () => {
             <div>
               <div className="inline-block mb-4 py-1 px-3 bg-purple-500/10 backdrop-blur-sm rounded-full border border-purple-500/20">
                 <span className="text-sm font-semibold text-purple-400">
-                  {isDanish ? 'META ADS' : 'META ADS'}
+                  {isDanish ? 'FACEBOOK & INSTAGRAM ANNONCER' : 'FACEBOOK & INSTAGRAM ADS'}
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 {isDanish
-                  ? 'Opnå Reelle Resultater med Meta Annoncer'
-                  : 'Drive Real Results with Meta Ads'}
+                  ? 'Optimer Din Sociale Medie Annoncering'
+                  : 'Optimize Your Social Media Advertising'}
               </h1>
               <p className="text-xl text-gray-300 mb-8">
                 {isDanish
-                  ? 'Transformer din Meta-annoncering med vores datadrevne tilgang. Vi hjælper virksomheder med at opnå exceptionel ROAS gennem strategisk kampagnestyring og optimering.'
-                  : 'Transform your Meta advertising with our data-driven approach. We help businesses achieve exceptional ROAS through strategic campaign management and optimization.'}
+                  ? 'Transformer din Facebook og Instagram annoncering med vores datadrevne tilgang. Vi hjælper virksomheder med at opnå exceptionel ROAS gennem strategisk kampagnestyring og optimering på tværs af Meta-platforme.'
+                  : 'Transform your Facebook and Instagram advertising with our data-driven approach. We help businesses achieve exceptional ROAS through strategic campaign management and optimization across Meta platforms.'}
               </p>
               <Button variant="primary" size="lg" onClick={handleDemoClick} className="justify-center">
                 {isDanish ? 'Kom i Gang Nu' : 'Get Started Now'}
@@ -220,8 +214,8 @@ export const MetaAds: React.FC = () => {
             </h2>
             <p className="text-gray-300">
               {isDanish
-                ? 'En systematisk tilgang til at maksimere din Meta-annonceringsperformance.'
-                : 'A systematic approach to maximizing your Meta advertising performance.'}
+                ? 'En systematisk tilgang til at maksimere din performance på Facebook og Instagram'
+                : 'A systematic approach to maximizing your Facebook and Instagram performance'}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -248,12 +242,12 @@ export const MetaAds: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-4">
-              {isDanish ? 'Hvorfor Vælge Vores Meta Ads Service?' : 'Why Choose Our Meta Ads Service?'}
+              {isDanish ? 'Hvorfor Vælge Vores Meta Annoncering?' : 'Why Choose Our Meta Advertising?'}
             </h2>
             <p className="text-gray-300">
               {isDanish
-                ? 'Vi kombinerer datadrevne strategier med kreativ excellence for at levere exceptionelle resultater.'
-                : 'We combine data-driven strategies with creative excellence to deliver exceptional results.'}
+                ? 'Vi kombinerer datadrevne strategier med kreativ excellence for at levere exceptionelle resultater på Facebook og Instagram.'
+                : 'We combine data-driven strategies with creative excellence to deliver exceptional results on Facebook and Instagram.'}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -281,7 +275,7 @@ export const MetaAds: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold mb-8">
-                {isDanish ? 'Alt Du Behøver for Meta Ads Succes' : 'Everything You Need for Meta Ads Success'}
+                {isDanish ? 'Alt Du Behøver for Succes på Sociale Medier' : 'Everything You Need for Social Media Success'}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {features.map((feature, index) => (
@@ -298,8 +292,8 @@ export const MetaAds: React.FC = () => {
               </h3>
               <p className="text-gray-300 mb-6">
                 {isDanish
-                  ? 'Få en gratis konsultation og lær hvordan vi kan hjælpe dig med at opnå bedre resultater med Meta Ads.'
-                  : 'Get a free consultation and learn how we can help you achieve better results with Meta Ads.'}
+                  ? 'Få en gratis konsultation og lær hvordan vi kan hjælpe dig med at opnå bedre resultater med Facebook og Instagram annoncer.'
+                  : 'Get a free consultation and learn how we can help you achieve better results with Facebook and Instagram ads.'}
               </p>
               <Button variant="primary" size="lg" fullWidth onClick={handleDemoClick} className="justify-center">
                 {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
