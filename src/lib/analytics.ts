@@ -5,6 +5,7 @@ declare global {
   interface Window {
     dataLayer: any[];
     gtag: (...args: any[]) => void;
+    fbq: (...args: any[]) => void;
   }
 }
 
@@ -24,6 +25,9 @@ export const usePageTracking = () => {
       page_title: document.title,
       page_location: window.location.href
     });
+
+    // Send to Meta Pixel
+    window.fbq('track', 'PageView');
 
     // Send to Google Tag Manager
     window.dataLayer.push({
@@ -48,6 +52,13 @@ export const trackButtonClick = (buttonName: string, category: string = 'Button 
   // Send to Google Analytics
   window.gtag('event', 'button_click', eventData);
 
+  // Send to Meta Pixel
+  window.fbq('trackCustom', 'ButtonClick', {
+    button_name: buttonName,
+    category: category,
+    ...additionalData
+  });
+
   // Send to Google Tag Manager
   window.dataLayer.push({
     event: 'buttonClick',
@@ -70,6 +81,13 @@ export const trackFormSubmission = (formName: string, success: boolean = true, f
 
   // Send to Google Analytics
   window.gtag('event', 'form_submission', eventData);
+
+  // Send to Meta Pixel
+  window.fbq('track', 'Lead', {
+    form_name: formName,
+    success: success,
+    ...formData
+  });
 
   // Send to Google Tag Manager
   window.dataLayer.push({
@@ -94,6 +112,12 @@ export const trackOutboundLink = (url: string, linkText: string = '') => {
 
   // Send to Google Analytics
   window.gtag('event', 'outbound_link', eventData);
+
+  // Send to Meta Pixel
+  window.fbq('trackCustom', 'OutboundLink', {
+    url: url,
+    text: linkText
+  });
 
   // Send to Google Tag Manager
   window.dataLayer.push({
@@ -128,6 +152,12 @@ export const initScrollTracking = () => {
         // Send to Google Analytics
         window.gtag('event', 'scroll_depth', eventData);
 
+        // Send to Meta Pixel
+        window.fbq('trackCustom', 'ScrollDepth', {
+          depth: marker,
+          ...eventData
+        });
+
         // Send to Google Tag Manager
         window.dataLayer.push({
           event: 'scrollDepth',
@@ -157,6 +187,12 @@ export const trackError = (error: Error, context: string = '') => {
   // Send to Google Analytics
   window.gtag('event', 'error', eventData);
 
+  // Send to Meta Pixel
+  window.fbq('trackCustom', 'Error', {
+    message: error.message,
+    context: context
+  });
+
   // Send to Google Tag Manager
   window.dataLayer.push({
     event: 'jsError',
@@ -178,6 +214,13 @@ export const trackEngagement = (action: string, label: string = '', value: numbe
 
   // Send to Google Analytics
   window.gtag('event', action, eventData);
+
+  // Send to Meta Pixel
+  window.fbq('trackCustom', 'Engagement', {
+    action,
+    label,
+    value
+  });
 
   // Send to Google Tag Manager
   window.dataLayer.push({
