@@ -273,7 +273,6 @@ export const AIAgent: React.FC = () => {
                       <div <ReactMarkdown className="prose prose-invert text-white text-sm whitespace-pre-line">
   {message.text}
 </ReactMarkdown>
-                      </div>
                     </div>
                   </div>
                 ))}
