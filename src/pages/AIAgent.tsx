@@ -304,88 +304,77 @@ export const AIAgent: React.FC = () => {
                           : 'bg-gray-800 text-white'
                       }`}
                     >
-                      <div className="text-sm whitespace-pre-line">
-                        <ReactMarkdown
-                          components={{
-                            p: ({ children }) => <p className="my-2">{children}</p>,
-                            strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-                            ul: ({ children }) => <ul className="list-disc ml-4">{children}</ul>,
-                            li: ({ children }) => <li className="my-1">{children}</li>
-                          }}
-                        >
-                          {message.text}
-                        </ReactMarkdown>
-                        {index === visibleMessages.shopping - 1 && message.type === 'bot' && message.text.includes('popular summer t-shirts') && (
-                          <div className="mt-4">
-                            <div className="relative">
-                              <div className="flex items-center justify-between mb-4">
-                                <button
-                                  onClick={prevSlide}
-                                  className="p-2 rounded-full bg-gray-700 text-white hover:bg-purple-600 transition-colors"
-                                  aria-label="Previous slide"
-                                >
-                                  <ChevronLeft size={20} />
-                                </button>
-                                <button
-                                  onClick={nextSlide}
-                                  className="p-2 rounded-full bg-gray-700 text-white hover:bg-purple-600 transition-colors"
-                                  aria-label="Next slide"
-                                >
-                                  <ChevronRight size={20} />
-                                </button>
-                              </div>
-                              
-                              <div className="overflow-hidden rounded-lg">
-                                <div
-                                  className="flex transition-transform duration-300 ease-in-out"
-                                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                                >
-                                  {products.map((product) => (
-                                    <div
-                                      key={product.id}
-                                      className="w-full flex-shrink-0 bg-gray-700 rounded-lg p-4"
-                                    >
-                                      <div className="aspect-w-1 aspect-h-1 w-full mb-4 bg-gray-600 rounded-lg overflow-hidden">
-                                        <img 
-                                          src={product.image} 
-                                          alt={product.name}
-                                          className="w-full h-48 object-cover"
-                                        />
-                                      </div>
-                                      <h3 className="text-lg font-semibold text-white mb-2">{product.name}</h3>
-                                      <p className="text-gray-300 text-sm mb-2">{product.description}</p>
-                                      <p className="text-purple-400 font-medium mb-4">{product.price}</p>
-                                      <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
-                                        Buy Product
-                                      </button>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+<div className="text-sm whitespace-pre-line">
+  <ReactMarkdown
+    components={{
+      p: ({ children }) => <p className="my-2">{children}</p>,
+      strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+      ul: ({ children }) => <ul className="list-disc ml-4">{children}</ul>,
+      li: ({ children }) => <li className="my-1">{children}</li>,
+    }}
+  >
+    {message.text}
+  </ReactMarkdown>
+
+  {index === visibleMessages.shopping - 1 &&
+    message.type === 'bot' &&
+    message.text.includes('popular summer t-shirts') && (
+      <div className="mt-4">
+        <div className="relative bg-gray-800 rounded-lg w-full max-w-md mx-auto">
+          {/* Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10 hover:bg-purple-600 transition-colors"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10 hover:bg-purple-600 transition-colors"
+            aria-label="Next slide"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Slide container */}
+          <div className="overflow-hidden rounded-lg">
+            <div
+              className="flex transition-transform duration-300 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {products.map((product) => (
+                <div
+                  key={product.id}
+                  className="w-full flex-shrink-0 bg-gray-700 rounded-lg p-4"
+                >
+                  <div className="w-full h-[300px] mb-4 bg-gray-600 rounded-lg overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                ))}
-              </div>
-              <div className="p-4 border-t border-gray-800">
-                <div className="flex items-center bg-gray-800 rounded-lg px-3 py-2">
-                  <input
-                    type="text"
-                    placeholder="Type your message..."
-                    className="flex-1 bg-transparent border-none text-sm text-gray-300 placeholder-gray-500 focus:outline-none"
-                    disabled
-                  />
-                  <button className="ml-2 text-purple-400 hover:text-purple-300 transition-colors">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
+                  <h3 className="text-lg font-semibold text-white mb-1">
+                    {product.name}
+                  </h3>
+                  <p className="text-gray-300 text-sm mb-2">
+                    {product.description}
+                  </p>
+                  <p className="text-purple-400 font-medium mb-4">
+                    {product.price}
+                  </p>
+                  <button className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                    Buy Product
                   </button>
                 </div>
-              </div>
+              ))}
             </div>
+          </div>
+        </div>
+      </div>
+    )}
+</div>
 
             {/* Legal Assistant */}
             <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800 overflow-hidden">
