@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Button } from './ui/Button';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface NewsletterPopupProps {
   isOpen: boolean;
@@ -8,6 +10,9 @@ interface NewsletterPopupProps {
 }
 
 export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClose }) => {
+  const { i18n } = useTranslation();
+  const isDanish = i18n.language === 'da';
+  
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -69,9 +74,13 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
           </button>
 
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold mb-2">Subscribe to Our Newsletter</h2>
+            <h2 className="text-2xl font-bold mb-2">
+              {isDanish ? 'Tilmeld Dig Vores Nyhedsbrev' : 'Subscribe to Our Newsletter'}
+            </h2>
             <p className="text-gray-400">
-              Stay updated with our latest insights on AI, technology, and digital transformation.
+              {isDanish 
+                ? 'Hold dig opdateret med vores seneste indsigter om AI, teknologi og digital transformation.'
+                : 'Stay updated with our latest insights on AI, technology, and digital transformation.'}
             </p>
           </div>
 
@@ -79,7 +88,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
-                  First Name <span className="text-red-500">*</span>
+                  {isDanish ? 'Fornavn' : 'First Name'} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -94,7 +103,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
               
               <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
-                  Last Name <span className="text-red-500">*</span>
+                  {isDanish ? 'Efternavn' : 'Last Name'} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -125,7 +134,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
 
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
-                Phone <span className="text-red-500">*</span>
+                {isDanish ? 'Telefon' : 'Phone'} <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
@@ -140,7 +149,7 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
 
             <div>
               <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
-                Company
+                {isDanish ? 'Virksomhed' : 'Company'}
               </label>
               <input
                 type="text"
@@ -153,14 +162,26 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
             </div>
 
             <Button type="submit" variant="primary" size="lg" fullWidth>
-              Subscribe to Newsletter
+              {isDanish ? 'Tilmeld Nyhedsbrev' : 'Subscribe to Newsletter'}
             </Button>
 
             <p className="text-xs text-gray-400 text-center">
-              By subscribing, you agree to our{' '}
-              <a href="#" className="text-purple-400 hover:text-purple-300">Privacy Policy</a>{' '}
-              and{' '}
-              <a href="#" className="text-purple-400 hover:text-purple-300">Terms of Service</a>.
+              {isDanish ? 'Ved at tilmelde dig accepterer du vores' : 'By subscribing, you agree to our'}{' '}
+              <Link 
+                to={isDanish ? "/privatlivspolitik" : "/privacy-policy"} 
+                onClick={onClose}
+                className="text-purple-400 hover:text-purple-300"
+              >
+                {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
+              </Link>{' '}
+              {isDanish ? 'og' : 'and'}{' '}
+              <Link 
+                to={isDanish ? "/betingelser" : "/terms-of-service"}
+                onClick={onClose}
+                className="text-purple-400 hover:text-purple-300"
+              >
+                {isDanish ? 'Servicevilkår' : 'Terms of Service'}
+              </Link>.
             </p>
           </form>
         </div>
