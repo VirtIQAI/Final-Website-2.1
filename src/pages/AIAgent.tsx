@@ -272,7 +272,7 @@ export const AIAgent: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-4">
-              {isDanish ? 'Live Eksempler på AI Agenter' : 'Live Examples AI Agents'}
+              {isDanish ? 'Live Eksempler af AI Agents' : 'Live Examples of AI Agents'}
             </h2>
             <p className="text-gray-300">
               {isDanish
