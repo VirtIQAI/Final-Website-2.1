@@ -143,7 +143,12 @@ render: ({ trace, element }: any) => {
     });
   });
 
-          element.appendChild(form);
+         if (!element) {
+  console.error("❌ Voiceflow container element is missing");
+  return;
+}
+
+element.appendChild(form);
         }
       };
 
