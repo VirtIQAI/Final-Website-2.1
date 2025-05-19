@@ -142,7 +142,6 @@ render: ({ trace, element }: any) => {
       }
     });
   });
-
          if (!element) {
   console.error("❌ Voiceflow container element is missing");
   return;
@@ -252,7 +251,13 @@ form.innerHTML = `
             });
           });
 
-          element.appendChild(form);
+       if (!element) {
+  console.error('❌ Voiceflow container element is missing');
+  return;
+}
+
+element.appendChild(form);
+
         }
       };
 
