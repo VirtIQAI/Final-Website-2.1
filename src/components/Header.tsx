@@ -5,6 +5,7 @@ import { Logo } from './ui/Logo';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitch } from './LanguageSwitch';
+import { trackButtonClick } from '../lib/analytics';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,22 +76,58 @@ export const Header: React.FC = () => {
   ];
 
   const handleDemoClick = () => {
-    if (location.pathname === '/') {
-      const demoSection = document.getElementById('contact');
-      if (demoSection) {
-        const headerOffset = 160;
-        const elementPosition = demoSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    // Track the click event
+    trackButtonClick('Book a Free Demo', 'Header');
 
+    // Close mobile menu if open
+    setIsMenuOpen(false);
+
+    // Find the contact section
+    const contactSection = document.getElementById('contact');
+    if (!contactSection) return;
+
+    // Get dimensions
+    const viewportHeight = window.innerHeight;
+    const { top: contactTop } = contactSection.getBoundingClientRect();
+    
+    // Calculate the target scroll position
+    const currentScroll = window.pageYOffset;
+    const targetPosition = currentScroll + contactTop;
+    
+    // Adjust for mobile header height
+    const headerOffset = window.innerWidth < 768 ? 60 : 80;
+    const finalPosition = targetPosition - headerOffset;
+
+    // If we're on a different page, navigate to home first
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollToContact: true } });
+      return;
+    }
+
+    // Ensure the element is in view after scrolling
+    const elementInView = () => {
+      const rect = contactSection.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= viewportHeight;
+    };
+
+    // Perform the scroll
+    window.scrollTo({
+      top: finalPosition,
+      behavior: 'smooth'
+    });
+
+    // Verify scroll position after animation
+    const checkScroll = () => {
+      if (!elementInView()) {
         window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
+          top: finalPosition,
+          behavior: 'auto'
         });
       }
-    } else {
-      navigate('/#contact');
-    }
-    setIsMenuOpen(false);
+    };
+
+    // Check position after scroll animation
+    setTimeout(checkScroll, 600);
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
