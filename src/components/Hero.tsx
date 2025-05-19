@@ -3,6 +3,7 @@ import { Button } from './ui/Button';
 import { TypeAnimation } from 'react-type-animation';
 import Spline from '@splinetool/react-spline';
 import { useTranslation } from 'react-i18next';
+import { trackButtonClick } from '../lib/analytics';
 
 export const Hero: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -33,9 +34,11 @@ export const Hero: React.FC = () => {
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
-      const headerOffset = 160;
+      const headerOffset = 80; // Reduced offset for mobile
       const elementPosition = contactSection.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      trackButtonClick('Book a Free Demo', 'Hero Section');
 
       window.scrollTo({
         top: offsetPosition,
@@ -47,9 +50,11 @@ export const Hero: React.FC = () => {
   const scrollToServices = () => {
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
-      const headerOffset = 160;
+      const headerOffset = 80; // Reduced offset for mobile
       const elementPosition = servicesSection.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      trackButtonClick('Explore Services', 'Hero Section');
 
       window.scrollTo({
         top: offsetPosition,
