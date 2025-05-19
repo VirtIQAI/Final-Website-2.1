@@ -21,7 +21,6 @@ export const VoiceflowChat = () => {
   const payloadLang = trace?.payload?.language;
   const globalLang = window.voiceflow?.state?.variables?.language;
   const lang = payloadLang || globalLang;
-
   return lang === 'English' ? 'en' : 'da'; // default to Danish
 }
     
