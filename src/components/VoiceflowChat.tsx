@@ -152,9 +152,10 @@ const tr = t(lang).newsletter;
         match: ({ trace }: any) =>
           trace.type === 'Custom_UdlejForm' || trace.payload?.name === 'Custom_UdlejForm',
 
-        render: ({ trace, element }: any) => {
-          const lang = getLang(trace);
-          const tr   = t(lang).udlej;
+render: ({ trace, element }: any) => {
+  const rawLang = trace?.payload?.language || window.voiceflow?.state?.variables?.language || 'Danish';
+  const lang = rawLang === 'English' ? 'en' : 'da';
+  const tr = t(lang).udlej;
 
           const form = document.createElement('form');
           form.innerHTML = `
