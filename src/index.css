@@ -181,6 +181,17 @@
     @apply antialiased bg-black text-white font-sans;
     font-feature-settings: "ss01", "ss02", "cv01", "cv03";
   }
+
+  /* Add scroll margin for header offset */
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
+  @media (max-width: 768px) {
+    section[id] {
+      scroll-margin-top: 60px;
+    }
+  }
 }
 
 ::-webkit-scrollbar {
@@ -214,4 +225,16 @@
 .workflow-node:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fallback for browsers that don't support smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
