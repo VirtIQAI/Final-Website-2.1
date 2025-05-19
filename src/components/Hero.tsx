@@ -32,61 +32,95 @@ export const Hero: React.FC = () => {
   }, []);
 
   const scrollToContact = () => {
+    // Track the click event
+    trackButtonClick('Book a Free Demo', 'Hero Section');
+
+    // Find the contact section
     const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      // Get the current scroll position
-      const currentScroll = window.pageYOffset;
-      
-      // Get the element's position relative to the viewport
-      const contactRect = contactSection.getBoundingClientRect();
-      
-      // Calculate the absolute position of the element
-      const absoluteContactTop = currentScroll + contactRect.top;
-      
-      // Adjust for fixed header (reduced for mobile)
-      const headerOffset = 60;
-      
-      // Calculate final scroll position
-      const scrollPosition = absoluteContactTop - headerOffset;
+    if (!contactSection) return;
 
-      // Track the click event
-      trackButtonClick('Book a Free Demo', 'Hero Section');
+    // Get dimensions
+    const viewportHeight = window.innerHeight;
+    const { top: contactTop } = contactSection.getBoundingClientRect();
+    
+    // Calculate the target scroll position
+    const currentScroll = window.pageYOffset;
+    const targetPosition = currentScroll + contactTop;
+    
+    // Adjust for mobile header height
+    const headerOffset = window.innerWidth < 768 ? 60 : 80;
+    const finalPosition = targetPosition - headerOffset;
 
-      // Perform the scroll
-      window.scrollTo({
-        top: scrollPosition,
-        behavior: 'smooth'
-      });
-    }
+    // Ensure the element is in view after scrolling
+    const elementInView = () => {
+      const rect = contactSection.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= viewportHeight;
+    };
+
+    // Perform the scroll
+    window.scrollTo({
+      top: finalPosition,
+      behavior: 'smooth'
+    });
+
+    // Verify scroll position after animation
+    const checkScroll = () => {
+      if (!elementInView()) {
+        window.scrollTo({
+          top: finalPosition,
+          behavior: 'auto'
+        });
+      }
+    };
+
+    // Check position after scroll animation (typical duration is 500ms)
+    setTimeout(checkScroll, 600);
   };
 
   const scrollToServices = () => {
+    // Track the click event
+    trackButtonClick('Explore Services', 'Hero Section');
+
+    // Find the services section
     const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      // Get the current scroll position
-      const currentScroll = window.pageYOffset;
-      
-      // Get the element's position relative to the viewport
-      const servicesRect = servicesSection.getBoundingClientRect();
-      
-      // Calculate the absolute position of the element
-      const absoluteServicesTop = currentScroll + servicesRect.top;
-      
-      // Adjust for fixed header (reduced for mobile)
-      const headerOffset = 60;
-      
-      // Calculate final scroll position
-      const scrollPosition = absoluteServicesTop - headerOffset;
+    if (!servicesSection) return;
 
-      // Track the click event
-      trackButtonClick('Explore Services', 'Hero Section');
+    // Get dimensions
+    const viewportHeight = window.innerHeight;
+    const { top: servicesTop } = servicesSection.getBoundingClientRect();
+    
+    // Calculate the target scroll position
+    const currentScroll = window.pageYOffset;
+    const targetPosition = currentScroll + servicesTop;
+    
+    // Adjust for mobile header height
+    const headerOffset = window.innerWidth < 768 ? 60 : 80;
+    const finalPosition = targetPosition - headerOffset;
 
-      // Perform the scroll
-      window.scrollTo({
-        top: scrollPosition,
-        behavior: 'smooth'
-      });
-    }
+    // Ensure the element is in view after scrolling
+    const elementInView = () => {
+      const rect = servicesSection.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= viewportHeight;
+    };
+
+    // Perform the scroll
+    window.scrollTo({
+      top: finalPosition,
+      behavior: 'smooth'
+    });
+
+    // Verify scroll position after animation
+    const checkScroll = () => {
+      if (!elementInView()) {
+        window.scrollTo({
+          top: finalPosition,
+          behavior: 'auto'
+        });
+      }
+    };
+
+    // Check position after scroll animation
+    setTimeout(checkScroll, 600);
   };
 
   const animationSequences = isDanish ? [
