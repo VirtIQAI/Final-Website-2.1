@@ -75,9 +75,9 @@ export const VoiceflowChat: React.FC = () => {
         match: ({ trace }: any) =>
           trace.type === 'Custom_Newsletter' || trace.payload?.name === 'Custom_Newsletter',
 
-        render: ({ trace, element }: any) => {
-          const lang = getLang(trace);
-          const tr   = t(lang).newsletter;
+const rawLang = trace?.payload?.language || window.voiceflow?.state?.variables?.language || 'Danish';
+const lang = rawLang === 'English' ? 'en' : 'da';
+const tr = t(lang).newsletter;
 
           const form = document.createElement('form');
           form.innerHTML = `
