@@ -34,7 +34,8 @@ export const VoiceflowChat = () => {
 
 render: ({ trace, element }) => {
   const formContainer = document.createElement('form');
-
+  const lang = getLanguage(trace);
+  
   formContainer.innerHTML = `
     <style>
       *, ::after, ::before { box-sizing: border-box; }
