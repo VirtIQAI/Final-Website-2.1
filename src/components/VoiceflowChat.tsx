@@ -158,35 +158,61 @@ render: ({ trace, element }: any) => {
   const tr = t(lang).udlej;
 
           const form = document.createElement('form');
-          form.innerHTML = `
-            <style>
-              form{max-width:384px;padding:25px;font-family:Arial;color:#000}
-              .h{font-size:22px;font-weight:bold;margin-bottom:25px}
-              label{display:block;margin:10px 0 5px}
-              input,textarea{width:100%;padding:10px;border:1px solid #000;margin-bottom:15px;font-size:14px}
-              textarea{resize:vertical}
-              .chk{display:flex;align-items:center;font-size:13px;margin-bottom:15px}
-              .chk input{margin-right:8px}
-              .chk a{color:#e79b3c;text-decoration:none}
-              .btn{width:100%;padding:12px;background:#23394d;color:#fff;font-weight:bold;border:none;cursor:pointer}
-              .invalid{border-color:red!important}
-            </style>
+form.innerHTML = `
+  <style>
+    form { max-width: 384px; padding: 25px; font-family: Arial; color: #000; }
+    .h { font-size: 22px; font-weight: bold; margin-bottom: 25px; }
+    label { display: block; margin-bottom: 5px; font-size: 14px; }
+    input, textarea {
+      width: 100%;
+      background: transparent;
+      border: 1px solid #000;
+      padding: 10px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      outline: none;
+    }
+    .chk { display: flex; align-items: center; font-size: 13px; margin-bottom: 20px; }
+    .chk input { margin-right: 8px; }
+    .chk a { color: #e79b3c; text-decoration: none; }
+    .btn {
+      background: #7c8491;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      font-size: 14px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+    }
+    .invalid { border-color: red !important; }
+  </style>
 
-            <div class="h">${tr.heading}</div>
+  <div class="h">${tr.heading}</div>
 
-            <label>${tr.firstName}</label><input type="text"  class="f" required>
-            <label>${tr.lastName}</label><input  type="text"  class="l" required>
-            <label>${tr.email}</label><input     type="email" class="e" required>
-            <label>${tr.phone}</label><input     type="tel"   class="p" pattern="[0-9()#&+*=\\-\\.]*">
-            <label>${tr.message}</label><textarea class="m" rows="4" required></textarea>
+  <label>${tr.firstName}</label>
+  <input type="text" class="first" required>
 
-            <div class="chk">
-              <input type="checkbox" class="g" required>
-              <label>${tr.gdprLabel} <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">${tr.gdprLink}</a></label>
-            </div>
+  <label>${tr.lastName}</label>
+  <input type="text" class="last" required>
 
-            <input type="submit" class="btn" value="${tr.submit}">
-          `;
+  <label>${tr.email}</label>
+  <input type="email" class="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
+
+  <label>${tr.phone}</label>
+  <input type="tel" class="phone" pattern="[0-9()#&+*=.-]+" title="Kun tal og telefontegn er tilladt.">
+
+  <label>${tr.message}</label>
+  <textarea class="message" rows="4" required></textarea>
+
+  <div class="chk">
+    <input type="checkbox" class="gdpr" required>
+    <label>${tr.gdprLabel} <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">${tr.gdprLink}</a></label>
+  </div>
+
+  <input type="submit" class="btn" value="${tr.submit}">
+`;
+
 
           form.addEventListener('submit', (e: Event) => {
             e.preventDefault();
