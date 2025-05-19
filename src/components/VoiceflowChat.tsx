@@ -37,6 +37,71 @@ render: ({ trace, element }) => {
   const lang = getLanguage(trace);
   
   formContainer.innerHTML = `
+  <style>
+  *, ::after, ::before { box-sizing: border-box; }
+  form {
+    width: 100%;
+    max-width: 384px;
+    padding: 25px;
+    font-family: 'Arial', sans-serif;
+    color: #000;
+  }
+
+  .form-heading {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  input[type="text"], input[type="email"], select, textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #000;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .checkbox-wrapper input[type="checkbox"] {
+    margin-right: 8px;
+  }
+
+  .checkbox-wrapper a {
+    color: #e79b3c;
+    text-decoration: none;
+  }
+
+  .submit {
+    background: #7c8491;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .invalid {
+    border-color: red !important;
+  }
+</style>
+
 <div class="form-heading">${lang === 'da' ? 'Tilmeld nyhedsmail' : 'Subscribe to our newsletter'}</div>
 
 <label for="name">${lang === 'da' ? 'Navn' : 'Name'}</label>
