@@ -176,62 +176,68 @@ const UdlejForm = {
   match: ({ trace }) =>
     trace.type === 'Custom_UdlejForm' || trace.payload?.name === 'Custom_UdlejForm',
 
-  render: ({ trace, element }) => {
-    const formContainer = document.createElement('form');
+ render: ({ trace, element }) => {
+  const formContainer = document.createElement('form');
+  const lang = getLanguage(trace); // 💡 grab language value
 
-    formContainer.innerHTML = `
-      <style>
-        *, ::after, ::before { box-sizing: border-box; }
-        form {
-          width: 100%;
-          max-width: 384px;
-          padding: 25px;
-          font-family: 'Arial', sans-serif;
-          color: #000;
-        }
-        .form-heading { font-size: 22px; font-weight: bold; margin-bottom: 25px; text-align: left; }
-        label { font-size: 14px; margin-bottom: 5px; display: block; }
-        input[type="text"], input[type="email"], textarea {
-          width: 100%; background: transparent; border: 1px solid #000;
-          padding: 10px; font-size: 14px; margin-bottom: 20px; outline: none;
-        }
-        .checkbox-wrapper {
-          display: flex; align-items: center; font-size: 13px; margin-bottom: 20px;
-        }
-        .checkbox-wrapper input[type="checkbox"] { margin-right: 8px; }
-        .checkbox-wrapper a { color: #e79b3c; text-decoration: none; }
-        .submit {
-          background: #7c8491; color: white; border: none;
-          padding: 12px 0; font-size: 14px; font-weight: bold;
-          width: 100%; cursor: pointer;
-        }
-        .invalid { border-color: red !important; }
-      </style>
+  formContainer.innerHTML = `
+    <style>
+      *, ::after, ::before { box-sizing: border-box; }
+      form {
+        width: 100%;
+        max-width: 384px;
+        padding: 25px;
+        font-family: 'Arial', sans-serif;
+        color: #000;
+      }
+      .form-heading { font-size: 22px; font-weight: bold; margin-bottom: 25px; text-align: left; }
+      label { font-size: 14px; margin-bottom: 5px; display: block; }
+      input[type="text"], input[type="email"], textarea {
+        width: 100%; background: transparent; border: 1px solid #000;
+        padding: 10px; font-size: 14px; margin-bottom: 20px; outline: none;
+      }
+      .checkbox-wrapper {
+        display: flex; align-items: center; font-size: 13px; margin-bottom: 20px;
+      }
+      .checkbox-wrapper input[type="checkbox"] { margin-right: 8px; }
+      .checkbox-wrapper a { color: #e79b3c; text-decoration: none; }
+      .submit {
+        background: #7c8491; color: white; border: none;
+        padding: 12px 0; font-size: 14px; font-weight: bold;
+        width: 100%; cursor: pointer;
+      }
+      .invalid { border-color: red !important; }
+    </style>
 
-      <div class="form-heading">Bestil vurdering</div>
+    <div class="form-heading">${lang === 'da' ? 'Bestil vurdering' : 'Request valuation'}</div>
 
-      <label for="firstName">Fornavn</label>
-      <input type="text" class="firstName" required>
+    <label for="firstName">${lang === 'da' ? 'Fornavn' : 'First name'}</label>
+    <input type="text" class="firstName" required>
 
-      <label for="lastName">Efternavn</label>
-      <input type="text" class="lastName" required>
+    <label for="lastName">${lang === 'da' ? 'Efternavn' : 'Last name'}</label>
+    <input type="text" class="lastName" required>
 
-      <label for="email">E-mail</label>
-      <input type="email" class="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
+    <label for="email">E‑mail</label>
+    <input type="email" class="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
 
-      <label for="phone">Telefon</label>
-      <input type="text" class="phone">
+    <label for="phone">${lang === 'da' ? 'Telefon' : 'Phone'}</label>
+    <input type="text" class="phone">
 
-      <label for="message">Besked</label>
-      <textarea class="message" rows="4" required></textarea>
+    <label for="message">${lang === 'da' ? 'Besked' : 'Message'}</label>
+    <textarea class="message" rows="4" required></textarea>
 
-      <div class="checkbox-wrapper">
-        <input type="checkbox" class="gdpr" required>
-        <label for="gdpr">Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a></label>
-      </div>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" class="gdpr" required>
+      <label for="gdpr">
+        ${lang === 'da' ? 'Jeg accepterer' : 'I accept the'} 
+        <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">
+          ${lang === 'da' ? 'betingelser vedr. personoplysninger' : 'terms regarding personal data'}
+        </a>
+      </label>
+    </div>
 
-      <input type="submit" class="submit" value="Bestil vurdering">
-    `;
+    <input type="submit" class="submit" value="${lang === 'da' ? 'Bestil vurdering' : 'Submit'}">
+  `;
 
     formContainer.addEventListener('submit', function (e) {
       e.preventDefault();
