@@ -24,66 +24,98 @@ export const VoiceflowChat = () => {
         match: ({ trace }: any) =>
           trace.type === 'Custom_Form' || trace.payload?.name === 'Custom_Form',
 
-        render: ({ trace, element }: any) => {
-          const formContainer = document.createElement('form');
-          formContainer.innerHTML = `render: ({ trace, element }) => {
-        const formContainer = document.createElement('form');
-        formContainer.innerHTML = `
-          <style>
-            *, ::after, ::before { box-sizing: border-box; }
-            form {
-              width: 100%;
-              max-width: 384px;
-              padding: 25px;
-              font-family: 'Arial', sans-serif;
-              color: #000;
-            }
-            .form-heading { font-size: 22px; font-weight: bold; margin-bottom: 25px; text-align: left; }
-            label { font-size: 14px; margin-bottom: 5px; display: block; }
-            input[type="text"], input[type="email"], select {
-              width: 100%; background: transparent; border: 1px solid #000;
-              padding: 10px; font-size: 14px; margin-bottom: 20px; outline: none;
-            }
-            .checkbox-wrapper {
-              display: flex; align-items: center; font-size: 13px; margin-bottom: 20px;
-            }
-            .checkbox-wrapper input[type="checkbox"] { margin-right: 8px; }
-            .checkbox-wrapper a { color: #e79b3c; text-decoration: none; }
-            .submit {
-              background: #7c8491; color: white; border: none;
-              padding: 12px 0; font-size: 14px; font-weight: bold;
-              width: 100%; cursor: pointer;
-            }
-            .invalid { border-color: red !important; }
-          </style>
+render: ({ trace, element }) => {
+  const formContainer = document.createElement('form');
 
-          <div class="form-heading">Tilmeld nyhedsmail</div>
+  formContainer.innerHTML = `
+    <style>
+      *, ::after, ::before { box-sizing: border-box; }
+      form {
+        width: 100%;
+        max-width: 384px;
+        padding: 25px;
+        font-family: 'Arial', sans-serif;
+        color: #000;
+      }
+      .form-heading { font-size: 22px; font-weight: bold; margin-bottom: 25px; text-align: left; }
+      label { font-size: 14px; margin-bottom: 5px; display: block; }
+      input[type="text"], input[type="email"], select {
+        width: 100%; background: transparent; border: 1px solid #000;
+        padding: 10px; font-size: 14px; margin-bottom: 20px; outline: none;
+      }
+      .checkbox-wrapper {
+        display: flex; align-items: center; font-size: 13px; margin-bottom: 20px;
+      }
+      .checkbox-wrapper input[type="checkbox"] { margin-right: 8px; }
+      .checkbox-wrapper a { color: #e79b3c; text-decoration: none; }
+      .submit {
+        background: #7c8491; color: white; border: none;
+        padding: 12px 0; font-size: 14px; font-weight: bold;
+        width: 100%; cursor: pointer;
+      }
+      .invalid { border-color: red !important; }
+    </style>
 
-          <label for="name">Navn</label>
-          <input type="text" class="name" name="name" required>
+    <div class="form-heading">Tilmeld nyhedsmail</div>
 
-          <label for="email">E-mail</label>
-          <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
+    <label for="name">Navn</label>
+    <input type="text" class="name" name="name" required>
 
-          <label for="profile">Min profil</label>
-          <select class="profile" name="profile" required>
-            <option value="">Vælg din profil</option>
-            <option value="Privatperson">Privatperson</option>
-            <option value="Relocation Agent">Relocation Agent</option>
-            <option value="Virksomhed / Ambassade">Virksomhed / Ambassade</option>
-            <option value="Forsikringsselskab">Forsikringsselskab</option>
-          </select>
+    <label for="email">E-mail</label>
+    <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
 
-          <div class="checkbox-wrapper">
-            <input type="checkbox" class="gdpr" name="gdpr" required>
-            <label for="gdpr">Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a></label>
-          </div>
+    <label for="profile">Min profil</label>
+    <select class="profile" name="profile" required>
+      <option value="">Vælg din profil</option>
+      <option value="Privatperson">Privatperson</option>
+      <option value="Relocation Agent">Relocation Agent</option>
+      <option value="Virksomhed / Ambassade">Virksomhed / Ambassade</option>
+      <option value="Forsikringsselskab">Forsikringsselskab</option>
+    </select>
 
-          <input type="submit" class="submit" value="Tilmeld">
-        `;
-`;
-          element.appendChild(formContainer);
-        }
+    <div class="checkbox-wrapper">
+      <input type="checkbox" class="gdpr" name="gdpr" required>
+      <label for="gdpr">Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a></label>
+    </div>
+
+    <input type="submit" class="submit" value="Tilmeld">
+  `;
+
+  formContainer.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = formContainer.querySelector('.name');
+    const email = formContainer.querySelector('.email');
+    const profile = formContainer.querySelector('.profile');
+    const gdpr = formContainer.querySelector('.gdpr');
+
+    if (!name.checkValidity() || !email.checkValidity() || !profile.checkValidity() || !gdpr.checked) {
+      name.classList.toggle('invalid', !name.checkValidity());
+      email.classList.toggle('invalid', !email.checkValidity());
+      profile.classList.toggle('invalid', !profile.checkValidity());
+      return;
+    }
+
+    formContainer.querySelector('.submit').remove();
+
+    window.voiceflow.chat.interact({
+      type: 'complete',
+      payload: {
+        name: name.value,
+        email: email.value,
+        profile: profile.value,
+        gdpr: gdpr.checked
+      }
+    });
+  });
+
+  if (!element) {
+    console.error('❌ Voiceflow container element is missing');
+    return;
+  }
+
+  element.appendChild(formContainer);
+}
+
       };
 
       const UdlejForm = {
