@@ -34,14 +34,27 @@ export const Hero: React.FC = () => {
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
-      const headerOffset = 80; // Reduced offset for mobile
-      const elementPosition = contactSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      // Get the current scroll position
+      const currentScroll = window.pageYOffset;
+      
+      // Get the element's position relative to the viewport
+      const contactRect = contactSection.getBoundingClientRect();
+      
+      // Calculate the absolute position of the element
+      const absoluteContactTop = currentScroll + contactRect.top;
+      
+      // Adjust for fixed header (reduced for mobile)
+      const headerOffset = 60;
+      
+      // Calculate final scroll position
+      const scrollPosition = absoluteContactTop - headerOffset;
 
+      // Track the click event
       trackButtonClick('Book a Free Demo', 'Hero Section');
 
+      // Perform the scroll
       window.scrollTo({
-        top: offsetPosition,
+        top: scrollPosition,
         behavior: 'smooth'
       });
     }
@@ -50,14 +63,27 @@ export const Hero: React.FC = () => {
   const scrollToServices = () => {
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
-      const headerOffset = 80; // Reduced offset for mobile
-      const elementPosition = servicesSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      // Get the current scroll position
+      const currentScroll = window.pageYOffset;
+      
+      // Get the element's position relative to the viewport
+      const servicesRect = servicesSection.getBoundingClientRect();
+      
+      // Calculate the absolute position of the element
+      const absoluteServicesTop = currentScroll + servicesRect.top;
+      
+      // Adjust for fixed header (reduced for mobile)
+      const headerOffset = 60;
+      
+      // Calculate final scroll position
+      const scrollPosition = absoluteServicesTop - headerOffset;
 
+      // Track the click event
       trackButtonClick('Explore Services', 'Hero Section');
 
+      // Perform the scroll
       window.scrollTo({
-        top: offsetPosition,
+        top: scrollPosition,
         behavior: 'smooth'
       });
     }
