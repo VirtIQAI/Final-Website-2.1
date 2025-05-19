@@ -1,128 +1,132 @@
-import React, { useEffect } from 'react';
+<script type="module">
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
-declare global {
-  interface Window {
-    voiceflow: {
-      chat: { load: (config: any) => void };
-      state?: { variables?: Record<string, any> };
+  script.onload = () => {
+    const NewsletterForm = {
+      name: 'Forms',
+      type: 'response',
+      match: ({ trace }) =>
+        trace.type === 'Custom_Form' || trace.payload?.name === 'Custom_Form',
+      render: ({ trace, element }) => {
+        const formContainer = document.createElement('form');
+        formContainer.innerHTML = `<!-- your existing newsletter form code here -->`;
+        // ✂️ You can paste your working newsletter HTML and logic here
+        element.appendChild(formContainer);
+      }
     };
-  }
-}
 
-export const VoiceflowChat: React.FC = () => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
-    script.type = 'text/javascript';
+    const UdlejForm = {
+      name: 'UdlejForm',
+      type: 'response',
+      match: ({ trace }) =>
+        trace.type === 'Custom_UdlejForm' || trace.payload?.name === 'Custom_UdlejForm',
+      render: ({ trace, element }) => {
+        const form = document.createElement('form');
+        form.innerHTML = `
+          <style>
+            *, ::after, ::before { box-sizing: border-box; }
+            form {
+              width: 100%;
+              max-width: 384px;
+              padding: 25px;
+              font-family: 'Arial', sans-serif;
+              color: #000;
+            }
+            .form-heading { font-size: 22px; font-weight: bold; margin-bottom: 25px; text-align: left; }
+            label { font-size: 14px; margin-bottom: 5px; display: block; }
+            input, textarea {
+              width: 100%; background: transparent; border: 1px solid #000;
+              padding: 10px; font-size: 14px; margin-bottom: 20px; outline: none;
+            }
+            .checkbox-wrapper {
+              display: flex; align-items: center; font-size: 13px; margin-bottom: 20px;
+            }
+            .checkbox-wrapper input[type="checkbox"] { margin-right: 8px; }
+            .checkbox-wrapper a { color: #e79b3c; text-decoration: none; }
+            .submit {
+              background: #23394d; color: white; border: none;
+              padding: 12px 0; font-size: 14px; font-weight: bold;
+              width: 100%; cursor: pointer;
+            }
+            .invalid { border-color: red !important; }
+          </style>
 
-    script.onload = () => {
-      /* ───────────────── helper ───────────────── */
-      const normalizeLang = (trace: any): 'da' | 'en' => {
-        const raw =
-          trace?.payload?.language ??
-          window.voiceflow?.state?.variables?.language ??
-          'Danish';
-        return raw === 'English' ? 'en' : 'da';
-      };
+          <div class="form-heading">Udlej din bolig</div>
 
-      /* ───────────── translations map ─────────── */
-      const t = (lang: 'da' | 'en') => ({
-        newsletter: {
-          heading     : lang === 'da' ? 'Tilmeld nyhedsmail'          : 'Subscribe to newsletter',
-          name        : lang === 'da' ? 'Navn'                        : 'Name',
-          email       : 'E‑mail',
-          profile     : lang === 'da' ? 'Min profil'                  : 'Profile',
-          placeholder : lang === 'da' ? 'Vælg din profil'             : 'Select your profile',
-          profiles    : lang === 'da'
-            ? ['Privatperson','Relocation Agent','Virksomhed / Ambassade','Forsikringsselskab']
-            : ['Private','Relocation Agent','Company / Embassy','Insurance'],
-          gdprLabel   : lang === 'da' ? 'Jeg accepterer'              : 'I accept the',
-          gdprLink    : lang === 'da' ? 'betingelser vedr. personoplysninger'
-                                       : 'terms regarding personal data',
-          submit      : lang === 'da' ? 'Tilmeld'                     : 'Subscribe'
-        }
-      });
+          <label>Fornavn</label>
+          <input type="text" class="first" required>
 
-      /* ───────── newsletter extension ─────────── */
-      const NewsletterExtension = {
-        name : 'Newsletter',
-        type : 'response',
-        match: ({ trace }: any) =>
-          trace.type === 'Custom_Newsletter' || trace.payload?.name === 'Custom_Newsletter',
+          <label>Efternavn</label>
+          <input type="text" class="last" required>
 
-        render: ({ trace, element }: any) => {
-          try {
-            const lang = normalizeLang(trace);
-            const tr = t(lang).newsletter;
+          <label>E-mail</label>
+          <input type="email" class="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
 
-            if (!element) { console.error('⚠️ Missing container'); return; }
+          <label>Telefon</label>
+          <input type="tel" class="phone" pattern="[0-9()#&+*=.-]+">
 
-            const form = document.createElement('form');
-            form.innerHTML = `
-              <style>
-                form{max-width:384px;padding:25px;font-family:Arial;color:#000}
-                .h{font-size:22px;font-weight:bold;margin-bottom:25px}
-                label{display:block;margin-bottom:5px;font-size:14px}
-                input,select{width:100%;padding:10px;border:1px solid #000;margin-bottom:20px;font-size:14px}
-                .chk{display:flex;align-items:center;font-size:13px;margin-bottom:20px}
-                .chk input{margin-right:8px}.chk a{color:#e79b3c;text-decoration:none}
-                .btn{width:100%;padding:12px;background:#7c8491;color:#fff;font-weight:bold;border:none;cursor:pointer}
-                .invalid{border-color:red!important}
-              </style>
-              <div class="h">${tr.heading}</div>
-              <label>${tr.name}</label><input type="text" class="name" required>
-              <label>${tr.email}</label><input type="email" class="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
-              <label>${tr.profile}</label>
-              <select class="profile" required>
-                <option value="">${tr.placeholder}</option>
-                ${tr.profiles.map(p=>`<option>${p}</option>`).join('')}
-              </select>
-              <div class="chk">
-                <input type="checkbox" class="gdpr" required>
-                <label>${tr.gdprLabel} <a href="https://virtiq.dk/privacy-policy" target="_blank">${tr.gdprLink}</a></label>
-              </div>
-              <input type="submit" class="btn" value="${tr.submit}">
-            `;
+          <label>Besked</label>
+          <textarea class="message" rows="4" required></textarea>
 
-            form.addEventListener('submit', e => {
-              e.preventDefault();
-              const n = form.querySelector<HTMLInputElement>('.name')!;
-              const e1= form.querySelector<HTMLInputElement>('.email')!;
-              const p = form.querySelector<HTMLSelectElement>('.profile')!;
-              const g = form.querySelector<HTMLInputElement>('.gdpr')!;
+          <div class="checkbox-wrapper">
+            <input type="checkbox" class="gdpr" required>
+            <label>Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a></label>
+          </div>
 
-              if (!n.checkValidity()||!e1.checkValidity()||!p.checkValidity()||!g.checked) {
-                [n,e1,p].forEach(f=>f.classList.toggle('invalid',!f.checkValidity()));
-                return;
-              }
-              form.querySelector('.btn')?.remove();
+          <input type="submit" class="submit" value="Bestil vurdering">
+        `;
 
-              window.voiceflow.chat.interact({
-                type: 'complete',
-                payload: { name:n.value, email:e1.value, profile:p.value, gdpr:g.checked }
-              });
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const first = form.querySelector('.first');
+          const last = form.querySelector('.last');
+          const email = form.querySelector('.email');
+          const phone = form.querySelector('.phone');
+          const message = form.querySelector('.message');
+          const gdpr = form.querySelector('.gdpr');
+
+          if (
+            !first.checkValidity() ||
+            !last.checkValidity() ||
+            !email.checkValidity() ||
+            !message.checkValidity() ||
+            !gdpr.checked
+          ) {
+            [first, last, email, message].forEach(field => {
+              field.classList.toggle('invalid', !field.checkValidity());
             });
-
-            element.appendChild(form);
-          } catch (err) {
-            console.error('❌ Newsletter form error:', err);
+            return;
           }
-        }
-      };
 
-      /* ─────────── initialise widget ──────────── */
-      window.voiceflow.chat.load({
-        verify:  { projectID: '67e288d9b38caa87c5ee173d' },
-        url:     'https://general-runtime.voiceflow.com',
-        versionID: 'production',
-        assistant: { extensions: [NewsletterExtension] },
-        voice:   { url: 'https://runtime-api.voiceflow.com' }
-      });
+          form.querySelector('.submit')?.remove();
+
+          window.voiceflow.chat.interact({
+            type: 'complete',
+            payload: {
+              firstName: first.value,
+              lastName: last.value,
+              email: email.value,
+              phone: phone.value,
+              message: message.value,
+              gdpr: gdpr.checked
+            }
+          });
+        });
+
+        element.appendChild(form);
+      }
     };
 
-    document.body.appendChild(script);
-    return () => document.body.removeChild(script);
-  }, []);
+    window.voiceflow.chat.load({
+      verify: { projectID: '67e288d9b38caa87c5ee173d' },
+      url: 'https://general-runtime.voiceflow.com',
+      versionID: 'production',
+      assistant: { extensions: [NewsletterForm, UdlejForm] },
+      voice: { url: 'https://runtime-api.voiceflow.com' }
+    });
+  };
 
-  return null;
-};
+  document.body.appendChild(script);
+</script>
