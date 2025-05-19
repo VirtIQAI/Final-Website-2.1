@@ -37,7 +37,7 @@ render: ({ trace, element }) => {
   const lang = getLanguage(trace);
   
   formContainer.innerHTML = `
-<div class="form-heading">${lang === 'da' ? 'Tilmeld nyhedsmail' : 'Subscribe to newsletter'}</div>
+<div class="form-heading">${lang === 'da' ? 'Tilmeld nyhedsmail' : 'Subscribe to our newsletter'}</div>
 
 <label for="name">${lang === 'da' ? 'Navn' : 'Name'}</label>
 <input type="text" class="name" name="name" required>
@@ -51,7 +51,7 @@ render: ({ trace, element }) => {
   <option value="Privatperson">${lang === 'da' ? 'Privatperson' : 'Private'}</option>
   <option value="Relocation Agent">Relocation Agent</option>
   <option value="Virksomhed / Ambassade">${lang === 'da' ? 'Virksomhed / Ambassade' : 'Company / Embassy'}</option>
-  <option value="Forsikringsselskab">${lang === 'da' ? 'Forsikringsselskab' : 'Insurance'}</option>
+  <option value="Forsikringsselskab">${lang === 'da' ? 'Forsikringsselskab' : 'Insurance Company'}</option>
 </select>
 
 <div class="checkbox-wrapper">
