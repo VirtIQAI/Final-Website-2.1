@@ -79,68 +79,69 @@ render: ({ trace, element }: any) => {
   const rawLang = trace?.payload?.language || window.voiceflow?.state?.variables?.language || 'Danish';
   const lang = rawLang === 'English' ? 'en' : 'da';
   const tr = t(lang).newsletter;
-  
-}
 
-          const form = document.createElement('form');
-          form.innerHTML = `
-            <style>
-              form{max-width:384px;padding:25px;font-family:Arial;color:#000}
-              .h{font-size:22px;font-weight:bold;margin-bottom:25px}
-              label{display:block;margin-bottom:5px;font-size:14px}
-              input,select{width:100%;padding:10px;border:1px solid #000;margin-bottom:20px;font-size:14px}
-              .chk{display:flex;align-items:center;font-size:13px;margin-bottom:20px}
-              .chk input{margin-right:8px}
-              .chk a{color:#e79b3c;text-decoration:none}
-              .btn{width:100%;padding:12px;background:#7c8491;color:#fff;font-weight:bold;border:none;cursor:pointer}
-              .invalid{border-color:red!important}
-            </style>
+  const form = document.createElement('form');
+  form.innerHTML = `
+    <style>
+      form { max-width:384px; padding:25px; font-family:Arial; color:#000 }
+      .hf { font-size:22px; font-weight:bold; margin-bottom:25px }
+      label { display:block; margin-bottom:5px; font-size:14px }
+      input, select { width:100%; padding:10px; border:1px solid #000; margin-bottom:20px; font-size:14px }
+      .chk { display:flex; align-items:center; font-size:13px; margin-bottom:20px }
+      .chk input { margin-right:8px }
+      .chk a { color:#e79b3c; text-decoration:none }
+      .btn { width:100%; padding:12px; background:#7c8491; color:#fff; font-weight:bold; border:none; cursor:pointer }
+      .invalid { border-color:red !important }
+    </style>
 
-            <div class="h">${tr.heading}</div>
+    <div class="hf">${tr.heading}</div>
 
-            <label>${tr.name}</label>
-            <input type="text" class="n" required>
+    <label>${tr.name}</label>
+    <input type="text" class="name" required>
 
-            <label>${tr.email}</label>
-            <input type="email" class="e" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
+    <label>${tr.email}</label>
+    <input type="email" class="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
 
-            <label>${tr.profile}</label>
-            <select class="p" required>
-              <option value="">${tr.placeholder}</option>
-              ${tr.profiles.map(v=>`<option>${v}</option>`).join('')}
-            </select>
+    <label>${tr.profile}</label>
+    <select class="profile" required>
+      <option value="">${tr.placeholder}</option>
+      ${tr.profiles.map((p: string) => `<option value="${p}">${p}</option>`).join('')}
+    </select>
 
-            <div class="chk">
-              <input type="checkbox" class="g" required>
-              <label>${tr.gdprLabel} <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">${tr.gdprLink}</a></label>
-            </div>
+    <div class="chk">
+      <input type="checkbox" class="gdpr" required>
+      <label>${tr.gdprLabel} <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">${tr.gdprLink}</a></label>
+    </div>
 
-            <input type="submit" class="btn" value="${tr.submit}">
-          `;
+    <input type="submit" class="btn" value="${tr.submit}">
+  `;
 
-          form.addEventListener('submit', (e: Event) => {
-            e.preventDefault();
-            const n = form.querySelector<HTMLInputElement>('.n')!;
-            const e1= form.querySelector<HTMLInputElement>('.e')!;
-            const p = form.querySelector<HTMLSelectElement>('.p')!;
-            const g = form.querySelector<HTMLInputElement>('.g')!;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = form.querySelector('.name') as HTMLInputElement;
+    const email = form.querySelector('.email') as HTMLInputElement;
+    const profile = form.querySelector('.profile') as HTMLSelectElement;
+    const gdpr = form.querySelector('.gdpr') as HTMLInputElement;
 
-            if(!n.checkValidity()||!e1.checkValidity()||!p.checkValidity()||!g.checked){
-              [n,e1,p].forEach(f=>f.classList.toggle('invalid',!f.checkValidity()));
-              return;
-            }
-            form.querySelector<HTMLInputElement>('.btn')!.remove();
+    if (!name.checkValidity() || !email.checkValidity() || !profile.checkValidity() || !gdpr.checked) {
+      name.classList.toggle('invalid', !name.checkValidity());
+      email.classList.toggle('invalid', !email.checkValidity());
+      profile.classList.toggle('invalid', !profile.checkValidity());
+      return;
+    }
 
-            window.voiceflow.chat.interact({
-              type   : 'complete',
-              payload: {
-                name   : n.value,
-                email  : e1.value,
-                profile: p.value,
-                gdpr   : g.checked
-              }
-            });
-          });
+    form.querySelector('.btn')?.remove();
+
+    window.voiceflow.chat.interact({
+      type: 'complete',
+      payload: {
+        name: name.value,
+        email: email.value,
+        profile: profile.value,
+        gdpr: gdpr.checked
+      }
+    });
+  });
 
           element.appendChild(form);
         }
