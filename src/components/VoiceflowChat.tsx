@@ -26,7 +26,62 @@ export const VoiceflowChat = () => {
 
         render: ({ trace, element }: any) => {
           const formContainer = document.createElement('form');
-          formContainer.innerHTML = `<!-- Paste your newsletter HTML form from the working version here -->`;
+          formContainer.innerHTML = `render: ({ trace, element }) => {
+        const formContainer = document.createElement('form');
+        formContainer.innerHTML = `
+          <style>
+            *, ::after, ::before { box-sizing: border-box; }
+            form {
+              width: 100%;
+              max-width: 384px;
+              padding: 25px;
+              font-family: 'Arial', sans-serif;
+              color: #000;
+            }
+            .form-heading { font-size: 22px; font-weight: bold; margin-bottom: 25px; text-align: left; }
+            label { font-size: 14px; margin-bottom: 5px; display: block; }
+            input[type="text"], input[type="email"], select {
+              width: 100%; background: transparent; border: 1px solid #000;
+              padding: 10px; font-size: 14px; margin-bottom: 20px; outline: none;
+            }
+            .checkbox-wrapper {
+              display: flex; align-items: center; font-size: 13px; margin-bottom: 20px;
+            }
+            .checkbox-wrapper input[type="checkbox"] { margin-right: 8px; }
+            .checkbox-wrapper a { color: #e79b3c; text-decoration: none; }
+            .submit {
+              background: #7c8491; color: white; border: none;
+              padding: 12px 0; font-size: 14px; font-weight: bold;
+              width: 100%; cursor: pointer;
+            }
+            .invalid { border-color: red !important; }
+          </style>
+
+          <div class="form-heading">Tilmeld nyhedsmail</div>
+
+          <label for="name">Navn</label>
+          <input type="text" class="name" name="name" required>
+
+          <label for="email">E-mail</label>
+          <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
+
+          <label for="profile">Min profil</label>
+          <select class="profile" name="profile" required>
+            <option value="">Vælg din profil</option>
+            <option value="Privatperson">Privatperson</option>
+            <option value="Relocation Agent">Relocation Agent</option>
+            <option value="Virksomhed / Ambassade">Virksomhed / Ambassade</option>
+            <option value="Forsikringsselskab">Forsikringsselskab</option>
+          </select>
+
+          <div class="checkbox-wrapper">
+            <input type="checkbox" class="gdpr" name="gdpr" required>
+            <label for="gdpr">Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a></label>
+          </div>
+
+          <input type="submit" class="submit" value="Tilmeld">
+        `;
+`;
           element.appendChild(formContainer);
         }
       };
