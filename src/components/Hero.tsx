@@ -31,44 +31,31 @@ export const Hero: React.FC = () => {
     };
   }, []);
 
-const scrollToContact = () => {
-  // Track the click event
-  trackButtonClick('Book a Free Demo', 'Hero Section');
+  const scrollToContact = () => {
+    // Track the click event
+    trackButtonClick('Book a Free Demo', 'Hero Section');
 
-  const contactSection = document.getElementById('contact');
-  if (!contactSection) return;
+    // Find the contact section
+    const contactSection = document.getElementById('contact');
+    if (!contactSection) return;
 
-  // Try smooth scroll with fallback
-  try {
-    // Best practice: use scroll-margin-top in CSS if possible
-    contactSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  } catch (error) {
-    // Fallback for older browsers
+    // Get dimensions
+    const viewportHeight = window.innerHeight;
+    const { top: contactTop } = contactSection.getBoundingClientRect();
+    
+    // Calculate the target scroll position
+    const currentScroll = window.pageYOffset;
+    const targetPosition = currentScroll + contactTop;
+    
+    // Adjust for mobile header height
     const headerOffset = window.innerWidth < 768 ? 60 : 80;
-    const y = contactSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+    const finalPosition = targetPosition - headerOffset;
 
-    window.scrollTo({
-      top: y,
-      behavior: 'smooth'
-    });
-  }
-
-  // Optional: force correction after animation for edge cases
-  setTimeout(() => {
-    const rect = contactSection.getBoundingClientRect();
-    const isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
-
-    if (!isFullyVisible) {
-      const headerOffset = window.innerWidth < 768 ? 60 : 80;
-      const correctedY = contactSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-      window.scrollTo({ top: correctedY, behavior: 'auto' });
-    }
-  }, 700); // allow time for animation to complete
-};
-
+    // Ensure the element is in view after scrolling
+    const elementInView = () => {
+      const rect = contactSection.getBoundingClientRect();
+      return rect.top >= 0 && rect.bottom <= viewportHeight;
+    };
 
     // Perform the scroll
     window.scrollTo({
