@@ -110,11 +110,13 @@ export const VoiceflowChat: React.FC = () => {
         }
       };
 
+      /* ─────────── initialise widget ──────────── */
       window.voiceflow.chat.load({
-        verify: { projectID: '67e288d9b38caa87c5ee173d' },
-        url: 'https://general-runtime.voiceflow.com',
+        verify:  { projectID: '67e288d9b38caa87c5ee173d' },
+        url:     'https://general-runtime.voiceflow.com',
         versionID: 'production',
-        assistant: { extensions: [NewsletterExtension] }
+        assistant: { extensions: [NewsletterExtension] },
+        voice:   { url: 'https://runtime-api.voiceflow.com' }
       });
     };
 
