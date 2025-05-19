@@ -1,3 +1,15 @@
+import React, { useEffect } from 'react';
+
+declare global {
+  interface Window {
+    voiceflow: {
+      chat: {
+        load: (config: any) => void;
+      };
+    };
+  }
+}
+
 export const VoiceflowChat: React.FC = () => {
   useEffect(() => {
     const script = document.createElement('script');
