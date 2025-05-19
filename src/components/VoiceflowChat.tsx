@@ -17,6 +17,14 @@ export const VoiceflowChat = () => {
     script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
     script.type = 'text/javascript';
 
+    function getLanguage(trace) {
+  const payloadLang = trace?.payload?.language;
+  const globalLang = window.voiceflow?.state?.variables?.Language;
+  const lang = payloadLang || globalLang;
+
+  return lang === 'English' ? 'en' : 'da'; // default to Danish
+}
+    
     script.onload = () => {
       const NewsletterForm = {
         name: 'Forms',
