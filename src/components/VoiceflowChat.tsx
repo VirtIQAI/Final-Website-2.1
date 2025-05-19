@@ -37,57 +37,35 @@ render: ({ trace, element }) => {
   const lang = getLanguage(trace);
   
   formContainer.innerHTML = `
-    <style>
-      *, ::after, ::before { box-sizing: border-box; }
-      form {
-        width: 100%;
-        max-width: 384px;
-        padding: 25px;
-        font-family: 'Arial', sans-serif;
-        color: #000;
-      }
-      .form-heading { font-size: 22px; font-weight: bold; margin-bottom: 25px; text-align: left; }
-      label { font-size: 14px; margin-bottom: 5px; display: block; }
-      input[type="text"], input[type="email"], select {
-        width: 100%; background: transparent; border: 1px solid #000;
-        padding: 10px; font-size: 14px; margin-bottom: 20px; outline: none;
-      }
-      .checkbox-wrapper {
-        display: flex; align-items: center; font-size: 13px; margin-bottom: 20px;
-      }
-      .checkbox-wrapper input[type="checkbox"] { margin-right: 8px; }
-      .checkbox-wrapper a { color: #e79b3c; text-decoration: none; }
-      .submit {
-        background: #7c8491; color: white; border: none;
-        padding: 12px 0; font-size: 14px; font-weight: bold;
-        width: 100%; cursor: pointer;
-      }
-      .invalid { border-color: red !important; }
-    </style>
+<div class="form-heading">${lang === 'da' ? 'Tilmeld nyhedsmail' : 'Subscribe to newsletter'}</div>
 
-    <div class="form-heading">Tilmeld nyhedsmail</div>
+<label for="name">${lang === 'da' ? 'Navn' : 'Name'}</label>
+<input type="text" class="name" name="name" required>
 
-    <label for="name">Navn</label>
-    <input type="text" class="name" name="name" required>
+<label for="email">E-mail</label>
+<input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
 
-    <label for="email">E-mail</label>
-    <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
+<label for="profile">${lang === 'da' ? 'Min profil' : 'My profile'}</label>
+<select class="profile" name="profile" required>
+  <option value="">${lang === 'da' ? 'Vælg din profil' : 'Select your profile'}</option>
+  <option value="Privatperson">${lang === 'da' ? 'Privatperson' : 'Private'}</option>
+  <option value="Relocation Agent">Relocation Agent</option>
+  <option value="Virksomhed / Ambassade">${lang === 'da' ? 'Virksomhed / Ambassade' : 'Company / Embassy'}</option>
+  <option value="Forsikringsselskab">${lang === 'da' ? 'Forsikringsselskab' : 'Insurance'}</option>
+</select>
 
-    <label for="profile">Min profil</label>
-    <select class="profile" name="profile" required>
-      <option value="">Vælg din profil</option>
-      <option value="Privatperson">Privatperson</option>
-      <option value="Relocation Agent">Relocation Agent</option>
-      <option value="Virksomhed / Ambassade">Virksomhed / Ambassade</option>
-      <option value="Forsikringsselskab">Forsikringsselskab</option>
-    </select>
+<div class="checkbox-wrapper">
+  <input type="checkbox" class="gdpr" name="gdpr" required>
+  <label for="gdpr">
+    ${lang === 'da' ? 'Jeg accepterer' : 'I accept the'} 
+    <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">
+      ${lang === 'da' ? 'betingelser vedr. personoplysninger' : 'terms regarding personal data'}
+    </a>
+  </label>
+</div>
 
-    <div class="checkbox-wrapper">
-      <input type="checkbox" class="gdpr" name="gdpr" required>
-      <label for="gdpr">Jeg accepterer <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">betingelser vedr. personoplysninger</a></label>
-    </div>
+<input type="submit" class="submit" value="${lang === 'da' ? 'Tilmeld' : 'Subscribe'}">
 
-    <input type="submit" class="submit" value="Tilmeld">
   `;
 
   formContainer.addEventListener('submit', function (e) {
