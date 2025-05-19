@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 declare global {
   interface Window {
     voiceflow: {
-      chat: {
-        load: (config: any) => void;
-      };
+      chat: { load: (config: any) => void };
+      // Voiceflow’s state object (populated after load)
+      state?: { variables?: Record<string, any> };
     };
   }
 }
@@ -17,138 +17,225 @@ export const VoiceflowChat: React.FC = () => {
     script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
     script.onload = () => {
-      const FormExtension = {
-        name: 'Forms',
-        type: 'response',
-        match: ({ trace }) =>
-          trace.type === 'Custom_Form_Demo' || trace.payload?.name === 'Custom_Form_Demo',
-        render: ({ trace, element }) => {
-          const formContainer = document.createElement('form');
+      /* ------------------------------------------------------------------ */
+      /* helper: returns "da" | "en" (default da)                           */
+      /* ------------------------------------------------------------------ */
+      const getLang = (trace: any) => {
+        // try payload first, then global variables
+        const payloadLang = trace.payload?.language;
+        const globalLang  = window.voiceflow?.state?.variables?.language;
+        return payloadLang ?? globalLang ?? 'da';
+      };
 
-formContainer.innerHTML = `
-  <style>
-    *, ::after, ::before {
-      box-sizing: border-box;
-    }
+      /* ------------------------------------------------------------------ */
+      /*   translations                                                     */
+      /* ------------------------------------------------------------------ */
+      const t = (lang = 'da') => ({
+        newsletter: {
+          heading     : lang === 'da' ? 'Tilmeld nyhedsmail'                 : 'Subscribe to newsletter',
+          name        : lang === 'da' ? 'Navn'                               : 'Name',
+          email       : 'E‑mail',
+          profile     : lang === 'da' ? 'Min profil'                         : 'Profile',
+          placeholder : lang === 'da' ? 'Vælg din profil'                    : 'Select your profile',
+          profiles    : lang === 'da'
+            ? ['Privatperson', 'Relocation Agent', 'Virksomhed / Ambassade', 'Forsikringsselskab']
+            : ['Private', 'Relocation Agent', 'Company / Embassy', 'Insurance'],
+          gdprLabel   : lang === 'da'
+            ? 'Jeg accepterer'
+            : 'I accept the',
+          gdprLink    : lang === 'da'
+            ? 'betingelser vedr. personoplysninger'
+            : 'terms regarding personal data',
+          submit      : lang === 'da' ? 'Tilmeld'                            : 'Subscribe'
+        },
 
-    form {
-      font-family: "Arial", sans-serif;
-      color: #f5f5f5;
-      background: #1a1a1a;
-      padding: 10px;
-      max-width: 100%;
-    }
+        udlej: {
+          heading     : lang === 'da' ? 'Bestil vurdering'                   : 'Request valuation',
+          firstName   : lang === 'da' ? 'Fornavn'                            : 'First name',
+          lastName    : lang === 'da' ? 'Efternavn'                          : 'Last name',
+          email       : 'E‑mail',
+          phone       : lang === 'da' ? 'Telefon'                            : 'Phone',
+          message     : lang === 'da' ? 'Besked'                             : 'Message',
+          gdprLabel   : lang === 'da'
+            ? 'Jeg accepterer'
+            : 'I accept the',
+          gdprLink    : lang === 'da'
+            ? 'betingelser vedr. personoplysninger'
+            : 'terms regarding personal data',
+          submit      : lang === 'da' ? 'Bestil vurdering'                   : 'Submit'
+        }
+      });
 
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-      color: #d1d5db;
-      font-size: 13px;
-    }
+      /* ------------------------------------------------------------------ */
+      /* 1)  Newsletter form                                               */
+      /* ------------------------------------------------------------------ */
+      const NewsletterExtension = {
+        name : 'Newsletter',
+        type : 'response',
+        match: ({ trace }: any) =>
+          trace.type === 'Custom_Newsletter' || trace.payload?.name === 'Custom_Newsletter',
 
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      background-color: rgba(31, 41, 55, 0.5);
-      border: 1px solid #374151;
-      color: #fff;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
+        render: ({ trace, element }: any) => {
+          const lang = getLang(trace);
+          const tr   = t(lang).newsletter;
 
-    .submit {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(to right, #8b5cf6, #7c3aed);
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-  </style>
+          const form = document.createElement('form');
+          form.innerHTML = `
+            <style>
+              form{max-width:384px;padding:25px;font-family:Arial;color:#000}
+              .h{font-size:22px;font-weight:bold;margin-bottom:25px}
+              label{display:block;margin-bottom:5px;font-size:14px}
+              input,select{width:100%;padding:10px;border:1px solid #000;margin-bottom:20px;font-size:14px}
+              .chk{display:flex;align-items:center;font-size:13px;margin-bottom:20px}
+              .chk input{margin-right:8px}
+              .chk a{color:#e79b3c;text-decoration:none}
+              .btn{width:100%;padding:12px;background:#7c8491;color:#fff;font-weight:bold;border:none;cursor:pointer}
+              .invalid{border-color:red!important}
+            </style>
 
-  <label>Name*</label>
-  <input type="text" class="name" required>
+            <div class="h">${tr.heading}</div>
 
-  <label>Email*</label>
-  <input type="email" class="email" required>
+            <label>${tr.name}</label>
+            <input type="text" class="n" required>
 
-  <label>Company*</label>
-  <input type="text" class="company" required>
+            <label>${tr.email}</label>
+            <input type="email" class="e" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$">
 
-  <label>Service*</label>
-  <select class="service" required>
-    <option value="">Select a service</option>
-    <option value="Consulting">Consulting</option>
-    <option value="Automation">Automation</option>
-    <option value="Strategy">Strategy</option>
-    <option value="Other">Other</option>
-  </select>
+            <label>${tr.profile}</label>
+            <select class="p" required>
+              <option value="">${tr.placeholder}</option>
+              ${tr.profiles.map(v=>`<option>${v}</option>`).join('')}
+            </select>
 
-  <label>What specific problems are you looking to solve?*</label>
-  <textarea class="message" rows="3" required></textarea>
+            <div class="chk">
+              <input type="checkbox" class="g" required>
+              <label>${tr.gdprLabel} <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">${tr.gdprLink}</a></label>
+            </div>
 
-  <label>Additional Information</label>
-  <textarea class="additionalInfo" rows="3"></textarea>
+            <input type="submit" class="btn" value="${tr.submit}">
+          `;
 
-  <input type="submit" class="submit" value="Send">
-`;
-
-
-          formContainer.addEventListener('submit', function (e) {
+          form.addEventListener('submit', (e: Event) => {
             e.preventDefault();
+            const n = form.querySelector<HTMLInputElement>('.n')!;
+            const e1= form.querySelector<HTMLInputElement>('.e')!;
+            const p = form.querySelector<HTMLSelectElement>('.p')!;
+            const g = form.querySelector<HTMLInputElement>('.g')!;
 
-            const name = formContainer.querySelector('.name');
-            const email = formContainer.querySelector('.email');
-            const company = formContainer.querySelector('.company');
-            const service = formContainer.querySelector('.service');
-            const message = formContainer.querySelector('.message');
-            const additionalInfo = formContainer.querySelector('.additionalInfo');
-
-            if (!name.value || !email.value || !company.value || !service.value || !message.value) {
+            if(!n.checkValidity()||!e1.checkValidity()||!p.checkValidity()||!g.checked){
+              [n,e1,p].forEach(f=>f.classList.toggle('invalid',!f.checkValidity()));
               return;
             }
-
-            formContainer.querySelector('.submit').remove();
+            form.querySelector<HTMLInputElement>('.btn')!.remove();
 
             window.voiceflow.chat.interact({
-              type: 'complete',
+              type   : 'complete',
               payload: {
-                name: name.value,
-                email: email.value,
-                company: company.value,
-                service: service.value,
-                message: message.value,
-                additionalInfo: additionalInfo.value
+                name   : n.value,
+                email  : e1.value,
+                profile: p.value,
+                gdpr   : g.checked
               }
             });
           });
 
-          element.appendChild(formContainer);
+          element.appendChild(form);
         }
       };
 
+      /* ------------------------------------------------------------------ */
+      /* 2)  Udlej Din Bolig form                                          */
+      /* ------------------------------------------------------------------ */
+      const UdlejFormExtension = {
+        name : 'UdlejForm',
+        type : 'response',
+        match: ({ trace }: any) =>
+          trace.type === 'Custom_UdlejForm' || trace.payload?.name === 'Custom_UdlejForm',
+
+        render: ({ trace, element }: any) => {
+          const lang = getLang(trace);
+          const tr   = t(lang).udlej;
+
+          const form = document.createElement('form');
+          form.innerHTML = `
+            <style>
+              form{max-width:384px;padding:25px;font-family:Arial;color:#000}
+              .h{font-size:22px;font-weight:bold;margin-bottom:25px}
+              label{display:block;margin:10px 0 5px}
+              input,textarea{width:100%;padding:10px;border:1px solid #000;margin-bottom:15px;font-size:14px}
+              textarea{resize:vertical}
+              .chk{display:flex;align-items:center;font-size:13px;margin-bottom:15px}
+              .chk input{margin-right:8px}
+              .chk a{color:#e79b3c;text-decoration:none}
+              .btn{width:100%;padding:12px;background:#23394d;color:#fff;font-weight:bold;border:none;cursor:pointer}
+              .invalid{border-color:red!important}
+            </style>
+
+            <div class="h">${tr.heading}</div>
+
+            <label>${tr.firstName}</label><input type="text"  class="f" required>
+            <label>${tr.lastName}</label><input  type="text"  class="l" required>
+            <label>${tr.email}</label><input     type="email" class="e" required>
+            <label>${tr.phone}</label><input     type="tel"   class="p" pattern="[0-9()#&+*=\\-\\.]*">
+            <label>${tr.message}</label><textarea class="m" rows="4" required></textarea>
+
+            <div class="chk">
+              <input type="checkbox" class="g" required>
+              <label>${tr.gdprLabel} <a href="https://www.comforthousing.dk/comfort-housings-privatlivspolitik/" target="_blank">${tr.gdprLink}</a></label>
+            </div>
+
+            <input type="submit" class="btn" value="${tr.submit}">
+          `;
+
+          form.addEventListener('submit', (e: Event) => {
+            e.preventDefault();
+            const f = form.querySelector<HTMLInputElement>('.f')!;
+            const l = form.querySelector<HTMLInputElement>('.l')!;
+            const e1= form.querySelector<HTMLInputElement>('.e')!;
+            const p = form.querySelector<HTMLInputElement>('.p')!;
+            const m = form.querySelector<HTMLTextAreaElement>('.m')!;
+            const g = form.querySelector<HTMLInputElement>('.g')!;
+
+            if(!f.checkValidity()||!l.checkValidity()||!e1.checkValidity()||!m.checkValidity()||!g.checked){
+              [f,l,e1,m].forEach(field=>field.classList.toggle('invalid',!field.checkValidity()));
+              return;
+            }
+
+            form.querySelector<HTMLInputElement>('.btn')!.remove();
+
+            window.voiceflow.chat.interact({
+              type   : 'complete',
+              payload: {
+                firstName : f.value,
+                lastName  : l.value,
+                email     : e1.value,
+                phone     : p.value,
+                message   : m.value,
+                gdpr      : g.checked
+              }
+            });
+          });
+
+          element.appendChild(form);
+        }
+      };
+
+      /* ------------------------------------------------------------------ */
+      /*  Initialise Voiceflow widget                                      */
+      /* ------------------------------------------------------------------ */
       window.voiceflow.chat.load({
-        verify: { projectID: '6780f08c40d0634c3490b8d9' },
+        verify: { projectID: '67e288d9b38caa87c5ee173d' }, // client project
         url: 'https://general-runtime.voiceflow.com',
         versionID: 'production',
         assistant: {
-          extensions: [FormExtension]
+          extensions: [NewsletterExtension, UdlejFormExtension]
         },
-        voice: {
-          url: 'https://runtime-api.voiceflow.com'
-        }
+        voice: { url: 'https://runtime-api.voiceflow.com' }
       });
     };
 
     document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
+    return () => document.body.removeChild(script);
   }, []);
 
   return null;
