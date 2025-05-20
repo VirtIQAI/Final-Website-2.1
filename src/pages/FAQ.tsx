@@ -81,8 +81,8 @@ const faqs = [
     da: "Hvad sker der, hvis Chatbotten ikke kan svare på et spørgsmål?"
   },
   answer: {
-    en: "If the Chatbot can’t answer a question, it will prompt the user to provide their contact information and automatically notify your customer support team with a transcript of the conversation. You also have the option to handle and respond to customer queries directly within the Chatbot dashboard.",
-    da: "Hvis Chatbotten ikke kan svare på et spørgsmål, beder den brugeren om kontaktoplysninger og underretter automatisk din kundesupport med en udskrift af samtalen. Du har også mulighed for at håndtere og besvare kundehenvendelser direkte via Chatbot-dashboardet."
+    en: "If the Chatbot can’t answer a question, it will prompt the user to provide their contact information and automatically notify your customer support team with a transcript of the conversation. You also have the option to handle and respond to customer queries directly within the Chatbot widget.",
+    da: "Hvis Chatbotten ikke kan svare på et spørgsmål, beder den brugeren om kontaktoplysninger og underretter automatisk din kundesupport med en udskrift af samtalen. Du har også mulighed for at håndtere og besvare kundehenvendelser direkte via Chatbot-widget vinduet."
   }
 },
   {
