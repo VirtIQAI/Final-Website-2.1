@@ -26,6 +26,66 @@ const faqs = [
     }
   },
   {
+  question: {
+    en: "Where does the Chatbot get its information from?",
+    da: "Hvor får Chatbotten sin information fra?"
+  },
+  answer: {
+    en: "The Chatbot retrieves information from a dedicated knowledge base, which can include documents, web pages, and other sources that you choose to provide. This ensures the answers are accurate and specific to your business.",
+    da: "Chatbotten henter sin information fra en dedikeret vidensbase, som kan indeholde dokumenter, websider og andre kilder, du vælger at give den adgang til. Det sikrer, at svarene er præcise og tilpasset din virksomhed."
+  }
+},
+{
+  question: {
+    en: "Do I get access to analytics and the conversations?",
+    da: "Får jeg adgang til analyser og samtalerne?"
+  },
+  answer: {
+    en: "Yes! You will have full access to a custom analytics dashboard, where you can view detailed statistics and insights about chatbot usage and conversations.",
+    da: "Ja! Du får fuld adgang til et skræddersyet analyse-dashboard, hvor du kan se detaljerede statistikker og indblik i brugen af chatbotten og de samtaler, der foregår."
+  }
+},
+{
+  question: {
+    en: "Can the Chatbot handle multiple languages?",
+    da: "Kan Chatbotten håndtere flere sprog?"
+  },
+  answer: {
+    en: "Yes, the Chatbot is capable of handling multiple languages, allowing you to support customers in both Danish, English, and many other languages.",
+    da: "Ja, Chatbotten kan håndtere flere sprog, så du kan supportere dine kunder på både dansk, engelsk og mange andre sprog."
+  }
+},
+{
+  question: {
+    en: "Is the Chatbot and other services GDPR compliant?",
+    da: "Er Chatbotten og de øvrige services GDPR-kompatible?"
+  },
+  answer: {
+    en: "Absolutely. All stored data and information comply with GDPR regulations, and any user data can be deleted upon request, ensuring full privacy and security for your customers.",
+    da: "Ja, alle data og informationer opbevares i overensstemmelse med GDPR-reglerne, og brugerdata kan til enhver tid slettes, hvis en kunde ønsker det. Dette sikrer fuld privatlivsbeskyttelse og datasikkerhed."
+  }
+},
+{
+  question: {
+    en: "I'm worried the Chatbot will make weird replies. How does it handle that?",
+    da: "Jeg er bekymret for, at Chatbotten kan give mærkelige svar – hvordan håndteres det?"
+  },
+  answer: {
+    en: "The Chatbot is designed to respond only based on the information in your knowledge base, so it won’t generate random or irrelevant answers. This keeps communication consistent and trustworthy.",
+    da: "Chatbotten er designet til kun at besvare spørgsmål baseret på din vidensbase, så den kommer ikke med tilfældige eller irrelevante svar. Det sikrer ensartet og pålidelig kommunikation."
+  }
+},
+{
+  question: {
+    en: "What happens if the Chatbot can't answer a question?",
+    da: "Hvad sker der, hvis Chatbotten ikke kan svare på et spørgsmål?"
+  },
+  answer: {
+    en: "If the Chatbot can’t answer a question, it will prompt the user to provide their contact information and automatically notify your customer support team with a transcript of the conversation. You also have the option to handle and respond to customer queries directly within the Chatbot dashboard.",
+    da: "Hvis Chatbotten ikke kan svare på et spørgsmål, beder den brugeren om kontaktoplysninger og underretter automatisk din kundesupport med en udskrift af samtalen. Du har også mulighed for at håndtere og besvare kundehenvendelser direkte via Chatbot-dashboardet."
+  }
+}
+  {
     question: {
       en: 'What is the process of implementing AI solutions?',
       da: 'Hvordan foregår processen med at implementere AI-løsninger?'
