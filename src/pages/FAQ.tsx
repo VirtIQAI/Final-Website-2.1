@@ -85,6 +85,7 @@ const faqs = [
     da: "Hvis Chatbotten ikke kan svare på et spørgsmål, beder den brugeren om kontaktoplysninger og underretter automatisk din kundesupport med en udskrift af samtalen. Du har også mulighed for at håndtere og besvare kundehenvendelser direkte via Chatbot-dashboardet."
   }
 }
+  
   {
     question: {
       en: 'What is the process of implementing AI solutions?',
