@@ -1,6 +1,6 @@
 import React from 'react';
 import { ServiceCard } from './ui/ServiceCard';
-import { Bot, MessagesSquare, BarChart, Globe, Settings } from 'lucide-react';
+import { Bot, MessagesSquare, BarChart, Globe, Settings, Phone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export const Services: React.FC = () => {
@@ -37,6 +37,15 @@ export const Services: React.FC = () => {
     },
     {
       id: 5,
+      title: isDanish ? 'AI Voice Caller' : 'AI Voice Caller',
+      description: isDanish
+        ? 'Automatiser telefonopkald med intelligent AI-teknologi til booking og kundeservice.'
+        : 'Automate phone calls with intelligent AI technology for booking and customer service.',
+      icon: <Phone className="text-purple-400" size={48} />,
+      href: '/services/ai-voice-caller'
+    },
+    {
+      id: 6,
       title: isDanish ? 'Meta-Annoncer' : 'Meta Ads',
       description: isDanish
         ? 'Skab målrettede, højtkonverterende annoncekampagner på Meta-platforme.'
@@ -45,7 +54,7 @@ export const Services: React.FC = () => {
       href: '/services/meta-ads'
     },
     {
-      id: 6,
+      id: 7,
       title: isDanish ? 'Webudvikling' : 'Website Development',
       description: isDanish
         ? 'Byg imponerende, højtydende hjemmesider designet til konvertering og engagement.'

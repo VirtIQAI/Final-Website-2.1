@@ -62,6 +62,7 @@ export const Header: React.FC = () => {
     { name: 'AI Agents', href: '/services/ai-agents' },
     { name: isDanish ? 'AI-Automatisering' : 'AI Automation', href: '/services/ai-automation' },
     { name: isDanish ? 'AI-Outreach' : 'AI Outreach', href: '/services/ai-outreach' },
+    { name: isDanish ? 'AI Voice Caller' : 'AI Voice Caller', href: '/services/ai-voice-caller' },
     { name: isDanish ? 'Meta-Annoncer' : 'Meta Ads', href: '/services/meta-ads' },
     { name: isDanish ? 'Webudvikling' : 'Website Development', href: '/services/website-development' },
   ];

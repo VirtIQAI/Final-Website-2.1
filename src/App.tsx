@@ -19,6 +19,7 @@ import { AIAgent } from './pages/AIAgent';
 import { WebDevelopment } from './pages/WebDevelopment';
 import { MetaAds } from './pages/MetaAds';
 import { AIOutreach } from './pages/AIOutreach';
+import { AIVoiceCaller } from './pages/AIVoiceCaller';
 import { NewsletterPopup } from './components/NewsletterPopup';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
@@ -112,6 +113,7 @@ function App() {
             <Route path="/services/website-development" element={<WebDevelopment />} />
             <Route path="/services/meta-ads" element={<MetaAds />} />
             <Route path="/services/ai-outreach" element={<AIOutreach />} />
+            <Route path="/services/ai-voice-caller" element={<AIVoiceCaller />} />
             <Route path={isDanish ? "/faq" : "/faq"} element={<FAQ />} />
             <Route path={isDanish ? "/kontakt" : "/contact"} element={<Contact />} />
             <Route path={isDanish ? "/blog" : "/blog"} element={<Blog />} />
