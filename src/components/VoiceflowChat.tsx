@@ -17,7 +17,7 @@ export const VoiceflowChat: React.FC = () => {
     script.type = 'text/javascript';
     script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
-    // Hide the Powered By footer everywhere
+    // Helper function to hide the Powered By footer, everywhere
     const hidePoweredBy = () => {
       // By text
       document.querySelectorAll('div, span, footer').forEach(el => {
@@ -31,7 +31,7 @@ export const VoiceflowChat: React.FC = () => {
           el.style.lineHeight = '0px';
         }
       });
-      // By class/aria/selectors
+      // By class/aria
       [
         '.vfrc-powered-by',
         '[class*="poweredBy"]',
@@ -59,11 +59,12 @@ export const VoiceflowChat: React.FC = () => {
       });
     };
 
-    let observer: MutationObserver | null = null;
-
+    // Will be available after Voiceflow bundle loads
     script.onload = () => {
       // MutationObserver to catch when the footer re-appears
-      observer = new MutationObserver(hidePoweredBy);
+      const observer = new MutationObserver(() => {
+        hidePoweredBy();
+      });
       observer.observe(document.body, { childList: true, subtree: true });
 
       // Hide right after load
@@ -78,102 +79,33 @@ export const VoiceflowChat: React.FC = () => {
           const formContainer = document.createElement('form');
           formContainer.innerHTML = `
             <style>
-              .vf-form-container {
-                background: #18181b;
-                padding: 20px;
-                border-radius: 12px;
-                font-family: 'Inter', sans-serif;
-              }
-              .vf-form-group {
-                margin-bottom: 16px;
-              }
-              .vf-form-group label {
-                display: block;
-                color: #d1d5db;
-                font-size: 14px;
-                margin-bottom: 6px;
-              }
-              .vf-form-group input,
-              .vf-form-group select,
-              .vf-form-group textarea {
-                width: 100%;
-                padding: 10px;
-                background: #27272a;
-                border: 1px solid #374151;
-                border-radius: 6px;
-                color: #fff;
-                font-size: 14px;
-              }
-              .vf-form-group textarea {
-                min-height: 80px;
-                resize: vertical;
-              }
-              .vf-submit-btn {
-                width: 100%;
-                padding: 12px;
-                background: #7c3aed;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                font-size: 16px;
-                font-weight: 500;
-                cursor: pointer;
-                transition: background-color 0.2s;
-              }
-              .vf-submit-btn:hover {
-                background: #6d28d9;
-              }
-              .vf-disclaimer {
-                margin-top: 12px;
-                font-size: 12px;
-                color: #9ca3af;
-                text-align: center;
-              }
-              .vf-disclaimer a {
-                color: #7c3aed;
-                text-decoration: none;
-              }
-              .vf-disclaimer a:hover {
-                text-decoration: underline;
-              }
+              *, ::after, ::before { box-sizing: border-box; }
+              form { font-family: "Arial", sans-serif; color: #f5f5f5; background: #1a1a1a; padding: 10px; max-width: 100%; }
+              label { display: block; margin-bottom: 5px; font-weight: 600; color: #d1d5db; font-size: 13px; }
+              input, textarea, select { width: 100%; padding: 10px; border-radius: 8px; background-color: rgba(31, 41, 55, 0.5); border: 1px solid #374151; color: #fff; margin-bottom: 15px; font-size: 14px; }
+              .submit { width: 100%; padding: 12px; background: linear-gradient(to right, #8b5cf6, #7c3aed); color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; }
             </style>
-            <div class="vf-form-container">
-              <div class="vf-form-group">
-                <label for="name">First & Last Name*</label>
-                <input type="text" id="name" class="name" placeholder="John Doe" required>
-              </div>
-              <div class="vf-form-group">
-                <label for="email">Email*</label>
-                <input type="email" id="email" class="email" placeholder="johndoe@gmail.com" required>
-              </div>
-              <div class="vf-form-group">
-                <label for="company">Company*</label>
-                <input type="text" id="company" class="company" placeholder="Doe Enterprises" required>
-              </div>
-              <div class="vf-form-group">
-                <label for="service">Service*</label>
-                <select id="service" class="service" required>
-                  <option value="" disabled selected>Select a service</option>
-                  <option value="AI Agents">AI Agents</option>
-                  <option value="AI Automation">AI Automation</option>
-                  <option value="AI Outreach">AI Outreach</option>
-                  <option value="Meta Ads">Meta Ads</option>
-                  <option value="Custom Websites">Custom Websites</option>
-                </select>
-              </div>
-              <div class="vf-form-group">
-                <label for="message">What specific problems are you looking to solve?*</label>
-                <textarea id="message" class="message" required></textarea>
-              </div>
-              <div class="vf-form-group">
-                <label for="additionalInfo">Additional Information</label>
-                <textarea id="additionalInfo" class="additionalInfo"></textarea>
-              </div>
-              <button type="submit" class="vf-submit-btn">Send</button>
-              <div class="vf-disclaimer">
-                By submitting this form, you agree to our <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-of-service" target="_blank">Terms of Service</a>
-              </div>
-            </div>
+            <label>First & Last Name*</label>
+            <input type="text" class="name" placeholder="John Doe" required>
+            <label>Email*</label>
+            <input type="email" class="email" placeholder="johndoe@gmail.com" required>
+            <label>Company*</label>
+            <input type="text" class="company" placeholder="Doe Enterprises" required>
+            <label>Service*</label>
+            <select class="service" required>
+              <option value="">Select a service</option>
+              <option value="AI Agents">AI Agents</option>
+              <option value="AI Automation">AI Automation</option>
+              <option value="AI Outreach">AI Outreach</option>
+              <option value="AI Voice Caller">AI Voice Caller</option>
+              <option value="Meta Ads">Meta Ads</option>
+              <option value="Custom Websites">Custom Websites</option>
+            </select>
+            <label>What specific problems are you looking to solve?*</label>
+            <textarea class="message" rows="3" required></textarea>
+            <label>Additional Information</label>
+            <textarea class="additionalInfo" rows="3"></textarea>
+            <input type="submit" class="submit" value="Send">
           `;
 
           formContainer.addEventListener('submit', function (e) {
@@ -190,7 +122,7 @@ export const VoiceflowChat: React.FC = () => {
               return;
             }
 
-            formContainer.querySelector('.vf-submit-btn')?.remove();
+            formContainer.querySelector('.submit')?.remove();
 
             window.voiceflow.chat.interact &&
               window.voiceflow.chat.interact({
@@ -228,15 +160,10 @@ export const VoiceflowChat: React.FC = () => {
     };
 
     document.body.appendChild(script);
-
-    // Hide just after script is added (just in case)
-    hidePoweredBy();
-
     return () => {
       document.body.removeChild(script);
-      hidePoweredBy();
-      // Clean up observer on unmount
-      if (observer) observer.disconnect();
+      // You may want to disconnect the observer, but since we attach it on script load, 
+      // and script is removed, it's safe.
     };
   }, []);
 
