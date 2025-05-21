@@ -89,7 +89,6 @@ export const VoiceflowChat: React.FC = () => {
                 <option value="AI Voice Caller">AI Voice Caller</option>
                 <option value="Meta Ads (Facebook & Instagram)">Meta Ads (Facebook & Instagram)</option>
                 <option value="Custom Websites">Custom Websites</option>
-                <option value="Other">Other</option>
               </select>
 
             <label>What specific problems are you looking to solve?*</label>
