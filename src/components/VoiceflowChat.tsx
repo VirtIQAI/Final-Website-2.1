@@ -151,11 +151,11 @@ render: ({ trace, element }) => {
   }, 200);
 }
 
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+     document.body.appendChild(script);
+  return () => {
+    document.body.removeChild(script);
+  };
+}, []);
 
-  return null;
-};
+return null;
+}
