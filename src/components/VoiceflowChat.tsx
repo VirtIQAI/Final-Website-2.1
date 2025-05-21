@@ -149,7 +149,6 @@ render: ({ trace, element }) => {
     tries++;
     if (tries > 30) clearInterval(interval); // ~6 seconds, longer persistence
   }, 200);
-}
 
     document.body.appendChild(script);
   return () => {
