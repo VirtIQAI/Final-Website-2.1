@@ -151,7 +151,7 @@ render: ({ trace, element }) => {
   }, 200);
 }
 
-     document.body.appendChild(script);
+    document.body.appendChild(script);
   return () => {
     document.body.removeChild(script);
   };
