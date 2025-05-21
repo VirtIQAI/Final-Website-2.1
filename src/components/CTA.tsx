@@ -31,7 +31,8 @@ export const CTA: React.FC = () => {
   };
 
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     company: '',
     service: getDefaultService(location.pathname),
@@ -56,7 +57,7 @@ export const CTA: React.FC = () => {
         .from('demo_requests')
         .insert([
           {
-            name: formData.name,
+            name: `${formData.firstName} ${formData.lastName}`,
             email: formData.email,
             company: formData.company,
             service: formData.service,
@@ -68,7 +69,8 @@ export const CTA: React.FC = () => {
       if (error) throw error;
 
       setFormData({
-        name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         company: '',
         service: getDefaultService(location.pathname),
@@ -138,20 +140,38 @@ export const CTA: React.FC = () => {
                   {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                      {isDanish ? 'Navn*' : 'Name*'}
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder={isDanish ? 'Dit navn' : 'Your name'}
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
+                        {isDanish ? 'Fornavn*' : 'First Name*'}
+                      </label>
+                      <input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        required
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        placeholder="John"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
+                        {isDanish ? 'Efternavn*' : 'Last Name*'}
+                      </label>
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        required
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        placeholder="Doe"
+                      />
+                    </div>
                   </div>
                   
                   <div>
@@ -166,7 +186,7 @@ export const CTA: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder={isDanish ? 'din@email.dk' : 'you@company.com'}
+                      placeholder="johndoe@gmail.com"
                     />
                   </div>
                   
@@ -182,7 +202,7 @@ export const CTA: React.FC = () => {
                       value={formData.company}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder={isDanish ? 'Din virksomhed' : 'Your company'}
+                      placeholder="Doe Enterprises"
                     />
                   </div>
 
