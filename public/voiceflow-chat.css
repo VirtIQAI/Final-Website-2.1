@@ -42,11 +42,14 @@
 }
 
 .vfrc-composer__input:focus {
-  border-color: #a78bfa !important; /* Subtle purple border on focus */
+  border-color: #a78bfa !important;
 }
 
 .vfrc-composer {
-  background: transparent !important; /* Remove any composer background */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
 /* Send (arrow) button styles */
@@ -92,4 +95,50 @@ form span[aria-label*="Powered by"],
   line-height: 0 !important;
   min-height: 0 !important;
   max-height: 0 !important;
+}
+
+/* ========================== */
+/* REMOVE BLACK BOX IN FORM/COMPOSER AREA! */
+/* ========================== */
+
+/* Remove background, border, shadow from input container and any unknown wrappers */
+.vfrc-input-container,
+.vfrc-input-container *,
+.vfrc-composer,
+.vfrc-chat-input,
+.vfrc-chat-input *,
+.vfrc-widget form,
+.vfrc-widget form *,
+.vfrc-widget [class*="input"],
+.vfrc-widget [class*="Input"],
+.vfrc-widget [class*="container"],
+._1gdvh9t1, /* Obfuscated class: update as needed */
+._1gdvh9t4, ._1gdvh9t8, ._1gdvh9t9, ._1gdvh9ta, ._1gdvh9tc
+{
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  max-height: 100% !important;
+}
+
+/* If any specific footer/wrapper appears just above composer, hide it too */
+.vfrc-widget > div[style*="background"], 
+.vfrc-widget > div[style*="height"], 
+.vfrc-widget > div[style*="box-shadow"] {
+  background: transparent !important;
+  box-shadow: none !important;
+  height: auto !important;
+}
+
+/* In case of sticky/bottom wrappers in shadow DOMs */
+.vfrc-widget [style*="background: rgb(26, 26, 26)"],
+.vfrc-widget [style*="background-color: rgb(26, 26, 26)"],
+.vfrc-widget [style*="background: #1a1a1a"],
+.vfrc-widget [style*="background-color: #1a1a1a"] {
+  background: transparent !important;
+  background-color: transparent !important;
 }
