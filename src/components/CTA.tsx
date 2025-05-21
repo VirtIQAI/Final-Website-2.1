@@ -15,6 +15,7 @@ export const CTA: React.FC = () => {
     'AI Agents',
     'AI Automation',
     'AI Outreach',
+    'AI Voice Caller',
     'Meta Ads',
     'Website Development',
   ];
@@ -24,6 +25,7 @@ export const CTA: React.FC = () => {
       '/services/ai-agents': 'AI Agents',
       '/services/ai-automation': 'AI Automation',
       '/services/ai-outreach': 'AI Outreach',
+      '/services/ai-voice-caller': 'AI Voice Caller',
       '/services/meta-ads': 'Meta Ads',
       '/services/website-development': 'Website Development',
     };
