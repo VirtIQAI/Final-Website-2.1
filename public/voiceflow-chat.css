@@ -62,3 +62,27 @@
 .vfrc-composer__button svg {
   fill: #fff !important;
 }
+
+/* ========================== */
+/* Remove "Powered by VirtIQ" footer */
+/* ========================== */
+
+.vfrc-powered-by,
+[class*="poweredBy"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+div[aria-label*="Powered by"],
+footer {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
