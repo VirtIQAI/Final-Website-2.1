@@ -17,46 +17,57 @@ export const VoiceflowChat: React.FC = () => {
     script.type = 'text/javascript';
     script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
-    script.onload = () => {
-      // Hide Powered by VirtIQ (called both immediately and on DOM changes)
-      const hidePoweredBy = () => {
-        document.querySelectorAll('div, span, footer').forEach(el => {
-          if (el.textContent && el.textContent.includes('Powered by')) {
-            el.style.display = 'none';
-            el.style.visibility = 'hidden';
-            el.style.height = '0px';
-            el.style.margin = '0px';
-            el.style.padding = '0px';
-            el.style.fontSize = '0px';
-            el.style.lineHeight = '0px';
-          }
+    // Helper function to hide the Powered By footer, everywhere
+    const hidePoweredBy = () => {
+      // By text
+      document.querySelectorAll('div, span, footer').forEach(el => {
+        if (el.textContent && el.textContent.includes('Powered by')) {
+          el.style.display = 'none';
+          el.style.visibility = 'hidden';
+          el.style.height = '0px';
+          el.style.margin = '0px';
+          el.style.padding = '0px';
+          el.style.fontSize = '0px';
+          el.style.lineHeight = '0px';
+        }
+      });
+      // By class/aria
+      [
+        '.vfrc-powered-by',
+        '[class*="poweredBy"]',
+        'div[aria-label*="Powered by"]',
+        'footer',
+        'form .vfrc-powered-by',
+        'form [class*="poweredBy"]',
+        'form div[aria-label*="Powered by"]',
+        'form footer',
+        'span.vfrc-powered-by',
+        'span[class*="poweredBy"]',
+        'span[aria-label*="Powered by"]',
+        '.vfrc-widget *[class*="poweredBy"]',
+        '.vfrc-widget *[aria-label*="Powered by"]'
+      ].forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+          el.style.display = 'none';
+          el.style.visibility = 'hidden';
+          el.style.height = '0px';
+          el.style.margin = '0px';
+          el.style.padding = '0px';
+          el.style.fontSize = '0px';
+          el.style.lineHeight = '0px';
         });
-        const selectors = [
-          '.vfrc-powered-by',
-          '[class*="poweredBy"]',
-          'div[aria-label*="Powered by"]',
-          'footer'
-        ];
-        selectors.forEach(selector => {
-          document.querySelectorAll(selector).forEach(el => {
-            el.style.display = 'none';
-            el.style.visibility = 'hidden';
-            el.style.height = '0px';
-            el.style.margin = '0px';
-            el.style.padding = '0px';
-            el.style.fontSize = '0px';
-            el.style.lineHeight = '0px';
-          });
-        });
-      };
+      });
+    };
 
-      // Persistent observer for DOM changes
+    // Will be available after Voiceflow bundle loads
+    script.onload = () => {
+      // MutationObserver to catch when the footer re-appears
       const observer = new MutationObserver(() => {
         hidePoweredBy();
       });
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Run once right after load
+      // Hide right after load
       hidePoweredBy();
 
       const FormExtension = {
@@ -66,7 +77,6 @@ export const VoiceflowChat: React.FC = () => {
           trace.type === 'Custom_Form_Demo' || trace.payload?.name === 'Custom_Form_Demo',
         render: ({ trace, element }: any) => {
           const formContainer = document.createElement('form');
-
           formContainer.innerHTML = `
             <style>
               *, ::after, ::before { box-sizing: border-box; }
@@ -136,7 +146,7 @@ export const VoiceflowChat: React.FC = () => {
       };
 
       window.voiceflow.chat.load({
-        verify: { projectID: '6780f08c40d0634c3490b8d9' }, // ✅ your project ID
+        verify: { projectID: '6780f08c40d0634c3490b8d9' },
         url: 'https://general-runtime.voiceflow.com',
         versionID: 'production',
         assistant: {
@@ -152,7 +162,8 @@ export const VoiceflowChat: React.FC = () => {
     document.body.appendChild(script);
     return () => {
       document.body.removeChild(script);
-      // Optional: disconnect observer when component unmounts
+      // You may want to disconnect the observer, but since we attach it on script load, 
+      // and script is removed, it's safe.
     };
   }, []);
 
