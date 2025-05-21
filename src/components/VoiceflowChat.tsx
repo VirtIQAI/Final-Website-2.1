@@ -18,9 +18,8 @@ export const VoiceflowChat: React.FC = () => {
     script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
     script.onload = () => {
-      // Helper function to hide "Powered by VirtIQ"
+      // Hide Powered by VirtIQ (called both immediately and on DOM changes)
       const hidePoweredBy = () => {
-        // Try to find by text content if all else fails
         document.querySelectorAll('div, span, footer').forEach(el => {
           if (el.textContent && el.textContent.includes('Powered by')) {
             el.style.display = 'none';
@@ -32,7 +31,6 @@ export const VoiceflowChat: React.FC = () => {
             el.style.lineHeight = '0px';
           }
         });
-        // Known class and aria selectors
         const selectors = [
           '.vfrc-powered-by',
           '[class*="poweredBy"]',
@@ -52,12 +50,21 @@ export const VoiceflowChat: React.FC = () => {
         });
       };
 
+      // Persistent observer for DOM changes
+      const observer = new MutationObserver(() => {
+        hidePoweredBy();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Run once right after load
+      hidePoweredBy();
+
       const FormExtension = {
         name: 'Forms',
         type: 'response',
-        match: ({ trace }) =>
+        match: ({ trace }: any) =>
           trace.type === 'Custom_Form_Demo' || trace.payload?.name === 'Custom_Form_Demo',
-        render: ({ trace, element }) => {
+        render: ({ trace, element }: any) => {
           const formContainer = document.createElement('form');
 
           formContainer.innerHTML = `
@@ -94,18 +101,18 @@ export const VoiceflowChat: React.FC = () => {
           formContainer.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const name = formContainer.querySelector('.name');
-            const email = formContainer.querySelector('.email');
-            const company = formContainer.querySelector('.company');
-            const service = formContainer.querySelector('.service');
-            const message = formContainer.querySelector('.message');
-            const additionalInfo = formContainer.querySelector('.additionalInfo');
+            const name = formContainer.querySelector('.name') as HTMLInputElement;
+            const email = formContainer.querySelector('.email') as HTMLInputElement;
+            const company = formContainer.querySelector('.company') as HTMLInputElement;
+            const service = formContainer.querySelector('.service') as HTMLSelectElement;
+            const message = formContainer.querySelector('.message') as HTMLTextAreaElement;
+            const additionalInfo = formContainer.querySelector('.additionalInfo') as HTMLTextAreaElement;
 
             if (!name.value || !email.value || !company.value || !service.value || !message.value) {
               return;
             }
 
-            formContainer.querySelector('.submit').remove();
+            formContainer.querySelector('.submit')?.remove();
 
             window.voiceflow.chat.interact &&
               window.voiceflow.chat.interact({
@@ -123,16 +130,10 @@ export const VoiceflowChat: React.FC = () => {
 
           element.appendChild(formContainer);
 
-          // Enhanced persistent footer hide
-                    hidePoweredBy();
-            let tries = 0;
-            const interval = setInterval(() => {
-              hidePoweredBy();
-              tries++;
-              if (tries > 30) clearInterval(interval);
-            }, 200);
+          // Hide again in case it pops up with form
+          hidePoweredBy();
         }
-      }; // <-- closes FormExtension
+      };
 
       window.voiceflow.chat.load({
         verify: { projectID: '6780f08c40d0634c3490b8d9' }, // ✅ your project ID
@@ -146,23 +147,14 @@ export const VoiceflowChat: React.FC = () => {
           url: 'https://runtime-api.voiceflow.com'
         }
       });
-
-      // Initial hide after widget loads
-      hidePoweredBy();
-      let tries = 0;
-      const interval = setInterval(() => {
-        hidePoweredBy();
-        tries++;
-        if (tries > 30) clearInterval(interval);
-      }, 200);
-
-    }; // <-- closes script.onload
+    };
 
     document.body.appendChild(script);
     return () => {
       document.body.removeChild(script);
+      // Optional: disconnect observer when component unmounts
     };
-  }, []); // <--- closes useEffect
+  }, []);
 
   return null;
 };
