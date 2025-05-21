@@ -64,7 +64,7 @@ export const Header: React.FC = () => {
     { name: isDanish ? 'AI Outreach' : 'AI Outreach', href: '/services/ai-outreach' },
     { name: isDanish ? 'AI Voice Caller' : 'AI Voice Caller', href: '/services/ai-voice-caller' },
     { name: isDanish ? 'Meta Annoncer' : 'Meta Ads', href: '/services/meta-ads' },
-    { name: isDanish ? 'Skræddersyet Hjemmeside' : 'Custom Website', href: '/services/custom-website' },
+    { name: isDanish ? 'Skræddersyet Hjemmeside' : 'Custom Website', href: '/services/website-development' },
   ];
 
   const navItems = [
