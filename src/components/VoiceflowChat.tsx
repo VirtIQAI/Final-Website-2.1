@@ -17,7 +17,7 @@ export const VoiceflowChat: React.FC = () => {
     script.type = 'text/javascript';
     script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
-    // Helper function to hide the Powered By footer, everywhere
+    // Hide the Powered By footer everywhere
     const hidePoweredBy = () => {
       // By text
       document.querySelectorAll('div, span, footer').forEach(el => {
@@ -31,7 +31,7 @@ export const VoiceflowChat: React.FC = () => {
           el.style.lineHeight = '0px';
         }
       });
-      // By class/aria
+      // By class/aria/selectors
       [
         '.vfrc-powered-by',
         '[class*="poweredBy"]',
@@ -59,12 +59,11 @@ export const VoiceflowChat: React.FC = () => {
       });
     };
 
-    // Will be available after Voiceflow bundle loads
+    let observer: MutationObserver | null = null;
+
     script.onload = () => {
       // MutationObserver to catch when the footer re-appears
-      const observer = new MutationObserver(() => {
-        hidePoweredBy();
-      });
+      observer = new MutationObserver(hidePoweredBy);
       observer.observe(document.body, { childList: true, subtree: true });
 
       // Hide right after load
@@ -160,10 +159,15 @@ export const VoiceflowChat: React.FC = () => {
     };
 
     document.body.appendChild(script);
+
+    // Hide just after script is added (just in case)
+    hidePoweredBy();
+
     return () => {
       document.body.removeChild(script);
-      // You may want to disconnect the observer, but since we attach it on script load, 
-      // and script is removed, it's safe.
+      hidePoweredBy();
+      // Clean up observer on unmount
+      if (observer) observer.disconnect();
     };
   }, []);
 
