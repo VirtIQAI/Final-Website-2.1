@@ -24,3 +24,41 @@
   background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%) !important;
   color: #fff !important;
 }
+
+/* ========================== */
+/* Custom styles for composer */
+/* ========================== */
+
+.vfrc-composer__input {
+  background: #fff !important;
+  color: #222 !important;
+  border-radius: 24px !important;
+  border: 1.5px solid #ececec !important;
+  box-shadow: none !important;
+  font-size: 15px !important;
+  padding: 10px 18px !important;
+  outline: none !important;
+  transition: border-color 0.2s;
+}
+
+.vfrc-composer__input:focus {
+  border-color: #a78bfa !important; /* Subtle purple border on focus */
+}
+
+.vfrc-composer {
+  background: transparent !important; /* Remove any composer background */
+}
+
+/* Send (arrow) button styles */
+.vfrc-composer__button {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 8px 0 rgba(130, 74, 255, 0.13) !important;
+  border: none !important;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.vfrc-composer__button svg {
+  fill: #fff !important;
+}
