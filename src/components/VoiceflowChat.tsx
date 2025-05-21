@@ -103,8 +103,6 @@ export const VoiceflowChat: React.FC = () => {
             </select>
             <label>What specific problems are you looking to solve?*</label>
             <textarea class="message" rows="3" required></textarea>
-            <label>Additional Information</label>
-            <textarea class="additionalInfo" rows="3"></textarea>
             <input type="submit" class="submit" value="Send">
           `;
 
@@ -116,7 +114,6 @@ export const VoiceflowChat: React.FC = () => {
             const company = formContainer.querySelector('.company') as HTMLInputElement;
             const service = formContainer.querySelector('.service') as HTMLSelectElement;
             const message = formContainer.querySelector('.message') as HTMLTextAreaElement;
-            const additionalInfo = formContainer.querySelector('.additionalInfo') as HTMLTextAreaElement;
 
             if (!name.value || !email.value || !company.value || !service.value || !message.value) {
               return;
@@ -132,8 +129,7 @@ export const VoiceflowChat: React.FC = () => {
                   email: email.value,
                   company: company.value,
                   service: service.value,
-                  message: message.value,
-                  additionalInfo: additionalInfo.value
+                  message: message.value
                 }
               });
           });
@@ -162,8 +158,6 @@ export const VoiceflowChat: React.FC = () => {
     document.body.appendChild(script);
     return () => {
       document.body.removeChild(script);
-      // You may want to disconnect the observer, but since we attach it on script load, 
-      // and script is removed, it's safe.
     };
   }, []);
 
