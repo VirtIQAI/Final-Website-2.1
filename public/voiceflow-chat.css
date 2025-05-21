@@ -70,34 +70,17 @@
 .vfrc-powered-by,
 [class*="poweredBy"],
 div[aria-label*="Powered by"],
-footer {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-}
-
-/* Remove if injected directly in a form or as span/div */
+footer,
+span.vfrc-powered-by,
+span[class*="poweredBy"],
+span[aria-label*="Powered by"],
 form .vfrc-powered-by,
 form [class*="poweredBy"],
 form div[aria-label*="Powered by"],
 form footer,
-span.vfrc-powered-by,
-span[class*="poweredBy"],
-span[aria-label*="Powered by"] {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 0 !important;
-  line-height: 0 !important;
-}
-
-/* Extra safeguard for deeply nested footers */
+form span.vfrc-powered-by,
+form span[class*="poweredBy"],
+form span[aria-label*="Powered by"],
 .vfrc-widget *[class*="poweredBy"],
 .vfrc-widget *[aria-label*="Powered by"] {
   display: none !important;
@@ -107,4 +90,6 @@ span[aria-label*="Powered by"] {
   padding: 0 !important;
   font-size: 0 !important;
   line-height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
 }
