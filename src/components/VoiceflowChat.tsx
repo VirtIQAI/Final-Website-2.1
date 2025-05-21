@@ -139,16 +139,16 @@ export const VoiceflowChat: React.FC = () => {
             </style>
             <div class="vf-form-container">
               <div class="vf-form-group">
-                <label for="name">Name*</label>
-                <input type="text" id="name" class="name" required>
+                <label for="name">First & Last Name*</label>
+                <input type="text" id="name" class="name" placeholder="John Doe" required>
               </div>
               <div class="vf-form-group">
                 <label for="email">Email*</label>
-                <input type="email" id="email" class="email" required>
+                <input type="email" id="email" class="email" placeholder="johndoe@gmail.com" required>
               </div>
               <div class="vf-form-group">
                 <label for="company">Company*</label>
-                <input type="text" id="company" class="company" required>
+                <input type="text" id="company" class="company" placeholder="Doe Enterprises" required>
               </div>
               <div class="vf-form-group">
                 <label for="service">Service*</label>
