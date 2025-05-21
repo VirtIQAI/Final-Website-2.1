@@ -136,6 +136,7 @@ export const VoiceflowChat: React.FC = () => {
         url: 'https://general-runtime.voiceflow.com',
         versionID: 'production',
         assistant: {
+          stylesheet: "public/voiceflow-chat.css",
           extensions: [FormExtension]
         },
         voice: {
