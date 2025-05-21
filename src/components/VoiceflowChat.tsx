@@ -157,4 +157,4 @@ render: ({ trace, element }) => {
   }, []); // <--- closes useEffect
 
   return null;
-}
+};
