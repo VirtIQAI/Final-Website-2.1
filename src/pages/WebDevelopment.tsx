@@ -12,8 +12,8 @@ export const WebDevelopment: React.FC = () => {
   const isDanish = i18n.language === 'da';
 
   const pageTitle = isDanish 
-    ? 'Webudvikling - Moderne & Højtydende Hjemmesider | VirtIQ'
-    : 'Web Development - Modern & High-Performance Websites | VirtIQ';
+    ? 'Skræddersyet Hjemmeside - Moderne & Højtydende Hjemmesider | VirtIQ'
+    : 'Custom Websites - Modern & High-Performance Websites | VirtIQ';
   
   const pageDescription = isDanish
     ? 'Få en professionel, hurtig og brugervenlig hjemmeside der konverterer. Vi bygger moderne webløsninger med fokus på performance, SEO og brugeroplevelse.'
