@@ -147,14 +147,14 @@ render: ({ trace, element }) => {
   const interval = setInterval(() => {
     hidePoweredBy();
     tries++;
-    if (tries > 30) clearInterval(interval); // ~6 seconds, longer persistence
-  }, 200);
+      if (tries > 30) clearInterval(interval); // ~6 seconds, longer persistence
+    }, 200);
 
     document.body.appendChild(script);
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
-return null;
+  return null;
 }
