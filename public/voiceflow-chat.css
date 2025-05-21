@@ -67,8 +67,11 @@
 /* Remove "Powered by VirtIQ" footer */
 /* ========================== */
 
+/* Common selectors */
 .vfrc-powered-by,
-[class*="poweredBy"] {
+[class*="poweredBy"],
+div[aria-label*="Powered by"],
+footer {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -78,11 +81,35 @@
   line-height: 0 !important;
 }
 
-div[aria-label*="Powered by"],
-footer {
+/* Ultra aggressive: try to hide if footer is text in unknown element */
+*:has(> span), *:has(> div) {
+  /* Only try to hide if it contains Powered by text */
+}
+span, div, footer {
+  font-size: inherit;
+}
+/* Modern selector to hide "Powered by" anywhere as text */
+@media (hover: hover) {
+  span:where(:not([class])):contains('Powered by'),
+  div:where(:not([class])):contains('Powered by') {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+  }
+}
+
+/* fallback: target the parent container if you know it */
+.vfrc-widget footer,
+.vfrc-widget [class*="poweredBy"] {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
