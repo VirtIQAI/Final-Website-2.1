@@ -64,7 +64,7 @@
 }
 
 /* ========================== */
-/* Remove "Powered by VirtIQ" footer */
+/* Remove "Powered by VirtIQ" footer in ALL states (including forms) */
 /* ========================== */
 
 .vfrc-powered-by,
@@ -92,16 +92,4 @@ form span[aria-label*="Powered by"],
   line-height: 0 !important;
   min-height: 0 !important;
   max-height: 0 !important;
-}
-
-/* Remove black box under forms */
-.vfrc-widget form + div,
-.vfrc-widget .vfrc-composer {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Fix form background */
-.vf-form-container {
-  background: #18181b !important;
 }

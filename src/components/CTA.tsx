@@ -15,7 +15,6 @@ export const CTA: React.FC = () => {
     'AI Agents',
     'AI Automation',
     'AI Outreach',
-    'AI Voice Caller',
     'Meta Ads',
     'Website Development',
   ];
@@ -25,7 +24,6 @@ export const CTA: React.FC = () => {
       '/services/ai-agents': 'AI Agents',
       '/services/ai-automation': 'AI Automation',
       '/services/ai-outreach': 'AI Outreach',
-      '/services/ai-voice-caller': 'AI Voice Caller',
       '/services/meta-ads': 'Meta Ads',
       '/services/website-development': 'Website Development',
     };
@@ -33,8 +31,7 @@ export const CTA: React.FC = () => {
   };
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     company: '',
     service: getDefaultService(location.pathname),
@@ -59,7 +56,7 @@ export const CTA: React.FC = () => {
         .from('demo_requests')
         .insert([
           {
-            name: formData.firstName + ' ' + formData.lastName,
+            name: formData.name,
             email: formData.email,
             company: formData.company,
             service: formData.service,
@@ -71,8 +68,7 @@ export const CTA: React.FC = () => {
       if (error) throw error;
 
       setFormData({
-        firstName: '',
-        lastName: '',
+        name: '',
         email: '',
         company: '',
         service: getDefaultService(location.pathname),
@@ -142,38 +138,20 @@ export const CTA: React.FC = () => {
                   {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
-                        {isDanish ? 'Fornavn*' : 'First Name*'}
-                      </label>
-                      <input
-                        id="firstName"
-                        name="firstName"
-                        type="text"
-                        required
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        placeholder="John"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
-                        {isDanish ? 'Efternavn*' : 'Last Name*'}
-                      </label>
-                      <input
-                        id="lastName"
-                        name="lastName"
-                        type="text"
-                        required
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        placeholder="Doe"
-                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      />
-                    </div>
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                      {isDanish ? 'Navn*' : 'Name*'}
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      placeholder={isDanish ? 'Dit navn' : 'Your name'}
+                    />
                   </div>
                   
                   <div>
@@ -187,8 +165,8 @@ export const CTA: React.FC = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="johndoe@gmail.com"
                       className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      placeholder={isDanish ? 'din@email.dk' : 'you@company.com'}
                     />
                   </div>
                   
@@ -203,8 +181,8 @@ export const CTA: React.FC = () => {
                       required
                       value={formData.company}
                       onChange={handleChange}
-                      placeholder="Doe Enterprises"
                       className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      placeholder={isDanish ? 'Din virksomhed' : 'Your company'}
                     />
                   </div>
 

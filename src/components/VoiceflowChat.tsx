@@ -85,12 +85,12 @@ export const VoiceflowChat: React.FC = () => {
               input, textarea, select { width: 100%; padding: 10px; border-radius: 8px; background-color: rgba(31, 41, 55, 0.5); border: 1px solid #374151; color: #fff; margin-bottom: 15px; font-size: 14px; }
               .submit { width: 100%; padding: 12px; background: linear-gradient(to right, #8b5cf6, #7c3aed); color: white; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; margin-top: 10px; }
             </style>
-            <label>First & Last Name*</label>
-            <input type="text" class="name" placeholder="John Doe" required>
+            <label>Name*</label>
+            <input type="text" class="name" required>
             <label>Email*</label>
-            <input type="email" class="email" placeholder="johndoe@gmail.com" required>
+            <input type="email" class="email" required>
             <label>Company*</label>
-            <input type="text" class="company" placeholder="Doe Enterprises" required>
+            <input type="text" class="company" required>
             <label>Service*</label>
             <select class="service" required>
               <option value="">Select a service</option>
@@ -98,11 +98,13 @@ export const VoiceflowChat: React.FC = () => {
               <option value="AI Automation">AI Automation</option>
               <option value="AI Outreach">AI Outreach</option>
               <option value="AI Voice Caller">AI Voice Caller</option>
-              <option value="Meta Ads">Meta Ads</option>
+              <option value="Meta Ads (Facebook & Instagram)">Meta Ads (Facebook & Instagram)</option>
               <option value="Custom Websites">Custom Websites</option>
             </select>
             <label>What specific problems are you looking to solve?*</label>
             <textarea class="message" rows="3" required></textarea>
+            <label>Additional Information</label>
+            <textarea class="additionalInfo" rows="3"></textarea>
             <input type="submit" class="submit" value="Send">
           `;
 
@@ -114,6 +116,7 @@ export const VoiceflowChat: React.FC = () => {
             const company = formContainer.querySelector('.company') as HTMLInputElement;
             const service = formContainer.querySelector('.service') as HTMLSelectElement;
             const message = formContainer.querySelector('.message') as HTMLTextAreaElement;
+            const additionalInfo = formContainer.querySelector('.additionalInfo') as HTMLTextAreaElement;
 
             if (!name.value || !email.value || !company.value || !service.value || !message.value) {
               return;
@@ -129,7 +132,8 @@ export const VoiceflowChat: React.FC = () => {
                   email: email.value,
                   company: company.value,
                   service: service.value,
-                  message: message.value
+                  message: message.value,
+                  additionalInfo: additionalInfo.value
                 }
               });
           });
@@ -158,6 +162,8 @@ export const VoiceflowChat: React.FC = () => {
     document.body.appendChild(script);
     return () => {
       document.body.removeChild(script);
+      // You may want to disconnect the observer, but since we attach it on script load, 
+      // and script is removed, it's safe.
     };
   }, []);
 
