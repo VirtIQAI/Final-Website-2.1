@@ -158,7 +158,7 @@ export const VoiceflowChat: React.FC = () => {
                   <option value="AI Automation">AI Automation</option>
                   <option value="AI Outreach">AI Outreach</option>
                   <option value="Meta Ads">Meta Ads</option>
-                  <option value="Website Development">Website Development</option>
+                  <option value="Custom Websites">Custom Websites</option>
                 </select>
               </div>
               <div class="vf-form-group">
