@@ -124,13 +124,13 @@ export const VoiceflowChat: React.FC = () => {
           element.appendChild(formContainer);
 
           // Enhanced persistent footer hide
-          hidePoweredBy();
-          let tries = 0;
-          const interval = setInterval(() => {
-            hidePoweredBy();
-            tries++;
-            if (tries > 30) clearInterval(interval); // ~6 seconds, longer persistence
-          }, 200);
+                    hidePoweredBy();
+            let tries = 0;
+            const interval = setInterval(() => {
+              hidePoweredBy();
+              tries++;
+              if (tries > 30) clearInterval(interval);
+            }, 200);
         }
       }; // <-- closes FormExtension
 
