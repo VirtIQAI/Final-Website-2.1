@@ -68,7 +68,21 @@
 /* ========================== */
 
 .vfrc-powered-by,
-[class*="poweredBy"] {
+[class*="poweredBy"],
+div[aria-label*="Powered by"],
+footer,
+span.vfrc-powered-by,
+span[class*="poweredBy"],
+span[aria-label*="Powered by"],
+form .vfrc-powered-by,
+form [class*="poweredBy"],
+form div[aria-label*="Powered by"],
+form footer,
+form span.vfrc-powered-by,
+form span[class*="poweredBy"],
+form span[aria-label*="Powered by"],
+.vfrc-widget *[class*="poweredBy"],
+.vfrc-widget *[aria-label*="Powered by"] {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -76,19 +90,18 @@
   padding: 0 !important;
   font-size: 0 !important;
   line-height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
 }
 
-div[aria-label*="Powered by"],
-footer {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* === Fix for the black background under forms/composer === */
-.vfrc-widget form + div[style*="background"] {
+/* Remove black box under forms */
+.vfrc-widget form + div,
+.vfrc-widget .vfrc-composer {
   background: transparent !important;
   box-shadow: none !important;
+}
+
+/* Fix form background */
+.vf-form-container {
+  background: #18181b !important;
 }

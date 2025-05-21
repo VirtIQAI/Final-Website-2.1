@@ -76,131 +76,105 @@ export const VoiceflowChat: React.FC = () => {
           trace.type === 'Custom_Form_Demo' || trace.payload?.name === 'Custom_Form_Demo',
         render: ({ trace, element }: any) => {
           const formContainer = document.createElement('form');
-formContainer.innerHTML = `
-  <style>
-    .vf-demo-form-wrapper {
-      background: #18181b;
-      border-radius: 14px;
-      padding: 20px 16px;
-      margin: 0;
-      box-shadow: 0 2px 16px 0 rgba(124,58,237,.10);
-      font-family: 'Inter', Arial, sans-serif;
-      width: 100%;
-      max-width: 420px;
-      min-width: 0;
-      box-sizing: border-box;
-    }
-    .vf-demo-form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .vf-demo-form label {
-      font-size: 15px;
-      font-weight: 500;
-      color: #d1d5db;
-      margin-bottom: 6px;
-      margin-top: 0;
-      display: block;
-    }
-    .vf-demo-form input,
-    .vf-demo-form select,
-    .vf-demo-form textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 8px;
-      background: rgba(31,41,55,0.68);
-      border: 1.5px solid #343749;
-      color: #fff;
-      font-size: 15px;
-      margin-bottom: 0;
-      transition: border-color .18s;
-      outline: none;
-      resize: none;
-      box-sizing: border-box;
-    }
-    .vf-demo-form input:focus,
-    .vf-demo-form textarea:focus,
-    .vf-demo-form select:focus {
-      border-color: #a78bfa;
-    }
-    .vf-demo-form textarea {
-      min-height: 64px;
-      max-height: 170px;
-    }
-    .vf-demo-form .submit-btn {
-      width: 100%;
-      padding: 13px 0;
-      border-radius: 8px;
-      background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
-      color: #fff;
-      font-size: 17px;
-      font-weight: 600;
-      border: none;
-      box-shadow: 0 2px 16px 0 rgba(124,58,237,.14);
-      cursor: pointer;
-      margin-top: 2px;
-      margin-bottom: 2px;
-      transition: filter .18s;
-      position: relative;
-      z-index: 1;
-    }
-    .vf-demo-form .submit-btn:hover {
-      filter: brightness(1.07);
-    }
-    .vf-demo-form .vf-disclaimer {
-      font-size: 11px;
-      color: #9ca3af;
-      margin-top: 10px;
-      text-align: center;
-    }
-    .vf-demo-form .vf-disclaimer a {
-      color: #a78bfa;
-      text-decoration: underline;
-      transition: color .18s;
-    }
-    .vf-demo-form .vf-disclaimer a:hover {
-      color: #c4b5fd;
-    }
-  </style>
-  <div class="vf-demo-form-wrapper">
-    <form class="vf-demo-form" autocomplete="off">
-      <div>
-        <label for="vf_name">Name*</label>
-        <input id="vf_name" type="text" class="name" required placeholder="Your name" />
-      </div>
-      <div>
-        <label for="vf_email">Email*</label>
-        <input id="vf_email" type="email" class="email" required placeholder="you@company.com" />
-      </div>
-      <div>
-        <label for="vf_company">Company*</label>
-        <input id="vf_company" type="text" class="company" required placeholder="Your company" />
-      </div>
-      <div>
-        <label for="vf_service">Service*</label>
-        <select id="vf_service" class="service" required>
-          <option value="" disabled selected>Select a service</option>
-          <option value="AI Agents">AI Agents</option>
-          <option value="AI Automation">AI Automation</option>
-          <option value="AI Outreach">AI Outreach</option>
-          <option value="Meta Ads">Meta Ads</option>
-          <option value="Website Development">Website Development</option>
-        </select>
-      </div>
-      <div>
-        <label for="vf_message">What specific problems are you looking to solve?*</label>
-        <textarea id="vf_message" class="message" required placeholder="Please describe your current challenges and desired outcomes"></textarea>
-      </div>
-      <div>
-        <label for="vf_additionalInfo">Additional Information</label>
-        <textarea id="vf_additionalInfo" class="additionalInfo" placeholder="Optional: Share any other relevant details about your project or requirements"></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Send</button>
-      <div class="vf-disclaimer">By submitting this form, you agree to our <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-of-service" target="_blank">Terms of Service</a>.</div>
-    </form>
-  </div>
-`;
+          formContainer.innerHTML = `
+            <style>
+              .vf-form-container {
+                background: #18181b;
+                padding: 20px;
+                border-radius: 12px;
+                font-family: 'Inter', sans-serif;
+              }
+              .vf-form-group {
+                margin-bottom: 16px;
+              }
+              .vf-form-group label {
+                display: block;
+                color: #d1d5db;
+                font-size: 14px;
+                margin-bottom: 6px;
+              }
+              .vf-form-group input,
+              .vf-form-group select,
+              .vf-form-group textarea {
+                width: 100%;
+                padding: 10px;
+                background: #27272a;
+                border: 1px solid #374151;
+                border-radius: 6px;
+                color: #fff;
+                font-size: 14px;
+              }
+              .vf-form-group textarea {
+                min-height: 80px;
+                resize: vertical;
+              }
+              .vf-submit-btn {
+                width: 100%;
+                padding: 12px;
+                background: #7c3aed;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.2s;
+              }
+              .vf-submit-btn:hover {
+                background: #6d28d9;
+              }
+              .vf-disclaimer {
+                margin-top: 12px;
+                font-size: 12px;
+                color: #9ca3af;
+                text-align: center;
+              }
+              .vf-disclaimer a {
+                color: #7c3aed;
+                text-decoration: none;
+              }
+              .vf-disclaimer a:hover {
+                text-decoration: underline;
+              }
+            </style>
+            <div class="vf-form-container">
+              <div class="vf-form-group">
+                <label for="name">Name*</label>
+                <input type="text" id="name" class="name" required>
+              </div>
+              <div class="vf-form-group">
+                <label for="email">Email*</label>
+                <input type="email" id="email" class="email" required>
+              </div>
+              <div class="vf-form-group">
+                <label for="company">Company*</label>
+                <input type="text" id="company" class="company" required>
+              </div>
+              <div class="vf-form-group">
+                <label for="service">Service*</label>
+                <select id="service" class="service" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option value="AI Agents">AI Agents</option>
+                  <option value="AI Automation">AI Automation</option>
+                  <option value="AI Outreach">AI Outreach</option>
+                  <option value="Meta Ads">Meta Ads</option>
+                  <option value="Website Development">Website Development</option>
+                </select>
+              </div>
+              <div class="vf-form-group">
+                <label for="message">What specific problems are you looking to solve?*</label>
+                <textarea id="message" class="message" required></textarea>
+              </div>
+              <div class="vf-form-group">
+                <label for="additionalInfo">Additional Information</label>
+                <textarea id="additionalInfo" class="additionalInfo"></textarea>
+              </div>
+              <button type="submit" class="vf-submit-btn">Send</button>
+              <div class="vf-disclaimer">
+                By submitting this form, you agree to our <a href="/privacy-policy" target="_blank">Privacy Policy</a> and <a href="/terms-of-service" target="_blank">Terms of Service</a>
+              </div>
+            </div>
+          `;
 
           formContainer.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -216,7 +190,7 @@ formContainer.innerHTML = `
               return;
             }
 
-            formContainer.querySelector('.submit')?.remove();
+            formContainer.querySelector('.vf-submit-btn')?.remove();
 
             window.voiceflow.chat.interact &&
               window.voiceflow.chat.interact({
