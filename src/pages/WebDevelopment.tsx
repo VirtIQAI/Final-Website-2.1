@@ -13,7 +13,7 @@ export const WebDevelopment: React.FC = () => {
 
   const pageTitle = isDanish 
     ? 'Skræddersyet Hjemmeside - Innovative og Optimerede Hjemmesider | VirtIQ'
-    : 'Custom Websites - Modern & High-Performance Websites | VirtIQ';
+    : 'Custom Websites - Innovative & Optimised Websites | VirtIQ';
   
   const pageDescription = isDanish
     ? 'Få en professionel, hurtig og brugervenlig hjemmeside der konverterer. Vi bygger moderne webløsninger med fokus på performance, SEO og brugeroplevelse.'
