@@ -5,7 +5,6 @@ declare global {
     voiceflow: {
       chat: {
         load: (config: any) => void;
-        interact?: (payload: any) => void;
       };
     };
   }
@@ -84,12 +83,9 @@ export const VoiceflowChat: React.FC = () => {
             <label>Service*</label>
             <select class="service" required>
               <option value="">Select a service</option>
-              <option value="AI Agents">AI Agents</option>
-              <option value="AI Automation">AI Automation</option>
-              <option value="AI Outreach">AI Outreach</option>
-              <option value="AI Voice Caller">AI Voice Caller</option>
-              <option value="Meta Ads (Facebook & Instagram)">Meta Ads (Facebook & Instagram)</option>
-              <option value="Custom Websites">Custom Websites</option>
+              <option value="Consulting">Consulting</option>
+              <option value="Automation">Automation</option>
+              <option value="Strategy">Strategy</option>
               <option value="Other">Other</option>
             </select>
 
@@ -118,18 +114,17 @@ export const VoiceflowChat: React.FC = () => {
 
             formContainer.querySelector('.submit').remove();
 
-            window.voiceflow.chat.interact &&
-              window.voiceflow.chat.interact({
-                type: 'complete',
-                payload: {
-                  name: name.value,
-                  email: email.value,
-                  company: company.value,
-                  service: service.value,
-                  message: message.value,
-                  additionalInfo: additionalInfo.value
-                }
-              });
+            window.voiceflow.chat.interact({
+              type: 'complete',
+              payload: {
+                name: name.value,
+                email: email.value,
+                company: company.value,
+                service: service.value,
+                message: message.value,
+                additionalInfo: additionalInfo.value
+              }
+            });
           });
 
           element.appendChild(formContainer);
@@ -141,39 +136,12 @@ export const VoiceflowChat: React.FC = () => {
         url: 'https://general-runtime.voiceflow.com',
         versionID: 'production',
         assistant: {
-          stylesheet: "/voiceflow-chat.css",
           extensions: [FormExtension]
         },
         voice: {
           url: 'https://runtime-api.voiceflow.com'
         }
       });
-
-      // STEP 1: Force-hide the "Powered by" element after widget loads
-      const hidePoweredBy = () => {
-        const selectors = [
-          '.vfrc-powered-by',
-          '[class*="poweredBy"]',
-          'div[aria-label*="Powered by"]',
-          'footer'
-        ];
-        selectors.forEach(selector => {
-          document.querySelectorAll(selector).forEach(el => {
-            el.style.display = 'none';
-            el.style.visibility = 'hidden';
-            el.style.height = '0px';
-            el.style.margin = '0px';
-            el.style.padding = '0px';
-          });
-        });
-      };
-      // Run multiple times in case element appears later
-      let tries = 0;
-      const interval = setInterval(() => {
-        hidePoweredBy();
-        tries++;
-        if (tries > 20) clearInterval(interval); // try for ~6 seconds
-      }, 300);
     };
 
     document.body.appendChild(script);
