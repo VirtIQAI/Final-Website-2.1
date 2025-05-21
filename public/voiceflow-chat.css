@@ -64,6 +64,55 @@
 }
 
 /* ========================== */
+/* Clean up message container */
+/* ========================== */
+
+.vfrc-message-list {
+  background: transparent !important;
+}
+
+.vfrc-message {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.vfrc-message--assistant {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* ========================== */
+/* Form styles */
+/* ========================== */
+
+.vfrc-custom-form {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.vfrc-custom-form input,
+.vfrc-custom-form textarea,
+.vfrc-custom-form select {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+  padding: 12px !important;
+  margin-bottom: 12px !important;
+  width: 100% !important;
+  transition: border-color 0.2s !important;
+}
+
+.vfrc-custom-form input:focus,
+.vfrc-custom-form textarea:focus,
+.vfrc-custom-form select:focus {
+  border-color: #a78bfa !important;
+  outline: none !important;
+}
+
+/* ========================== */
 /* Remove "Powered by VirtIQ" footer */
 /* ========================== */
 
