@@ -142,11 +142,11 @@ render: ({ trace, element }) => {
       });
     });
   };
-  hidePoweredBy();
-  let tries = 0;
-  const interval = setInterval(() => {
-    hidePoweredBy();
-    tries++;
+      hidePoweredBy();
+    let tries = 0;
+    const interval = setInterval(() => {
+      hidePoweredBy();
+      tries++;
       if (tries > 30) clearInterval(interval); // ~6 seconds, longer persistence
     }, 200);
 
@@ -154,7 +154,7 @@ render: ({ trace, element }) => {
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
+  }, []); // <--- closes useEffect
 
   return null;
 }
