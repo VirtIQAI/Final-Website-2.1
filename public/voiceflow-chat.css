@@ -1,0 +1,26 @@
+/* Make Voiceflow floating chat button match your demo button */
+.vfrc-launcher {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 24px 0 rgba(130, 74, 255, 0.6), 0 1.5px 10px 0 rgba(124, 58, 237, 0.3) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.09) !important;
+}
+
+.vfrc-launcher svg {
+  fill: #fff !important;
+}
+
+.vfrc-header {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 24px 0 rgba(130, 74, 255, 0.28) !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.vfrc-message--user {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%) !important;
+  color: #fff !important;
+}
