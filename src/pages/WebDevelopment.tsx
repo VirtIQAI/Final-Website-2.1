@@ -12,7 +12,7 @@ export const WebDevelopment: React.FC = () => {
   const isDanish = i18n.language === 'da';
 
   const pageTitle = isDanish 
-    ? 'Skræddersyet Hjemmeside - Moderne & Højtydende Hjemmesider | VirtIQ'
+    ? 'Skræddersyet Hjemmeside - Innovative og Optimerede Hjemmesider | VirtIQ'
     : 'Custom Websites - Modern & High-Performance Websites | VirtIQ';
   
   const pageDescription = isDanish
