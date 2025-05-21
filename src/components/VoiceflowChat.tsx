@@ -82,15 +82,15 @@ export const VoiceflowChat: React.FC = () => {
             <input type="text" class="company" required>
 
             <label>Service*</label>
-            <select class="service" required>
-              <option value="">Select a service</option>
-              <option value="AI Agents">AI Agents</option>
-              <option value="AI Automation">AI Automation</option>
-              <option value="AI Outreach">AI Outreach</option>
-              <option value="AI Voice Caller">AI Voice Caller</option>
-              <option value="Meta Ads (Facebook & Instagram)">Meta Ads (Facebook & Instagram)</option>
-              <option value="Custom Websites">Custom Websites</option>
-            </select>
+              <select class="service" required>
+                <option value="">Select a service</option>
+                <option value="AI Agents">AI Agents</option>
+                <option value="AI Automation">AI Automation</option>
+                <option value="AI Outreach">AI Outreach</option>
+                <option value="AI Voice Caller">AI Voice Caller</option>
+                <option value="Meta Ads (Facebook & Instagram)">Meta Ads (Facebook & Instagram)</option>
+                <option value="Custom Websites">Custom Websites</option>
+              </select>
 
             <label>What specific problems are you looking to solve?*</label>
             <textarea class="message" rows="3" required></textarea>
