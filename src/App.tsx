@@ -38,9 +38,8 @@ function App() {
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
-  
+
   useEffect(() => {
-    // Initialize scroll depth tracking
     const cleanup = initScrollTracking();
     return () => cleanup();
   }, []);
@@ -55,77 +54,88 @@ function App() {
       url: 'https://virtiq.dk/logo-transparent.png',
       width: '512',
       height: '512',
-      caption: 'VirtIQ Logo'
+      caption: 'VirtIQ Logo',
     },
-    description: isDanish 
+    description: isDanish
       ? 'Førende AI-bureau der specialiserer sig i AI-automatisering, chatbots og digitale løsninger'
       : 'Leading AI agency specializing in AI automation, chatbots, and digital solutions',
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'DK'
+      addressCountry: 'DK',
     },
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+4530240676',
       contactType: 'customer service',
       email: 'lucas@virtiq.dk',
-      availableLanguage: ['Danish', 'English']
+      availableLanguage: ['Danish', 'English'],
     },
     sameAs: [
       'https://www.facebook.com/profile.php?id=61571678866111',
       'https://www.instagram.com/virtiq.dk/',
-      'https://www.linkedin.com/company/106651496/admin/dashboard/'
-    ]
+      'https://www.linkedin.com/company/106651496/admin/dashboard/',
+    ],
   };
 
   return (
     <ThemeProvider>
       <Router>
         <SEOHead
-          title={isDanish ? 'VirtIQ - Førende AI Bureau | Intelligente Automatiseringsløsninger' : 'VirtIQ - Leading AI Agency | Intelligent Automation Solutions'}
-          description={isDanish 
-            ? 'Transform din virksomhed med AI-drevne løsninger. Ekspertise inden for AI-automatisering, intelligente agenter og Meta-annonceoptimering. Start med en gratis konsultation.'
-            : 'Transform your business with AI-powered solutions. Expert services in AI automation, intelligent agents, and Meta ads optimization. Get started with a free consultation.'}
+          title={
+            isDanish
+              ? 'VirtIQ - Førende AI Bureau | Intelligente Automatiseringsløsninger'
+              : 'VirtIQ - Leading AI Agency | Intelligent Automation Solutions'
+          }
+          description={
+            isDanish
+              ? 'Transform din virksomhed med AI-drevne løsninger. Ekspertise inden for AI-automatisering, intelligente agenter og Meta-annonceoptimering. Start med en gratis konsultation.'
+              : 'Transform your business with AI-powered solutions. Expert services in AI automation, intelligent agents, and Meta ads optimization. Get started with a free consultation.'
+          }
           canonicalUrl="https://virtiq.dk"
           alternateLanguages={{
-            'en': 'https://virtiq.dk',
-            'da': 'https://virtiq.dk'
+            en: 'https://virtiq.dk',
+            da: 'https://virtiq.dk',
           }}
           ogImage="https://virtiq.dk/logo-transparent.png"
         />
         <StructuredData data={organizationSchema} />
         <AnalyticsProvider />
-          <div className="flex flex-col min-h-screen bg-black text-white">
+        <div className="flex flex-col min-h-screen bg-black text-white">
           <Header />
-          <Routes>
-            <Route path="/" element={
-              <main>
-                <Hero />
-                <Services />
-                <CTA />
-              </main>
-            } />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path={isDanish ? "/priser" : "/pricing"} element={<Pricing />} />
-            <Route path="/services/:serviceId" element={<ServicePage />} />
-            <Route path="/services/ai-automation" element={<AIAutomation />} />
-            <Route path="/services/ai-agents" element={<AIAgent />} />
-            <Route path="/services/website-development" element={<WebDevelopment />} />
-            <Route path="/services/meta-ads" element={<MetaAds />} />
-            <Route path="/services/ai-outreach" element={<AIOutreach />} />
-            <Route path="/services/ai-voice-caller" element={<AIVoiceCaller />} />
-            <Route path={isDanish ? "/faq" : "/faq"} element={<FAQ />} />
-            <Route path={isDanish ? "/kontakt" : "/contact"} element={<Contact />} />
-            <Route path={isDanish ? "/blog" : "/blog"} element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path={isDanish ? "/om-os" : "/about"} element={<About />} />
-            <Route path={isDanish ? "/privatlivspolitik" : "/privacy-policy"} element={<PrivacyPolicy />} />
-            <Route path={isDanish ? "/betingelser" : "/terms-of-service"} element={<TermsOfService />} />
-            <Route path="*" element={<Navigate to="/" replace />} />           
-          </Routes>
+          <main className="flex-grow">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <Services />
+                    <CTA />
+                  </>
+                }
+              />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path={isDanish ? '/priser' : '/pricing'} element={<Pricing />} />
+              <Route path="/services/:serviceId" element={<ServicePage />} />
+              <Route path="/services/ai-automation" element={<AIAutomation />} />
+              <Route path="/services/ai-agents" element={<AIAgent />} />
+              <Route path="/services/website-development" element={<WebDevelopment />} />
+              <Route path="/services/meta-ads" element={<MetaAds />} />
+              <Route path="/services/ai-outreach" element={<AIOutreach />} />
+              <Route path="/services/ai-voice-caller" element={<AIVoiceCaller />} />
+              <Route path={isDanish ? '/faq' : '/faq'} element={<FAQ />} />
+              <Route path={isDanish ? '/kontakt' : '/contact'} element={<Contact />} />
+              <Route path={isDanish ? '/blog' : '/blog'} element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path={isDanish ? '/om-os' : '/about'} element={<About />} />
+              <Route path={isDanish ? '/privatlivspolitik' : '/privacy-policy'} element={<PrivacyPolicy />} />
+              <Route path={isDanish ? '/betingelser' : '/terms-of-service'} element={<TermsOfService />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
           <Footer onNewsletterClick={() => setIsNewsletterOpen(true)} />
           <VoiceflowChat />
-          <NewsletterPopup 
+          <NewsletterPopup
             isOpen={isNewsletterOpen}
             onClose={() => setIsNewsletterOpen(false)}
           />
