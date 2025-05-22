@@ -45,7 +45,7 @@ export const AIAgent: React.FC = () => {
       name: 'Boat Collection',
       price: '399 DKK',
       description: 'Classic fit tee with modern summer graphics. Breathable fabric perfect for hot days.',
-      image: '/Shopping Assistant/T-shirt_waves.png'
+      image: 'public/T-shirt_waves.png'
     }
   ];
 
