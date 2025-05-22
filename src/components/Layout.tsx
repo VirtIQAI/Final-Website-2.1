@@ -19,7 +19,7 @@ export const Layout: React.FC<LayoutProps> = ({
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
       <Header />
-      <main className="flex-grow flex flex-col">
+      <main className="flex-grow">
         <Outlet />
       </main>
       <Footer onNewsletterClick={onNewsletterOpen} />
