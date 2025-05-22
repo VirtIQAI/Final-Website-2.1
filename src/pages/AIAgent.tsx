@@ -38,7 +38,7 @@ export const AIAgent: React.FC = () => {
       name: 'Beach Paradise Collection',
       price: '399 DKK',
       description: 'White cotton tee featuring a vibrant beach scene design. Made from 100% organic cotton.',
-      image: '/Shopping Assistant/T-shirt_summer.png'
+      image: 'public/T-shirt_summer.png'
     },
     {
       id: 3,
