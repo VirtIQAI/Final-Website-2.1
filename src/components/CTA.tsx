@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from './ui/Button';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, X } from 'lucide-react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 export const CTA: React.FC = () => {
@@ -285,13 +285,23 @@ export const CTA: React.FC = () => {
                     {isDanish
                       ? 'Ved at indsende denne formular accepterer du vores'
                       : 'By submitting this form, you agree to our'}{' '}
-                    <Link to="/privacy-policy" className="text-purple-400 hover:text-purple-300">
+                    <a
+                      href={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-purple-400 hover:text-purple-300"
+                    >
                       {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
-                    </Link>{' '}
+                    </a>{' '}
                     {isDanish ? 'og' : 'and'}{' '}
-                    <Link to="/terms-of-service" className="text-purple-400 hover:text-purple-300">
+                    <a
+                      href={isDanish ? "/betingelser" : "/terms-of-service"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-purple-400 hover:text-purple-300"
+                    >
                       {isDanish ? 'Servicevilkår' : 'Terms of Service'}
-                    </Link>.
+                    </a>.
                   </p>
                 </form>
               </div>
