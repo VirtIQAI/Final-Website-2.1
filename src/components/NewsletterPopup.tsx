@@ -21,23 +21,62 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
     company: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter form submitted:', formData);
-    alert('Thank you for subscribing to our newsletter!');
-    onClose();
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      company: '',
-    });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://hook.eu2.make.com/y7hd8w2eulpysmks4cfirdkb93jxbupg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          source: 'Newsletter Signup',
+          timestamp: new Date().toISOString()
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      setShowSuccess(true);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        company: '',
+      });
+
+      // Close the popup after 3 seconds
+      setTimeout(() => {
+        onClose();
+        setShowSuccess(false);
+      }, 3000);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert(isDanish 
+        ? 'Der opstod en fejl. Prøv venligst igen.'
+        : 'There was an error. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Prevent body scroll when popup is open
@@ -84,106 +123,127 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {showSuccess ? (
+            <div className="text-center">
+              <h3 className="text-xl font-bold text-green-400 mb-2">
+                {isDanish ? 'Tak for din tilmelding!' : 'Thanks for subscribing!'}
+              </h3>
+              <p className="text-gray-300">
+                {isDanish 
+                  ? 'Du vil snart modtage vores første nyhedsbrev.'
+                  : 'You\'ll receive our first newsletter soon.'}
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
+                    {isDanish ? 'Fornavn' : 'First Name'} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    required
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
+                    {isDanish ? 'Efternavn' : 'Last Name'} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
-                  {isDanish ? 'Fornavn' : 'First Name'} <span className="text-red-500">*</span>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input
-                  type="text"
-                  id="firstName"
-                  name="firstName"
+                  type="email"
+                  id="email"
+                  name="email"
                   required
-                  value={formData.firstName}
+                  value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
-                  {isDanish ? 'Efternavn' : 'Last Name'} <span className="text-red-500">*</span>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
+                  {isDanish ? 'Telefon' : 'Phone'} <span className="text-red-500">*</span>
                 </label>
                 <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
+                  type="tel"
+                  id="phone"
+                  name="phone"
                   required
-                  value={formData.lastName}
+                  value={formData.phone}
                   onChange={handleChange}
                   className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 />
               </div>
-            </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+                  {isDanish ? 'Virksomhed' : 'Company'}
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+              </div>
 
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
-                {isDanish ? 'Telefon' : 'Phone'} <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                required
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
-                {isDanish ? 'Virksomhed' : 'Company'}
-              </label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
-
-            <Button type="submit" variant="primary" size="lg" fullWidth>
-              {isDanish ? 'Tilmeld Nyhedsbrev' : 'Subscribe to Newsletter'}
-            </Button>
-
-            <p className="text-xs text-gray-400 text-center">
-              {isDanish ? 'Ved at tilmelde dig accepterer du vores' : 'By subscribing, you agree to our'}{' '}
-              <Link 
-                to={isDanish ? "/privatlivspolitik" : "/privacy-policy"} 
-                onClick={onClose}
-                className="text-purple-400 hover:text-purple-300"
+              <Button 
+                type="submit" 
+                variant="primary" 
+                size="lg" 
+                fullWidth
+                disabled={isSubmitting}
               >
-                {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
-              </Link>{' '}
-              {isDanish ? 'og' : 'and'}{' '}
-              <Link 
-                to={isDanish ? "/betingelser" : "/terms-of-service"}
-                onClick={onClose}
-                className="text-purple-400 hover:text-purple-300"
-              >
-                {isDanish ? 'Servicevilkår' : 'Terms of Service'}
-              </Link>.
-            </p>
-          </form>
+                {isSubmitting
+                  ? (isDanish ? 'Sender...' : 'Submitting...')
+                  : (isDanish ? 'Tilmeld Nyhedsbrev' : 'Subscribe to Newsletter')}
+              </Button>
+
+              <p className="text-xs text-gray-400 text-center">
+                {isDanish ? 'Ved at tilmelde dig accepterer du vores' : 'By subscribing, you agree to our'}{' '}
+                <Link 
+                  to={isDanish ? "/privatlivspolitik" : "/privacy-policy"} 
+                  onClick={onClose}
+                  className="text-purple-400 hover:text-purple-300"
+                >
+                  {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
+                </Link>{' '}
+                {isDanish ? 'og' : 'and'}{' '}
+                <Link 
+                  to={isDanish ? "/betingelser" : "/terms-of-service"}
+                  onClick={onClose}
+                  className="text-purple-400 hover:text-purple-300"
+                >
+                  {isDanish ? 'Servicevilkår' : 'Terms of Service'}
+                </Link>.
+              </p>
+            </form>
+          )}
         </div>
       </div>
     </div>
