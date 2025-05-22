@@ -73,7 +73,6 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
     }
   };
 
-  // Prevent body scroll when popup is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -223,21 +222,23 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
 
               <p className="text-xs text-gray-400 text-center">
                 {isDanish ? 'Ved at tilmelde dig accepterer du vores' : 'By subscribing, you agree to our'}{' '}
-                <Link 
-                  to={isDanish ? "/privatlivspolitik" : "/privacy-policy"} 
-                  onClick={onClose}
+                <a 
+                  href={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-purple-400 hover:text-purple-300"
                 >
                   {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
-                </Link>{' '}
+                </a>{' '}
                 {isDanish ? 'og' : 'and'}{' '}
-                <Link 
-                  to={isDanish ? "/betingelser" : "/terms-of-service"}
-                  onClick={onClose}
+                <a 
+                  href={isDanish ? "/betingelser" : "/terms-of-service"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-purple-400 hover:text-purple-300"
                 >
                   {isDanish ? 'Servicevilkår' : 'Terms of Service'}
-                </Link>.
+                </a>.
               </p>
             </form>
           )}

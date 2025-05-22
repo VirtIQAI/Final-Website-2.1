@@ -143,18 +143,22 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
               © {year} VirtIQ. {isDanish ? 'Alle rettigheder forbeholdes.' : 'All rights reserved.'} CVR: 45291804
             </div>
             <div className="flex space-x-6">
-              <Link
-                to={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
+              <a
+                href={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
               >
                 {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
-              </Link>
-              <Link
-                to={isDanish ? "/betingelser" : "/terms-of-service"}
+              </a>
+              <a
+                href={isDanish ? "/betingelser" : "/terms-of-service"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
               >
                 {isDanish ? 'Servicevilkår' : 'Terms of Service'}
-              </Link>
+              </a>
             </div>
           </div>
         </div>
