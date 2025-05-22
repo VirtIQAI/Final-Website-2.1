@@ -31,21 +31,21 @@ export const AIAgent: React.FC = () => {
       name: 'Aperol Spritz Collection',
       price: '449 DKK',
       description: 'Retro-style light blue tee with bold orange typography. Perfect for summer parties and beach days. Premium cotton blend for ultimate comfort.',
-      image: 'public/T-shirt_aperolspritz.png'
+      image: '/T-shirt_aperolspritz.png'
     },
     {
       id: 2,
       name: 'Beach Paradise Collection',
       price: '399 DKK',
       description: 'White cotton tee featuring a vibrant beach scene design. Made from 100% organic cotton.',
-      image: 'public/T-shirt_summer.png'
+      image: '/T-shirt_summer.png'
     },
     {
       id: 3,
       name: 'Boat Collection',
       price: '399 DKK',
       description: 'Classic fit tee with modern summer graphics. Breathable fabric perfect for hot days.',
-      image: 'public/T-shirt_waves.png'
+      image: '/T-shirt_waves.png'
     }
   ];
 
@@ -321,7 +321,6 @@ export const AIAgent: React.FC = () => {
                           message.text.includes('popular summer t-shirts') && (
                             <div className="mt-4">
                               <div className="relative bg-gray-800 rounded-lg w-full max-w-md mx-auto">
-                                {/* Arrows */}
                                 <button
                                   onClick={prevSlide}
                                   className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full z-10 hover:bg-purple-600 transition-colors"
@@ -337,7 +336,6 @@ export const AIAgent: React.FC = () => {
                                   <ChevronRight size={20} />
                                 </button>
 
-                                {/* Slide container */}
                                 <div className="overflow-hidden rounded-lg">
                                   <div
                                     className="flex transition-transform duration-300 ease-in-out"
@@ -353,6 +351,7 @@ export const AIAgent: React.FC = () => {
                                             src={product.image}
                                             alt={product.name}
                                             className="w-full h-full object-cover"
+                                            loading="lazy"
                                           />
                                         </div>
                                         <h3 className="text-lg font-semibold text-white mb-1">
