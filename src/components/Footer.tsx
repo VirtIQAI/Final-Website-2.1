@@ -2,15 +2,16 @@ import React from 'react';
 import { Logo } from './ui/Logo';
 import { Facebook, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import i18n from '../i18n/config';
+import { useTranslation } from 'react-i18next';
 
 interface FooterProps {
   onNewsletterClick: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
-  const year = new Date().getFullYear();
+  const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
+  const year = new Date().getFullYear();
   
   const services = [
     { name: 'AI Agents', href: '/services/ai-agents' },
@@ -43,7 +44,9 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
           <div>
             <Logo />
             <p className="mt-4 text-gray-400 text-sm max-w-xs">
-              {isDanish ? 'Førende inden for AI-innovation og digitale marketingløsninger for virksomheder i alle størrelser.' : 'Leading the way in AI innovation and digital marketing solutions for businesses of all sizes.'}
+              {isDanish 
+                ? 'Førende inden for AI-innovation og digitale marketingløsninger for virksomheder i alle størrelser.' 
+                : 'Leading the way in AI innovation and digital marketing solutions for businesses of all sizes.'}
             </p>
             <div className="flex space-x-4 mt-6">
               {socialLinks.map((social, index) => (
