@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
     { icon: <Instagram size={18} />, href: 'https://www.instagram.com/virtiq.dk/', label: 'Instagram' },
     { icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/company/106651496/admin/dashboard/', label: 'LinkedIn' },
   ];
-
+  
   return (
     <footer className="bg-gray-900/50 backdrop-blur-sm border-t border-gray-800">
       <div className="container mx-auto px-4 py-12">
