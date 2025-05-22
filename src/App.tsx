@@ -95,7 +95,7 @@ function App() {
         />
         <StructuredData data={organizationSchema} />
         <AnalyticsProvider />
-        <div className="flex flex-col min-h-screen bg-black text-white overflow-hidden">
+          <div className="flex flex-col min-h-screen bg-black text-white">
           <Header />
           <Routes>
             <Route path="/" element={
