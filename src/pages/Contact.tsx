@@ -85,7 +85,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <main className="flex-grow pt-24">
+    <div className="flex-grow flex flex-col min-h-screen">
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -121,7 +121,7 @@ export const Contact: React.FC = () => {
         </script>
       </Helmet>
 
-      <section className="py-16 md:py-24 relative">
+      <section className="flex-grow py-16 md:py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
@@ -357,6 +357,6 @@ export const Contact: React.FC = () => {
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 };
