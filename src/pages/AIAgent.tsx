@@ -31,7 +31,7 @@ export const AIAgent: React.FC = () => {
       name: 'Aperol Spritz Collection',
       price: '449 DKK',
       description: 'Retro-style light blue tee with bold orange typography. Perfect for summer parties and beach days. Premium cotton blend for ultimate comfort.',
-      image: '/Shopping_Assistant/T-shirt_aperolspritz.png'
+      image: 'public/T-shirt_aperolspritz.png'
     },
     {
       id: 2,
