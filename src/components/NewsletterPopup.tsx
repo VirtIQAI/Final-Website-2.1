@@ -63,12 +63,6 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
         company: '',
       });
 
-      // Close the popup after 3 seconds
-      setTimeout(() => {
-        onClose();
-        setShowSuccess(false);
-      }, 3000);
-
     } catch (error) {
       console.error('Error submitting form:', error);
       alert(isDanish 
@@ -128,11 +122,14 @@ export const NewsletterPopup: React.FC<NewsletterPopupProps> = ({ isOpen, onClos
               <h3 className="text-xl font-bold text-green-400 mb-2">
                 {isDanish ? 'Tak for din tilmelding!' : 'Thanks for subscribing!'}
               </h3>
-              <p className="text-gray-300">
+              <p className="text-gray-300 mb-6">
                 {isDanish 
                   ? 'Du vil snart modtage vores første nyhedsbrev.'
                   : 'You\'ll receive our first newsletter soon.'}
               </p>
+              <Button variant="primary" size="lg" fullWidth onClick={onClose}>
+                {isDanish ? 'Luk' : 'Close'}
+              </Button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
