@@ -31,9 +31,9 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
   ];
 
   const socialLinks = [
-    { icon: <Facebook size={18} />, href: 'https://www.facebook.com/profile.php?id=61571678866111' },
-    { icon: <Instagram size={18} />, href: 'https://www.instagram.com/virtiq.dk/' },
-    { icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/company/106651496/admin/dashboard/' },
+    { icon: <Facebook size={18} />, href: 'https://www.facebook.com/profile.php?id=61571678866111', label: 'Facebook' },
+    { icon: <Instagram size={18} />, href: 'https://www.instagram.com/virtiq.dk/', label: 'Instagram' },
+    { icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/company/106651496/admin/dashboard/', label: 'LinkedIn' },
   ];
   
   return (
@@ -43,7 +43,9 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
           <div>
-            <Logo />
+            <Link to="/" aria-label="Home">
+              <Logo />
+            </Link>
             <p className="mt-4 text-gray-400 text-sm max-w-xs">
               {isDanish 
                 ? 'Førende inden for AI-innovation og digitale marketingløsninger for virksomheder i alle størrelser.' 
@@ -57,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
                   className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-800 hover:bg-purple-600 transition-colors text-purple-400 hover:text-white"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Social media link ${index + 1}`}
+                  aria-label={social.label}
                 >
                   {social.icon}
                 </a>
@@ -66,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
           </div>
           
           <div>
-            <h3 className="text-white font-semibold mb-4">{isDanish ? 'Tjenester' : 'Services'}</h3>
+            <h3 className="text-white font-semibold mb-4">{isDanish ? 'Services' : 'Services'}</h3>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
