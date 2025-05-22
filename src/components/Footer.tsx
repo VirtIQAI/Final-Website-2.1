@@ -15,10 +15,11 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
   
   const services = [
     { name: 'AI Agents', href: '/services/ai-agents' },
-    { name: 'AI Automation', href: '/services/ai-automation' },
-    { name: 'AI Outreach', href: '/services/ai-outreach' },
-    { name: 'Meta Ads', href: '/services/meta-ads' },
-    { name: 'Website Development', href: '/services/website-development' },
+    { name: isDanish ? 'AI Automatisering' : 'AI Automation', href: '/services/ai-automation' },
+    { name: isDanish ? 'AI Outreach' : 'AI Outreach', href: '/services/ai-outreach' },
+    { name: isDanish ? 'AI Voice Caller' : 'AI Voice Caller', href: '/services/ai-voice-caller' },
+    { name: isDanish ? 'Meta Annoncer' : 'Meta Ads', href: '/services/meta-ads' },
+    { name: isDanish ? 'Skræddersyede Hjemmesider' : 'Custom Websites', href: '/services/website-development' },
   ];
 
   const companyLinks = [
