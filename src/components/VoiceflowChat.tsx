@@ -17,26 +17,12 @@ export const VoiceflowChat: React.FC = () => {
     script.type = 'text/javascript';
     script.src = 'https://cdn.voiceflow.com/widget-next/bundle.mjs';
 
-    // Helper function to hide the Powered By footer, everywhere
+    // Hide "Powered by" elements without targeting global <footer>
     const hidePoweredBy = () => {
-      // By text
-      document.querySelectorAll('div, span, footer').forEach(el => {
-        if (el.textContent && el.textContent.includes('Powered by')) {
-          el.style.display = 'none';
-          el.style.visibility = 'hidden';
-          el.style.height = '0px';
-          el.style.margin = '0px';
-          el.style.padding = '0px';
-          el.style.fontSize = '0px';
-          el.style.lineHeight = '0px';
-        }
-      });
-      // By class/aria
-      [
+      const selectors = [
         '.vfrc-powered-by',
         '[class*="poweredBy"]',
         'div[aria-label*="Powered by"]',
-        'footer',
         'form .vfrc-powered-by',
         'form [class*="poweredBy"]',
         'form div[aria-label*="Powered by"]',
@@ -46,8 +32,11 @@ export const VoiceflowChat: React.FC = () => {
         'span[aria-label*="Powered by"]',
         '.vfrc-widget *[class*="poweredBy"]',
         '.vfrc-widget *[aria-label*="Powered by"]'
-      ].forEach(selector => {
+      ];
+
+      selectors.forEach(selector => {
         document.querySelectorAll(selector).forEach(el => {
+          el.setAttribute('aria-hidden', 'true');
           el.style.display = 'none';
           el.style.visibility = 'hidden';
           el.style.height = '0px';
@@ -57,17 +46,32 @@ export const VoiceflowChat: React.FC = () => {
           el.style.lineHeight = '0px';
         });
       });
+
+      // Explicitly restore site's footer if it was hidden
+      const siteFooter = document.getElementById('site-footer');
+      if (siteFooter) {
+        siteFooter.style.display = '';
+        siteFooter.style.visibility = '';
+        siteFooter.style.height = '';
+        siteFooter.style.margin = '';
+        siteFooter.style.padding = '';
+        siteFooter.style.fontSize = '';
+        siteFooter.style.lineHeight = '';
+        siteFooter.setAttribute('aria-hidden', 'false');
+      }
+
+      // Dev hint
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('[VoiceflowChat] hidePoweredBy() ran — verified site footer is visible.');
+      }
     };
 
-    // Will be available after Voiceflow bundle loads
     script.onload = () => {
-      // MutationObserver to catch when the footer re-appears
-      const observer = new MutationObserver(() => {
-        hidePoweredBy();
-      });
+      // Observe mutations to re-hide unwanted elements
+      const observer = new MutationObserver(() => hidePoweredBy());
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Hide right after load
+      // Run initially
       hidePoweredBy();
 
       const FormExtension = {
@@ -118,29 +122,26 @@ export const VoiceflowChat: React.FC = () => {
             const message = formContainer.querySelector('.message') as HTMLTextAreaElement;
             const additionalInfo = formContainer.querySelector('.additionalInfo') as HTMLTextAreaElement;
 
-            if (!name.value || !email.value || !company.value || !service.value || !message.value) {
-              return;
-            }
+            if (!name.value || !email.value || !company.value || !service.value || !message.value) return;
 
             formContainer.querySelector('.submit')?.remove();
 
-            window.voiceflow.chat.interact &&
-              window.voiceflow.chat.interact({
-                type: 'complete',
-                payload: {
-                  name: name.value,
-                  email: email.value,
-                  company: company.value,
-                  service: service.value,
-                  message: message.value,
-                  additionalInfo: additionalInfo.value
-                }
-              });
+            window.voiceflow.chat.interact?.({
+              type: 'complete',
+              payload: {
+                name: name.value,
+                email: email.value,
+                company: company.value,
+                service: service.value,
+                message: message.value,
+                additionalInfo: additionalInfo.value
+              }
+            });
           });
 
           element.appendChild(formContainer);
 
-          // Hide again in case it pops up with form
+          // Hide again in case Voiceflow footer appears in form
           hidePoweredBy();
         }
       };
@@ -150,7 +151,7 @@ export const VoiceflowChat: React.FC = () => {
         url: 'https://general-runtime.voiceflow.com',
         versionID: 'production',
         assistant: {
-          stylesheet: "/voiceflow-chat.css",
+          stylesheet: '/voiceflow-chat.css',
           extensions: [FormExtension]
         },
         voice: {
@@ -162,8 +163,6 @@ export const VoiceflowChat: React.FC = () => {
     document.body.appendChild(script);
     return () => {
       document.body.removeChild(script);
-      // You may want to disconnect the observer, but since we attach it on script load, 
-      // and script is removed, it's safe.
     };
   }, []);
 
