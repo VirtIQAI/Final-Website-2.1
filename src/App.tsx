@@ -102,7 +102,7 @@ function App() {
         <AnalyticsProvider />
         <div className="flex flex-col min-h-screen bg-black text-white">
           <Header />
-          <main className="flex-grow">
+          <main className="flex-grow flex flex-col">
             <Routes>
               <Route
                 path="/"
