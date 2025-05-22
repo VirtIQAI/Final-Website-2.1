@@ -33,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
   const socialLinks = [
     { icon: <Facebook size={18} />, href: 'https://www.facebook.com/profile.php?id=61571678866111', label: 'Facebook' },
     { icon: <Instagram size={18} />, href: 'https://www.instagram.com/virtiq.dk/', label: 'Instagram' },
-    { icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/company/106651496/admin/dashboard/', label: 'LinkedIn' },
+    { icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/company/106651496/admin/dashboard/', label: 'LinkedIn' }
   ];
   
   return (
