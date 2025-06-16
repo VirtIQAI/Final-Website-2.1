@@ -141,169 +141,173 @@ export const CTA: React.FC = () => {
                 <h3 className="text-2xl font-bold mb-6">
                   {isDanish ? 'Book en Gratis Demo' : 'Book a Free Demo'}
                 </h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
-                        {isDanish ? 'Fornavn*' : 'First Name*'}
-                      </label>
-                      <input
-                        id="firstName"
-                        name="firstName"
-                        type="text"
-                        required
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                        placeholder="John"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
-                        {isDanish ? 'Efternavn*' : 'Last Name*'}
-                      </label>
-                      <input
-                        id="lastName"
-                        name="lastName"
-                        type="text"
-                        required
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                        placeholder="Doe"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                      {isDanish ? 'Email*' : 'Email*'}
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder="johndoe@gmail.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
-                      {isDanish ? 'Virksomhed*' : 'Company*'}
-                    </label>
-                    <input
-                      id="company"
-                      name="company"
-                      type="text"
-                      required
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                      placeholder="Doe Enterprises"
-                    />
-                  </div>
+<form onSubmit={handleSubmit} className="space-y-6" autoComplete="on">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div>
+      <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
+        {isDanish ? 'Fornavn*' : 'First Name*'}
+      </label>
+      <input
+        id="firstName"
+        name="firstName"
+        type="text"
+        required
+        autoComplete="given-name"
+        value={formData.firstName}
+        onChange={handleChange}
+        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+        placeholder="John"
+      />
+    </div>
 
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">
-                      {isDanish ? 'Service*' : 'Service*'}
-                    </label>
-                    <div className="relative">
-                      <select
-                        id="service"
-                        name="service"
-                        required
-                        value={formData.service}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none pr-10"
-                      >
-                        <option value="" disabled>
-                          {isDanish ? 'Vælg en service' : 'Select a service'}
-                        </option>
-                        {services.map((service) => (
-                          <option key={service} value={service}>{service}</option>
-                        ))}
-                      </select>
-                      <ChevronDown 
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
-                      {isDanish ? 'Hvilke specifikke problemer ønsker du at løse?*' : 'What specific problems are you looking to solve?*'}
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                      placeholder={isDanish 
-                        ? 'Beskriv venligst dine nuværende udfordringer og ønskede resultater'
-                        : 'Please describe your current challenges and desired outcomes'}
-                    ></textarea>
-                  </div>
+    <div>
+      <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">
+        {isDanish ? 'Efternavn*' : 'Last Name*'}
+      </label>
+      <input
+        id="lastName"
+        name="lastName"
+        type="text"
+        required
+        autoComplete="family-name"
+        value={formData.lastName}
+        onChange={handleChange}
+        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+        placeholder="Doe"
+      />
+    </div>
+  </div>
 
-                  <div>
-                    <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-300 mb-1">
-                      {isDanish ? 'Yderligere Information' : 'Additional Information'}
-                    </label>
-                    <textarea
-                      id="additionalInfo"
-                      name="additionalInfo"
-                      rows={4}
-                      value={formData.additionalInfo}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                      placeholder={isDanish
-                        ? 'Valgfrit: Del andre relevante detaljer om dit projekt eller krav'
-                        : 'Optional: Share any other relevant details about your project or requirements'}
-                    ></textarea>
-                  </div>
-                  
-                  <Button 
-                    variant="primary" 
-                    size="lg" 
-                    type="submit" 
-                    fullWidth
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting 
-                      ? (isDanish ? 'Sender...' : 'Submitting...') 
-                      : (isDanish ? 'Send' : 'Send')}
-                  </Button>
-                  
-                  <p className="text-xs text-gray-400 text-center mt-4">
-                    {isDanish
-                      ? 'Ved at indsende denne formular accepterer du vores'
-                      : 'By submitting this form, you agree to our'}{' '}
-                    <a
-                      href={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-purple-400 hover:text-purple-300"
-                    >
-                      {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
-                    </a>{' '}
-                    {isDanish ? 'og' : 'and'}{' '}
-                    <a
-                      href={isDanish ? "/betingelser" : "/terms-of-service"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-purple-400 hover:text-purple-300"
-                    >
-                      {isDanish ? 'Servicevilkår' : 'Terms of Service'}
-                    </a>.
-                  </p>
-                </form>
+  <div>
+    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+      {isDanish ? 'Email*' : 'Email*'}
+    </label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      required
+      autoComplete="email"
+      value={formData.email}
+      onChange={handleChange}
+      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+      placeholder="johndoe@gmail.com"
+    />
+  </div>
+
+  <div>
+    <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
+      {isDanish ? 'Virksomhed*' : 'Company*'}
+    </label>
+    <input
+      id="company"
+      name="company"
+      type="text"
+      required
+      autoComplete="organization"
+      value={formData.company}
+      onChange={handleChange}
+      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+      placeholder="Doe Enterprises"
+    />
+  </div>
+
+  <div>
+    <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">
+      {isDanish ? 'Service*' : 'Service*'}
+    </label>
+    <div className="relative">
+      <select
+        id="service"
+        name="service"
+        required
+        value={formData.service}
+        onChange={handleChange}
+        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none pr-10"
+      >
+        <option value="" disabled>
+          {isDanish ? 'Vælg en service' : 'Select a service'}
+        </option>
+        {services.map((service) => (
+          <option key={service} value={service}>{service}</option>
+        ))}
+      </select>
+      <ChevronDown 
+        className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+      {isDanish ? 'Hvilke specifikke problemer ønsker du at løse?*' : 'What specific problems are you looking to solve?*'}
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows={4}
+      required
+      value={formData.message}
+      onChange={handleChange}
+      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+      placeholder={isDanish 
+        ? 'Beskriv venligst dine nuværende udfordringer og ønskede resultater'
+        : 'Please describe your current challenges and desired outcomes'}
+    ></textarea>
+  </div>
+
+  <div>
+    <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-300 mb-1">
+      {isDanish ? 'Yderligere Information' : 'Additional Information'}
+    </label>
+    <textarea
+      id="additionalInfo"
+      name="additionalInfo"
+      rows={4}
+      value={formData.additionalInfo}
+      onChange={handleChange}
+      className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+      placeholder={isDanish
+        ? 'Valgfrit: Del andre relevante detaljer om dit projekt eller krav'
+        : 'Optional: Share any other relevant details about your project or requirements'}
+    ></textarea>
+  </div>
+
+  <Button 
+    variant="primary" 
+    size="lg" 
+    type="submit" 
+    fullWidth
+    disabled={isSubmitting}
+  >
+    {isSubmitting 
+      ? (isDanish ? 'Sender...' : 'Submitting...') 
+      : (isDanish ? 'Send' : 'Send')}
+  </Button>
+
+  <p className="text-xs text-gray-400 text-center mt-4">
+    {isDanish
+      ? 'Ved at indsende denne formular accepterer du vores'
+      : 'By submitting this form, you agree to our'}{' '}
+    <a
+      href={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-purple-400 hover:text-purple-300"
+    >
+      {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
+    </a>{' '}
+    {isDanish ? 'og' : 'and'}{' '}
+    <a
+      href={isDanish ? "/betingelser" : "/terms-of-service"}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-purple-400 hover:text-purple-300"
+    >
+      {isDanish ? 'Servicevilkår' : 'Terms of Service'}
+    </a>.
+  </p>
+</form>
               </div>
             </div>
           </div>
