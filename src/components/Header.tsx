@@ -24,7 +24,6 @@ export const Header: React.FC = () => {
         setScrolled(isScrolled);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
@@ -35,28 +34,25 @@ export const Header: React.FC = () => {
         setIsServicesOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Handle "scrollToContact" state from navigation
   useEffect(() => {
-    if (location.hash === '#contact') {
-      setTimeout(() => {
-        const element = document.getElementById('contact');
-        if (element) {
-          const headerOffset = 160;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }, 100);
+    if (location.state?.scrollToContact) {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const headerOffset = window.innerWidth < 768 ? 60 : 80;
+        const elementPosition = contactSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        setTimeout(() => {
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }, 300);
+        navigate(location.pathname, { replace: true, state: {} }); // clear state
+      }
     }
-  }, [location]);
+  }, [location, navigate]);
 
   const services = [
     { name: 'AI Agents', href: '/services/ai-agents' },
@@ -77,58 +73,20 @@ export const Header: React.FC = () => {
   ];
 
   const handleDemoClick = () => {
-    // Track the click event
     trackButtonClick('Book a Free Demo', 'Header');
-
-    // Close mobile menu if open
     setIsMenuOpen(false);
 
-    // Find the contact section
-    const contactSection = document.getElementById('contact');
-    if (!contactSection) return;
-
-    // Get dimensions
-    const viewportHeight = window.innerHeight;
-    const { top: contactTop } = contactSection.getBoundingClientRect();
-    
-    // Calculate the target scroll position
-    const currentScroll = window.pageYOffset;
-    const targetPosition = currentScroll + contactTop;
-    
-    // Adjust for mobile header height
-    const headerOffset = window.innerWidth < 768 ? 60 : 80;
-    const finalPosition = targetPosition - headerOffset;
-
-    // If we're on a different page, navigate to home first
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollToContact: true } });
-      return;
-    }
-
-    // Ensure the element is in view after scrolling
-    const elementInView = () => {
-      const rect = contactSection.getBoundingClientRect();
-      return rect.top >= 0 && rect.bottom <= viewportHeight;
-    };
-
-    // Perform the scroll
-    window.scrollTo({
-      top: finalPosition,
-      behavior: 'smooth'
-    });
-
-    // Verify scroll position after animation
-    const checkScroll = () => {
-      if (!elementInView()) {
-        window.scrollTo({
-          top: finalPosition,
-          behavior: 'auto'
-        });
+    } else {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const headerOffset = window.innerWidth < 768 ? 60 : 80;
+        const elementPosition = contactSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
       }
-    };
-
-    // Check position after scroll animation
-    setTimeout(checkScroll, 600);
+    }
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -141,10 +99,8 @@ export const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
-          <Link to="/">
-            <Logo />
-          </Link>
-          
+          <Link to="/"><Logo /></Link>
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
@@ -162,7 +118,6 @@ export const Header: React.FC = () => {
                       }`}
                     />
                   </button>
-
                   {isServicesOpen && (
                     <div className="absolute top-full left-0 mt-2 w-64 rounded-lg bg-gray-900/95 backdrop-blur-md border border-gray-800 shadow-lg py-2 z-50">
                       {services.map((service) => (
@@ -199,8 +154,8 @@ export const Header: React.FC = () => {
               </Button>
             </button>
           </nav>
-          
-          {/* Mobile Menu Toggle */}
+
+          {/* Mobile Toggle */}
           <button 
             className="md:hidden text-white p-2"
             onClick={toggleMenu}
@@ -214,7 +169,6 @@ export const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md py-4 px-4 border-t border-gray-800">
             <nav className="flex flex-col space-y-4">
-              {/* Mobile Services Menu */}
               <div className="space-y-2">
                 <div className="text-base font-medium text-gray-200 px-2">
                   {isDanish ? 'Services' : 'Services'}
@@ -230,8 +184,6 @@ export const Header: React.FC = () => {
                   </Link>
                 ))}
               </div>
-
-              {/* Other Navigation Items */}
               {navItems.filter(item => !item.isDropdown).map((item) => (
                 <Link 
                   key={item.name}
@@ -246,9 +198,7 @@ export const Header: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="py-2">
-                <LanguageSwitch />
-              </div>
+              <div className="py-2"><LanguageSwitch /></div>
               <div className="pt-2">
                 <button onClick={handleDemoClick}>
                   <Button variant="primary" size="sm" fullWidth>
