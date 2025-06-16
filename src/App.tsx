@@ -78,7 +78,7 @@ function App() {
       <Router>
         <SEOHead
           title={isDanish 
-            ? 'VirtIQ - Førende AI Bureau | Intelligente Automatiseringsløsninger' 
+            ? 'VirtIQ - Førende AI Agency | Intelligente Automatiseringsløsninger' 
             : 'VirtIQ - Leading AI Agency | Intelligent Automation Solutions'}
           description={isDanish
             ? 'Transform din virksomhed med AI-drevne løsninger. Ekspertise inden for AI-automatisering, intelligente agenter og Meta-annonceoptimering. Start med en gratis konsultation.'
