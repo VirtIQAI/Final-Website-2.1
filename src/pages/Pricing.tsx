@@ -134,7 +134,7 @@ export const Pricing: React.FC = () => {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              {isDanish ? 'Simple, Gennemsigtige Priser' : 'Simple, Transparent Plans'}
+              {isDanish ? 'Simple, Gennemsigtige Planer' : 'Simple, Transparent Plans'}
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 mx-auto mb-6"></div>
             <p className="text-lg text-gray-300">
