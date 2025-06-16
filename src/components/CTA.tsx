@@ -122,7 +122,7 @@ export const CTA: React.FC = () => {
                       isDanish ? 'Personlig strategikonsultation' : 'Personalized strategy consultation',
                       isDanish ? 'En skræddersyet demo til din virksomhed' : 'A tailored demo for your business',
                       isDanish ? 'Live demonstration af vores AI-værktøjer' : 'Live demonstration of our AI tools',
-                      isDanish ? 'Interessentafstemning' : 'Stakeholder alignment'
+                      isDanish ? 'Veldefineret Scope of Work' : 'Clearly defined Scope of Work'
                     ].map((item, index) => (
                       <div key={index} className="flex items-start">
                         <div className="shrink-0 w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center mr-3 mt-1">
