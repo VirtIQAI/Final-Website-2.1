@@ -71,7 +71,7 @@ export const Header: React.FC = () => {
   const tools = [
     {
       name: isDanish ? 'YouTube Udskrift' : 'YouTube Transcript',
-      href: 'https://youtubetranscript.eu/',
+      href: '/tools/youtube-transcript',
     },
     // Add more tools here later
   ];
