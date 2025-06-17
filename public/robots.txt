@@ -1,3 +1,6 @@
+# Sitemap location (recommended to list first)
+Sitemap: https://virtiq.dk/sitemap.xml
+
 # Allow all crawlers
 User-agent: *
 Allow: /
@@ -15,8 +18,5 @@ Allow: /static/
 Allow: /images/
 Allow: /blog-assets/
 
-# Sitemap location
-Sitemap: https://virtiq.dk/sitemap.xml
-
-# Optional crawl rate control
+# Optional: slow down crawlers to reduce server load (Google ignores this)
 Crawl-delay: 10
