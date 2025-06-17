@@ -53,14 +53,20 @@ const YouTubeTranscriptTool: React.FC = () => {
           </h1>
           <p className="text-lg text-gray-300 mb-10">{description}</p>
 
-          <div className="relative w-full aspect-video max-w-4xl mx-auto mb-8 rounded-xl overflow-hidden border border-gray-800 shadow-md">
+          <div className="group relative w-full aspect-video max-w-4xl mx-auto mb-8 rounded-xl overflow-hidden border border-gray-800 shadow-md">
             <video
               className="w-full h-full object-cover"
+              src="/youtube-transcript-tool.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
               controls
+              controlsList="nodownload"
               preload="metadata"
               poster="/og-image.jpg"
+              style={{ outline: 'none' }}
             >
-              <source src="/youtube-transcript-tool.mp4" type="video/mp4" />
               {isDanish
                 ? 'Din browser understøtter ikke videoafspilning.'
                 : 'Your browser does not support the video tag.'}
