@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next';
 import { SEOHead } from './components/SEOHead';
 import { StructuredData } from './components/StructuredData';
 import { usePageTracking, initScrollTracking } from './lib/analytics';
-import { YouTubeTranscriptTool } from './YouTubeTranscriptTool';
+import YouTubeTranscriptTool from './YouTubeTranscriptTool';
 
 const AnalyticsProvider = () => {
   usePageTracking();
@@ -129,10 +129,7 @@ function App() {
             <Route path={isDanish ? "/om-os" : "/about"} element={<About />} />
             <Route path={isDanish ? "/privatlivspolitik" : "/privacy-policy"} element={<PrivacyPolicy />} />
             <Route path={isDanish ? "/betingelser" : "/terms-of-service"} element={<TermsOfService />} />
-            <Route 
-              path={isDanish ? "/værktøjer/youtube-transcript" : "/tools/youtube-transcript"} 
-              element={<YouTubeTranscriptTool />} 
-            />
+            <Route path={isDanish ? "/værktøjer/youtube-transcript" : "/tools/youtube-transcript"} element={<YouTubeTranscriptTool />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
