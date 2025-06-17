@@ -2,7 +2,7 @@
   command = "npm run build"
   publish = "dist"
 
-# ✅ SEO Canonical Redirects (added)
+# ✅ SEO Canonical Redirects
 [[redirects]]
   from = "http://virtiq.dk/*"
   to = "https://virtiq.dk/:splat"
@@ -21,7 +21,7 @@
   status = 301
   force = true
 
-# ⚙️ SPA Fallback (unchanged)
+# ⚙️ SPA Fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -73,6 +73,10 @@
   [headers.values]
     Content-Type = "application/xml"
     Cache-Control = "public, max-age=3600"
+
+# ✅ Force Netlify to serve your own robots.txt instead of overwriting
+[plugins."@netlify/plugin-sitemap"]
+  generateRobotsTxt = false
 
 [build.environment]
   NODE_VERSION = "20"
