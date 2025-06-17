@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
 import { Logo } from './ui/Logo';
-import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitch } from './LanguageSwitch';
 import { trackButtonClick } from '../lib/analytics';
@@ -102,11 +102,6 @@ export const Header: React.FC = () => {
   };
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const toggleMobileSection = (section: 'services' | 'tools') => {
-    if (section === 'services') setIsServicesOpen(!isServicesOpen);
-    if (section === 'tools') setIsToolsOpen(!isToolsOpen);
-  };
 
   return (
     <header className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
@@ -212,50 +207,15 @@ export const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Simple Scroll Menu */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md py-4 px-4 border-t border-gray-800">
             <nav className="flex flex-col space-y-2">
-              <button className="flex justify-between items-center w-full text-base font-medium text-gray-200 px-2" onClick={() => toggleMobileSection('services')}>
-                {isDanish ? 'Services' : 'Services'}
-                <ChevronRight className={`${isServicesOpen ? 'rotate-90' : ''} transition-transform`} size={16} />
-              </button>
-              {isServicesOpen && services.map((service) => (
-                <Link
-                  key={service.name}
-                  to={service.href}
-                  className="block text-sm text-gray-300 hover:text-white transition-colors py-1 px-4"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {service.name}
-                </Link>
-              ))}
-
-              <button className="flex justify-between items-center w-full text-base font-medium text-gray-200 px-2" onClick={() => toggleMobileSection('tools')}>
-                {isDanish ? 'Værktøjer' : 'Tools'}
-                <ChevronRight className={`${isToolsOpen ? 'rotate-90' : ''} transition-transform`} size={16} />
-              </button>
-              {isToolsOpen && tools.map((tool) => (
-                <Link
-                  key={tool.name}
-                  to={tool.href}
-                  onClick={() => {
-                    trackButtonClick(tool.name, 'Tools Mobile');
-                    setIsMenuOpen(false);
-                  }}
-                  className="block text-sm text-gray-300 hover:text-white transition-colors py-1 px-4"
-                >
-                  {tool.name}
-                </Link>
-              ))}
-
-              {navItems.filter(item => !item.isDropdown).map((item) => (
+              {[...services, ...tools, ...navItems.filter(item => !item.isDropdown)].map((item) => (
                 <Link 
                   key={item.name}
                   to={item.href}
-                  className={`text-base font-medium transition-colors py-1 px-2 ${
-                    location.pathname === item.href ? 'text-white' : 'text-gray-200 hover:text-white'
-                  }`}
+                  className={`text-base font-medium transition-colors py-1 px-2 text-gray-200 hover:text-white`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
