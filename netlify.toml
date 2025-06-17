@@ -2,6 +2,26 @@
   command = "npm run build"
   publish = "dist"
 
+# ✅ SEO Canonical Redirects (added)
+[[redirects]]
+  from = "http://virtiq.dk/*"
+  to = "https://virtiq.dk/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.virtiq.dk/*"
+  to = "https://virtiq.dk/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://virtiq.dk/*/"
+  to = "https://virtiq.dk/:splat"
+  status = 301
+  force = true
+
+# ⚙️ SPA Fallback (unchanged)
 [[redirects]]
   from = "/*"
   to = "/index.html"
