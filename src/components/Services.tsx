@@ -1,10 +1,9 @@
 import React from 'react';
-import { ServiceCard } from './ui/ServiceCard';
 import { Bot, MessagesSquare, BarChart, Globe, Settings, Phone } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export const Services: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
 
   const services = [
@@ -68,7 +67,7 @@ export const Services: React.FC = () => {
     <section id="services" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-indigo-950/20 pointer-events-none"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5"></div>
-      
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -81,16 +80,27 @@ export const Services: React.FC = () => {
               : 'Comprehensive AI and digital marketing solutions to help your business thrive in the digital age.'}
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => (
-            <ServiceCard 
+            <div
               key={service.id}
-              title={service.title}
-              description={service.description}
-              icon={service.icon}
-              href={service.href}
-            />
+              className="bg-gray-900/50 backdrop-blur-sm p-6 rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300"
+            >
+              <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+              <p className="text-gray-400 mb-4">{service.description}</p>
+              <a
+                href={service.href}
+                className="inline-block text-purple-400 hover:underline font-medium"
+              >
+                {isDanish
+                  ? `Læs mere om ${service.title}`
+                  : `Learn more about ${service.title}`}
+              </a>
+            </div>
           ))}
         </div>
       </div>
