@@ -3,7 +3,7 @@ import { Button } from './components/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 
-export function YouTubeTranscriptTool() {
+const YouTubeTranscriptTool = () => {
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
 
@@ -110,4 +110,6 @@ export function YouTubeTranscriptTool() {
       </section>
     </>
   );
-}
+};
+
+export default YouTubeTranscriptTool;
