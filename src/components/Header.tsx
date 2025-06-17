@@ -209,56 +209,64 @@ export const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md py-4 px-4 border-t border-gray-800">
+          <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md py-4 px-4 border-t border-gray-800 max-h-[80vh] overflow-y-auto">
             <nav className="flex flex-col space-y-4">
-              <div className="space-y-2">
-                <div className="text-base font-medium text-gray-200 px-2">
-                  {isDanish ? 'Services' : 'Services'}
-                </div>
-                {services.map((service) => (
+              {navItems.map((item) => {
+                if (item.isDropdown === 'services') {
+                  return (
+                    <div key="mobile-services">
+                      <div className="text-base font-medium text-gray-200 px-2">{item.name}</div>
+                      {services.map((service) => (
+                        <Link
+                          key={service.name}
+                          to={service.href}
+                          className="block text-sm text-gray-300 hover:text-white transition-colors py-2 px-4"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                    </div>
+                  );
+                }
+
+                if (item.isDropdown === 'tools') {
+                  return (
+                    <div key="mobile-tools">
+                      <div className="text-base font-medium text-gray-200 px-2">{item.name}</div>
+                      {tools.map((tool) => (
+                        <Link
+                          key={tool.name}
+                          to={tool.href}
+                          className="block text-sm text-gray-300 hover:text-white transition-colors py-2 px-4"
+                          onClick={() => {
+                            trackButtonClick(tool.name, 'Tools Mobile');
+                            setIsMenuOpen(false);
+                          }}
+                        >
+                          {tool.name}
+                        </Link>
+                      ))}
+                    </div>
+                  );
+                }
+
+                return (
                   <Link
-                    key={service.name}
-                    to={service.href}
-                    className="block text-sm text-gray-300 hover:text-white transition-colors py-2 px-4"
+                    key={item.name}
+                    to={item.href}
+                    className={`text-base font-medium transition-colors py-2 ${
+                      location.pathname === item.href ? 'text-white' : 'text-gray-200 hover:text-white'
+                    }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {service.name}
+                    {item.name}
                   </Link>
-                ))}
+                );
+              })}
+              <div className="pt-2">
+                <LanguageSwitch />
               </div>
-
-              <div className="space-y-2">
-                <div className="text-base font-medium text-gray-200 px-2">
-                  {isDanish ? 'Værktøjer' : 'Tools'}
-                </div>
-                {tools.map((tool) => (
-                  <Link
-                    key={tool.name}
-                    to={tool.href}
-                    onClick={() => {
-                      trackButtonClick(tool.name, 'Tools Mobile');
-                      setIsMenuOpen(false);
-                    }}
-                    className="block text-sm text-gray-300 hover:text-white transition-colors py-2 px-4"
-                  >
-                    {tool.name}
-                  </Link>
-                ))}
-              </div>
-
-              {navItems.filter(item => !item.isDropdown).map((item) => (
-                <Link 
-                  key={item.name}
-                  to={item.href}
-                  className={`text-base font-medium transition-colors py-2 ${
-                    location.pathname === item.href ? 'text-white' : 'text-gray-200 hover:text-white'
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="py-2"><LanguageSwitch /></div>
               <div className="pt-2">
                 <button onClick={handleDemoClick}>
                   <Button variant="primary" size="sm" fullWidth>
