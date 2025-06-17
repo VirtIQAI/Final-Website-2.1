@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
   <url>
     <loc>https://virtiq.dk/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1</priority>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="da" href="https://virtiq.dk/vaerktoejer/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://virtiq.dk/tools/" />
   </url>
+
+  <!-- Service Pages -->
   <url>
     <loc>https://virtiq.dk/services/ai-agents</loc>
     <changefreq>monthly</changefreq>
@@ -30,11 +38,15 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Tools -->
   <url>
     <loc>https://virtiq.dk/tools/youtube-transcript</loc>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+
+  <!-- Core Pages -->
   <url>
     <loc>https://virtiq.dk/about</loc>
     <changefreq>monthly</changefreq>
@@ -60,6 +72,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Legal -->
   <url>
     <loc>https://virtiq.dk/privacy-policy</loc>
     <changefreq>monthly</changefreq>
