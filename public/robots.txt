@@ -2,18 +2,21 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://virtiq.dk/sitemap.xml
-
-# Prevent crawling of admin areas
+# Disallow irrelevant or legacy pages
 Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /api/
+Disallow: /hello-world/
+Disallow: /en/hello-world/
+Disallow: /?p=1
 
-# Allow crawling of assets
+# Allow crawling of public assets
 Allow: /static/
 Allow: /images/
 Allow: /blog-assets/
 
-# Crawl-delay directive
+# Sitemap location
+Sitemap: https://virtiq.dk/sitemap.xml
+
+# Optional crawl rate control
 Crawl-delay: 10
