@@ -46,12 +46,26 @@ const YouTubeTranscriptTool = () => {
           <span className="uppercase text-xs tracking-widest text-purple-500 font-medium mb-4 inline-block">
             {isDanish ? 'AI Værktøj' : 'AI Tool'}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
             {isDanish
               ? 'Transskriber YouTube-videoer med AI-hastighed'
               : 'Transcribe YouTube Videos at AI Speed'}
           </h1>
           <p className="text-lg text-gray-300 mb-8">{description}</p>
+
+          <div className="w-full aspect-video rounded-xl overflow-hidden mb-8">
+            <video
+              className="w-full h-full object-cover"
+              controls
+              poster="https://virtiq.dk/og-image.jpg"
+            >
+              <source src="/YouTube Transcrip Tool.mp4" type="video/mp4" />
+              {isDanish
+                ? 'Din browser understøtter ikke videoafspilleren.'
+                : 'Your browser does not support the video player.'}
+            </video>
+          </div>
+
           <a
             href="https://youtubetranscript.eu/?utm_source=virtiq.dk&utm_medium=tool_landing&utm_campaign=tools"
             target="_blank"
