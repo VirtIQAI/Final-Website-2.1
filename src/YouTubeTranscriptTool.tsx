@@ -61,12 +61,13 @@ const YouTubeTranscriptTool: React.FC = () => {
               muted
               loop
               playsInline
-              controls
+              controls={false}
               controlsList="nodownload"
-              preload="metadata"
+              preload="auto"
               poster="/og-image.jpg"
-              style={{ outline: 'none' }}
+              style={{ outline: 'none', display: 'block' }}
             >
+              <track kind="captions" />
               {isDanish
                 ? 'Din browser understøtter ikke videoafspilning.'
                 : 'Your browser does not support the video tag.'}
