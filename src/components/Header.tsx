@@ -71,9 +71,8 @@ export const Header: React.FC = () => {
   const tools = [
     {
       name: isDanish ? 'YouTube Udskrift' : 'YouTube Transcript',
-      href: '/tools/youtube-transcript',
+      href: isDanish ? '/værktøjer/youtube-transcript' : '/tools/youtube-transcript',
     },
-    // Add more tools here later
   ];
 
   const navItems = [
@@ -160,16 +159,17 @@ export const Header: React.FC = () => {
                     {isToolsOpen && (
                       <div className="absolute top-full left-0 mt-2 w-64 rounded-lg bg-gray-900/95 backdrop-blur-md border border-gray-800 shadow-lg py-2 z-50">
                         {tools.map((tool) => (
-                          <a
+                          <Link
                             key={tool.name}
-                            href={tool.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => trackButtonClick(tool.name, 'Tools Header')}
+                            to={tool.href}
+                            onClick={() => {
+                              setIsToolsOpen(false);
+                              trackButtonClick(tool.name, 'Tools Header');
+                            }}
                             className="block px-4 py-2 text-sm text-gray-200 hover:bg-purple-600/20 hover:text-white transition-colors"
                           >
                             {tool.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     )}
@@ -232,11 +232,9 @@ export const Header: React.FC = () => {
                   {isDanish ? 'Værktøjer' : 'Tools'}
                 </div>
                 {tools.map((tool) => (
-                  <a
+                  <Link
                     key={tool.name}
-                    href={tool.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    to={tool.href}
                     onClick={() => {
                       trackButtonClick(tool.name, 'Tools Mobile');
                       setIsMenuOpen(false);
@@ -244,7 +242,7 @@ export const Header: React.FC = () => {
                     className="block text-sm text-gray-300 hover:text-white transition-colors py-2 px-4"
                   >
                     {tool.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
 
