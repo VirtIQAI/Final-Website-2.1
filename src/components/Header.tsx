@@ -63,14 +63,15 @@ export const Header: React.FC = () => {
     { name: isDanish ? 'Skræddersyede Hjemmesider' : 'Custom Websites', href: '/services/website-development' },
   ];
 
-  const navItems = [
-    { name: isDanish ? 'Services' : 'Services', isDropdown: true },
-    { name: isDanish ? 'Priser' : 'Pricing', href: isDanish ? '/priser' : '/pricing' },
-    { name: isDanish ? 'Blog' : 'Blog', href: '/blog' },
-    { name: isDanish ? 'Om os' : 'About', href: isDanish ? '/om-os' : '/about' },
-    { name: isDanish ? 'Kontakt' : 'Contact', href: isDanish ? '/kontakt' : '/contact' },
-    { name: 'FAQ', href: '/faq' },
-  ];
+const navItems = [
+  { name: isDanish ? 'Services' : 'Services', isDropdown: true },
+  { name: isDanish ? 'Priser' : 'Pricing', href: isDanish ? '/priser' : '/pricing' },
+  { name: isDanish ? 'Værktøjer' : 'Tools', href: isDanish ? '/vaerktoejer' : '/tools' },
+  { name: isDanish ? 'Blog' : 'Blog', href: '/blog' },
+  { name: isDanish ? 'Om os' : 'About', href: isDanish ? '/om-os' : '/about' },
+  { name: isDanish ? 'Kontakt' : 'Contact', href: isDanish ? '/kontakt' : '/contact' },
+  { name: 'FAQ', href: '/faq' },
+];
 
   const handleDemoClick = () => {
     trackButtonClick('Book a Free Demo', 'Header');
