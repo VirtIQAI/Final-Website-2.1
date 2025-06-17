@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
-export default function YouTubeTranscriptTool() {
+export function YouTubeTranscriptTool() {
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
 
@@ -18,13 +19,19 @@ export default function YouTubeTranscriptTool() {
 
   return (
     <>
-      <head>
+      <Helmet>
         <title>{title} | VirtIQ</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href="https://virtiq.dk/tools/youtube-transcript" />
+        <link
+          rel="canonical"
+          href={`https://virtiq.dk/${isDanish ? 'værktøjer' : 'tools'}/youtube-transcript`}
+        />
         <meta name="robots" content="index, follow" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://virtiq.dk/tools/youtube-transcript" />
+        <meta
+          property="og:url"
+          content={`https://virtiq.dk/${isDanish ? 'værktøjer' : 'tools'}/youtube-transcript`}
+        />
         <meta property="og:title" content={`${title} | VirtIQ`} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content="https://virtiq.dk/og-image.jpg" />
@@ -32,7 +39,7 @@ export default function YouTubeTranscriptTool() {
         <meta name="twitter:title" content={`${title} | VirtIQ`} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content="https://virtiq.dk/og-image.jpg" />
-      </head>
+      </Helmet>
 
       <section className="bg-gradient-to-b from-black to-gray-900 text-white py-24 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
@@ -41,14 +48,10 @@ export default function YouTubeTranscriptTool() {
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {isDanish
-              ? 'Transskriber YouTube-videoer 
-                 med AI-hastighed'
-              : 'Transcribe YouTube Videos 
-                 at AI Speed'}
+              ? 'Transskriber YouTube-videoer med AI-hastighed'
+              : 'Transcribe YouTube Videos at AI Speed'}
           </h1>
-          <p className="text-lg text-gray-300 mb-8">
-            {description}
-          </p>
+          <p className="text-lg text-gray-300 mb-8">{description}</p>
           <a
             href="https://youtubetranscript.eu/?utm_source=virtiq.dk&utm_medium=tool_landing&utm_campaign=tools"
             target="_blank"
@@ -65,7 +68,7 @@ export default function YouTubeTranscriptTool() {
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
             <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Ingen Login' : 'No Login'}
+              {isDanish ? 'Ingen login' : 'No Login'}
             </h3>
             <p className="text-gray-400">
               {isDanish
@@ -75,7 +78,7 @@ export default function YouTubeTranscriptTool() {
           </div>
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
             <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Hurtig Tekstkopi' : 'Quick Text Copy'}
+              {isDanish ? 'Hurtig tekstkopi' : 'Quick Text Copy'}
             </h3>
             <p className="text-gray-400">
               {isDanish
@@ -85,7 +88,7 @@ export default function YouTubeTranscriptTool() {
           </div>
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
             <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Fungerer Globalt' : 'Works Globally'}
+              {isDanish ? 'Fungerer globalt' : 'Works Globally'}
             </h3>
             <p className="text-gray-400">
               {isDanish
@@ -95,7 +98,7 @@ export default function YouTubeTranscriptTool() {
           </div>
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
             <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Designet til Deling' : 'Built to Share'}
+              {isDanish ? 'Designet til deling' : 'Built to Share'}
             </h3>
             <p className="text-gray-400">
               {isDanish
