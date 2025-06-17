@@ -53,7 +53,7 @@ export const Header: React.FC = () => {
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
         setTimeout(() => {
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }, 300);
+        }, 700);
         navigate(location.pathname, { replace: true, state: {} });
       }
     }
