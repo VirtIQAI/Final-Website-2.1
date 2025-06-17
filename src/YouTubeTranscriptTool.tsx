@@ -3,7 +3,7 @@ import { Button } from './components/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 
-const YouTubeTranscriptTool = () => {
+const YouTubeTranscriptTool: React.FC = () => {
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
 
@@ -41,7 +41,7 @@ const YouTubeTranscriptTool = () => {
         <meta name="twitter:image" content="https://virtiq.dk/og-image.jpg" />
       </Helmet>
 
-      <section className="bg-gradient-to-b from-black to-gray-900 text-white py-24 px-6 md:px-12">
+      <section className="bg-gradient-to-b from-black to-gray-900 text-white py-20 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <span className="uppercase text-xs tracking-widest text-purple-500 font-medium mb-4 inline-block">
             {isDanish ? 'AI Værktøj' : 'AI Tool'}
@@ -51,18 +51,19 @@ const YouTubeTranscriptTool = () => {
               ? 'Transskriber YouTube-videoer med AI-hastighed'
               : 'Transcribe YouTube Videos at AI Speed'}
           </h1>
-          <p className="text-lg text-gray-300 mb-8">{description}</p>
+          <p className="text-lg text-gray-300 mb-10">{description}</p>
 
-          <div className="w-full aspect-video rounded-xl overflow-hidden mb-8">
+          <div className="relative w-full aspect-video max-w-4xl mx-auto mb-8 rounded-xl overflow-hidden border border-gray-800 shadow-md">
             <video
               className="w-full h-full object-cover"
               controls
-              poster="https://virtiq.dk/og-image.jpg"
+              preload="metadata"
+              poster="/og-image.jpg"
             >
-              <source src="/YouTube Transcrip Tool.mp4" type="video/mp4" />
+              <source src="/youtube-transcript-tool.mp4" type="video/mp4" />
               {isDanish
-                ? 'Din browser understøtter ikke videoafspilleren.'
-                : 'Your browser does not support the video player.'}
+                ? 'Din browser understøtter ikke videoafspilning.'
+                : 'Your browser does not support the video tag.'}
             </video>
           </div>
 
