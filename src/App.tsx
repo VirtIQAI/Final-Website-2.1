@@ -20,6 +20,7 @@ import { AIOutreach } from './pages/AIOutreach';
 import { AIVoiceCaller } from './pages/AIVoiceCaller';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfService } from './pages/TermsOfService';
+import { YouTubeTranscriptTool } from './YouTubeTranscriptTool'; // ✅ NEW: tool page import
 import { useTranslation } from 'react-i18next';
 import { SEOHead } from './components/SEOHead';
 import { StructuredData } from './components/StructuredData';
@@ -128,6 +129,13 @@ function App() {
             <Route path={isDanish ? "/om-os" : "/about"} element={<About />} />
             <Route path={isDanish ? "/privatlivspolitik" : "/privacy-policy"} element={<PrivacyPolicy />} />
             <Route path={isDanish ? "/betingelser" : "/terms-of-service"} element={<TermsOfService />} />
+            
+            {/* ✅ NEW TOOL ROUTE */}
+            <Route 
+              path={isDanish ? "/vaerktoejer/youtube-transcript" : "/tools/youtube-transcript"} 
+              element={<YouTubeTranscriptTool />} 
+            />
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
