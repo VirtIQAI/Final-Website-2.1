@@ -43,4 +43,9 @@ if (!existsSync(outputDir)) {
 }
 
 const sitemap = new SitemapStream({ hostname: baseUrl });
-const writeStream = createWriteStrea
+const writeStream = createWriteStream(outputPath);
+
+Readable.from(routes).pipe(sitemap).pipe(writeStream);
+
+console.log(`✅ Sitemap with hreflang support generated!`);
+console.log(`📁 Written to: ${outputPath}`);
