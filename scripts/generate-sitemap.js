@@ -37,15 +37,18 @@ const routes = [
 
 async function buildSitemap() {
   const smStream = new SitemapStream({ hostname: BASE })
-  for (const item of routes) smStream.write(item)
-  smStream.end()
+  const xml = await streamToPromise(
+    routes.reduce((stream, item) => {
+      stream.write(item)
+      return stream
+    }, smStream)
+  ).then((data) => data.toString())
 
-  const xml = await streamToPromise(smStream).then(data => data.toString())
   writeFileSync(outputPath, xml, 'utf8')
   console.log('✅ Sitemap generated:', outputPath)
 }
 
-buildSitemap().catch(err => {
+buildSitemap().catch((err) => {
   console.error('❌ Sitemap failed:', err)
   process.exit(1)
 })
