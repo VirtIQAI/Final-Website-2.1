@@ -4,9 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 
 const YouTubeTranscriptTool: React.FC = () => {
-  // …
-
-const YouTubeTranscriptTool: React.FC = () => {
   const { i18n } = useTranslation();
   const isDanish = i18n.language === 'da';
 
@@ -91,46 +88,30 @@ const YouTubeTranscriptTool: React.FC = () => {
 
       <section className="bg-black py-16 px-6 md:px-12">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-            <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Ingen login' : 'No Login'}
-            </h3>
-            <p className="text-gray-400">
-              {isDanish
+          {[
+            { title: isDanish ? 'Ingen login' : 'No Login', text: isDanish
                 ? 'Brug værktøjet med det samme – helt gratis og uden oprettelse.'
-                : 'Use the tool instantly – completely free and no signup required.'}
-            </p>
-          </div>
-          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-            <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Hurtig tekstkopi' : 'Quick Text Copy'}
-            </h3>
-            <p className="text-gray-400">
-              {isDanish
+                : 'Use the tool instantly – completely free and no signup required.' },
+            { title: isDanish ? 'Hurtig tekstkopi' : 'Quick Text Copy', text: isDanish
                 ? 'Kopier hele transskriptionen af en video med ét klik.'
-                : 'Copy the full transcript of any video in a single click.'}
-            </p>
-          </div>
-          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-            <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Fungerer globalt' : 'Works Globally'}
-            </h3>
-            <p className="text-gray-400">
-              {isDanish
+                : 'Copy the full transcript of any video in a single click.' },
+            { title: isDanish ? 'Fungerer globalt' : 'Works Globally', text: isDanish
                 ? 'Understøtter de fleste sprog og videoer med undertekster.'
-                : 'Supports most languages and subtitle-enabled videos.'}
-            </p>
-          </div>
-          <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
-            <h3 className="text-xl font-semibold mb-2 text-white">
-              {isDanish ? 'Designet til deling' : 'Built to Share'}
-            </h3>
-            <p className="text-gray-400">
-              {isDanish
+                : 'Supports most languages and subtitle-enabled videos.' },
+            { title: isDanish ? 'Designet til deling' : 'Built to Share', text: isDanish
                 ? 'Perfekt til sociale medier, blogindlæg og AI-arbejdsflows.'
-                : 'Perfect for social media, blogs, or feeding your AI workflows.'}
-            </p>
-          </div>
+                : 'Perfect for social media, blogs, or feeding your AI workflows.' },
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-900 rounded-xl p-6 border border-gray-800"
+            >
+              <h3 className="text-xl font-semibold mb-2 text-white">
+                {item.title}
+              </h3>
+              <p className="text-gray-400">{item.text}</p>
+            </div>
+          ))}
         </div>
       </section>
     </>
