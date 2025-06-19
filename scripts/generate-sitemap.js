@@ -7,6 +7,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// ✅ Output sitemap directly into dist/
+const outputPath = path.resolve(__dirname, '../dist/sitemap.xml');
 const baseUrl = 'https://virtiq.dk';
 
 const routes = [
@@ -34,12 +36,10 @@ const routes = [
   { url: '/terms-of-service', changefreq: 'monthly', priority: 0.5 }
 ];
 
-// ✅ Write sitemap to the final dist folder so Netlify includes it
-const outputPath = path.resolve(__dirname, '../dist/sitemap.xml');
 const sitemap = new SitemapStream({ hostname: baseUrl });
 const writeStream = createWriteStream(outputPath);
 
 Readable.from(routes).pipe(sitemap).pipe(writeStream);
 
 console.log('✅ Sitemap with hreflang support generated!');
-console.log('📄 Written to:', outputPath);
+console.log('📁 Written to:', outputPath);
