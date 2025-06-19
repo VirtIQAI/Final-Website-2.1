@@ -1,14 +1,14 @@
-import { SitemapStream } from 'sitemap';
-import { createWriteStream, mkdirSync, existsSync } from 'fs';
+import { SitemapStream, streamToPromise } from 'sitemap';
+import { promises as fs, mkdirSync, existsSync } from 'fs';
 import path from 'path';
 import { Readable } from 'stream';
 import { fileURLToPath } from 'url';
+import { XMLBuilder } from 'xmlbuilder2';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const baseUrl = 'https://virtiq.dk';
-
 const routes = [
   {
     url: '/',
@@ -34,18 +34,28 @@ const routes = [
   { url: '/terms-of-service', changefreq: 'monthly', priority: 0.5 }
 ];
 
-const outputDir = path.resolve(__dirname, '../dist');
-const outputPath = path.join(outputDir, 'sitemap.xml');
+async function buildSitemap() {
+  const outputDir = path.resolve(__dirname, '../dist');
+  const outputPath = path.join(outputDir, 'sitemap.xml');
 
-// Ensure dist/ exists
-if (!existsSync(outputDir)) {
-  mkdirSync(outputDir, { recursive: true });
+  if (!existsSync(outputDir)) {
+    mkdirSync(outputDir, { recursive: true });
+  }
+
+  const smStream = new SitemapStream({ hostname: baseUrl });
+  const buffer = await streamToPromise(Readable.from(routes).pipe(smStream));
+
+  // Make the XML pretty
+  const xmlDoc = new XMLBuilder({ prettyPrint: true })
+    .import(buffer.toString())
+    .end();
+
+  await fs.writeFile(outputPath, xmlDoc, 'utf-8');
+  console.log('✅ Sitemap with hreflang support generated!');
+  console.log('📁 Written to:', outputPath);
 }
 
-const sitemap = new SitemapStream({ hostname: baseUrl });
-const writeStream = createWriteStream(outputPath);
-
-Readable.from(routes).pipe(sitemap).pipe(writeStream);
-
-console.log(`✅ Sitemap with hreflang support generated!`);
-console.log(`📁 Written to: ${outputPath}`);
+buildSitemap().catch(err => {
+  console.error('❌ Sitemap generation failed:', err);
+  process.exit(1);
+});
