@@ -1,5 +1,5 @@
 import { SitemapStream } from 'sitemap';
-import { createWriteStream } from 'fs';
+import { createWriteStream, mkdirSync, existsSync } from 'fs';
 import path from 'path';
 import { Readable } from 'stream';
 import { fileURLToPath } from 'url';
@@ -7,8 +7,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Output sitemap directly into dist/
-const outputPath = path.resolve(__dirname, '../dist/sitemap.xml');
 const baseUrl = 'https://virtiq.dk';
 
 const routes = [
@@ -36,10 +34,13 @@ const routes = [
   { url: '/terms-of-service', changefreq: 'monthly', priority: 0.5 }
 ];
 
+const outputDir = path.resolve(__dirname, '../dist');
+const outputPath = path.join(outputDir, 'sitemap.xml');
+
+// Ensure dist/ exists
+if (!existsSync(outputDir)) {
+  mkdirSync(outputDir, { recursive: true });
+}
+
 const sitemap = new SitemapStream({ hostname: baseUrl });
-const writeStream = createWriteStream(outputPath);
-
-Readable.from(routes).pipe(sitemap).pipe(writeStream);
-
-console.log('✅ Sitemap with hreflang support generated!');
-console.log('📁 Written to:', outputPath);
+const writeStream = createWriteStrea
