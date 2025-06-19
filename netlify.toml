@@ -1,5 +1,5 @@
 [build]
-  command = "vite build && node scripts/generate-sitemap.js"
+  command = "npm run build"
   publish = "dist"
 
 # ✅ Canonical redirects to HTTPS root domain
