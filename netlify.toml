@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run sitemap && npm run build"
   publish = "dist"
 
 # ✅ SEO Canonical Redirects
@@ -79,7 +79,7 @@
   NODE_VERSION = "20"
 
 [context.production]
-  command = "npm run build"
+  command = "npm run sitemap && npm run build"
 
 [context.deploy-preview]
-  command = "npm run build"
+  command = "npm run sitemap && npm run build"
