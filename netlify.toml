@@ -2,7 +2,7 @@
   command = "npm run build && npm run sitemap"
   publish = "dist"
 
-# ✅ SEO Canonical Redirects
+# ✅ Canonical redirects to HTTPS root domain
 [[redirects]]
   from = "http://virtiq.dk/*"
   to = "https://virtiq.dk/:splat"
@@ -21,19 +21,19 @@
   status = 301
   force = true
 
-# ✅ Allow sitemap.xml to be served directly
+# ✅ Ensure /sitemap.xml is directly accessible and NOT rewritten
 [[redirects]]
   from = "/sitemap.xml"
   to = "/sitemap.xml"
   status = 200
 
-# ⚙️ SPA Fallback
+# ⚙️ SPA fallback (must come AFTER sitemap.xml)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# 🔐 Security & Caching Headers
+# 🔐 Security headers (good as-is)
 [[headers]]
   for = "/*"
   [headers.values]
