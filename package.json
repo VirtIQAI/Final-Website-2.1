@@ -8,8 +8,7 @@
     "build": "vite build",
     "sitemap": "node scripts/generate-sitemap.js",
     "optimize-images": "node scripts/optimize-images.js",
-    "prebuild": "npm run sitemap && npm run optimize-images",
-    "postbuild": "npm run sitemap"
+    "prebuild": "npm run sitemap && npm run optimize-images"
   },
   "dependencies": {
     "@splinetool/react-spline": "^2.2.6",
