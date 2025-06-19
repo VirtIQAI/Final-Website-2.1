@@ -9,7 +9,7 @@
   "sitemap": "node scripts/generate-sitemap.js",
   "optimize-images": "node scripts/optimize-images.js",
   "prebuild": "npm run sitemap && npm run optimize-images",
-  "postbuild": "npm run sitemap"  // re-run sitemap once build is done
+  "postbuild": "npm run sitemap"
 }
 
   },
