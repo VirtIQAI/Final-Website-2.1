@@ -1,7 +1,10 @@
 import React from 'react';
-import { Button } from './components/ui/Button';
+import { Button } from '../components/ui/Button';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+
+const YouTubeTranscriptTool: React.FC = () => {
+  // …
 
 const YouTubeTranscriptTool: React.FC = () => {
   const { i18n } = useTranslation();
@@ -55,23 +58,23 @@ const YouTubeTranscriptTool: React.FC = () => {
 
           <div className="group relative w-full aspect-video max-w-4xl mx-auto mb-8 rounded-xl overflow-hidden border border-gray-800 shadow-md">
             <video
-  className="w-full h-full object-cover"
-  src="/youtube-transcript-tool.mp4"
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="auto"
-  controls={false}
-  controlsList="nodownload"
-  poster="/og-image.jpg"
-  style={{ outline: 'none', display: 'block' }}
->
-  <track kind="captions" />
-  {isDanish
-    ? 'Din browser understøtter ikke videoafspilning.'
-    : 'Your browser does not support the video tag.'}
-</video>
+              className="w-full h-full object-cover"
+              src="/youtube-transcript-tool.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              controls={false}
+              controlsList="nodownload"
+              poster="/og-image.jpg"
+              style={{ outline: 'none', display: 'block' }}
+            >
+              <track kind="captions" />
+              {isDanish
+                ? 'Din browser understøtter ikke videoafspilning.'
+                : 'Your browser does not support the video tag.'}
+            </video>
           </div>
 
           <a
