@@ -21,6 +21,12 @@
   status = 301
   force = true
 
+# ✅ Allow sitemap.xml to be served directly
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+
 # ⚙️ SPA Fallback
 [[redirects]]
   from = "/*"
