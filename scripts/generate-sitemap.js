@@ -1,5 +1,5 @@
 import { SitemapStream, streamToPromise } from 'sitemap'
-import { writeFile, mkdirSync, existsSync } from 'fs'
+import { writeFileSync, mkdirSync, existsSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
