@@ -24,7 +24,7 @@ import { useTranslation } from 'react-i18next';
 import { SEOHead } from './components/SEOHead';
 import { StructuredData } from './components/StructuredData';
 import { usePageTracking, initScrollTracking } from './lib/analytics';
-import YouTubeTranscriptTool from './YouTubeTranscriptTool';
+import YouTubeTranscriptTool from './pages/YouTubeTranscriptTool';
 
 const AnalyticsProvider = () => {
   usePageTracking();
