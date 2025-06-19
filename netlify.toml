@@ -82,7 +82,7 @@
     Cache-Control = "public, max-age=3600"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "20.11.1"
 
 [context.production]
   command = "npm run build && npm run sitemap"
