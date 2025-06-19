@@ -1,40 +1,42 @@
-import fs from 'fs';
+import { SitemapStream } from 'sitemap';
+import { createWriteStream } from 'fs';
 import path from 'path';
+import { Readable } from 'stream';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const baseUrl = 'https://virtiq.dk';
 
 const routes = [
-  { path: '/', changefreq: 'weekly', priority: 1.0 },
-  { path: '/services/ai-agents', changefreq: 'monthly', priority: 0.9 },
-  { path: '/services/ai-automation', changefreq: 'monthly', priority: 0.9 },
-  { path: '/services/ai-outreach', changefreq: 'monthly', priority: 0.9 },
-  { path: '/services/meta-ads', changefreq: 'monthly', priority: 0.9 },
-  { path: '/services/website-development', changefreq: 'monthly', priority: 0.9 },
-  { path: '/about', changefreq: 'monthly', priority: 0.8 },
-  { path: '/pricing', changefreq: 'monthly', priority: 0.8 },
-  { path: '/blog', changefreq: 'weekly', priority: 0.8 },
-  { path: '/contact', changefreq: 'monthly', priority: 0.8 },
-  { path: '/faq', changefreq: 'monthly', priority: 0.7 },
-  { path: '/privacy-policy', changefreq: 'monthly', priority: 0.5 },
-  { path: '/terms-of-service', changefreq: 'monthly', priority: 0.5 },
+  {
+    url: '/',
+    changefreq: 'weekly',
+    priority: 1.0,
+    links: [
+      { lang: 'da', url: `${baseUrl}/vaerktoejer/` },
+      { lang: 'en', url: `${baseUrl}/tools/` }
+    ]
+  },
+  { url: '/services/ai-agents', changefreq: 'monthly', priority: 0.9 },
+  { url: '/services/ai-automation', changefreq: 'monthly', priority: 0.9 },
+  { url: '/services/ai-outreach', changefreq: 'monthly', priority: 0.9 },
+  { url: '/services/meta-ads', changefreq: 'monthly', priority: 0.9 },
+  { url: '/services/website-development', changefreq: 'monthly', priority: 0.9 },
+  { url: '/tools/youtube-transcript', changefreq: 'monthly', priority: 0.85 },
+  { url: '/about', changefreq: 'monthly', priority: 0.8 },
+  { url: '/pricing', changefreq: 'monthly', priority: 0.8 },
+  { url: '/blog', changefreq: 'weekly', priority: 0.8 },
+  { url: '/contact', changefreq: 'monthly', priority: 0.8 },
+  { url: '/faq', changefreq: 'monthly', priority: 0.7 },
+  { url: '/privacy-policy', changefreq: 'monthly', priority: 0.5 },
+  { url: '/terms-of-service', changefreq: 'monthly', priority: 0.5 }
 ];
 
-const generateSitemap = () => {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes
-  .map(
-    (route) => `  <url>
-    <loc>${baseUrl}${route.path}</loc>
-    <changefreq>${route.changefreq}</changefreq>
-    <priority>${route.priority}</priority>
-  </url>`
-  )
-  .join('\n')}
-</urlset>`;
+const sitemap = new SitemapStream({ hostname: baseUrl });
+const writeStream = createWriteStream(path.resolve(__dirname, '../public/sitemap.xml'));
 
-  fs.writeFileSync(path.join(process.cwd(), 'public', 'sitemap.xml'), sitemap);
-  console.log('✅ Sitemap generated successfully!');
-};
+Readable.from(routes).pipe(sitemap).pipe(writeStream);
 
-generateSitemap();
+console.log('✅ Sitemap with hreflang support generated!');
