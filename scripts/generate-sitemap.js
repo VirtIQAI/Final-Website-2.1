@@ -9,7 +9,7 @@ const BASE = 'https://virtiq.dk'
 const outputDir = path.resolve(__dirname, '../dist')
 const outputPath = path.join(outputDir, 'sitemap.xml')
 
-// Create `dist/` if needed
+// Create dist/ if needed
 if (!existsSync(outputDir)) mkdirSync(outputDir, { recursive: true })
 
 const routes = [
@@ -36,19 +36,22 @@ const routes = [
 ]
 
 async function buildSitemap() {
-  const smStream = new SitemapStream({ hostname: BASE })
-  const xml = await streamToPromise(
-    routes.reduce((stream, item) => {
-      stream.write(item)
-      return stream
-    }, smStream)
-  ).then((data) => data.toString())
+  try {
+    const smStream = new SitemapStream({ hostname: BASE })
+    console.log('➡ Writing sitemap entries:')
+    for (const item of routes) {
+      console.log('  🧩', item.url)
+      smStream.write(item)
+    }
+    smStream.end()
 
-  writeFileSync(outputPath, xml, 'utf8')
-  console.log('✅ Sitemap generated:', outputPath)
+    const xml = await streamToPromise(smStream).then(data => data.toString())
+    writeFileSync(outputPath, xml, 'utf8')
+    console.log('✅ Sitemap generated at:', outputPath)
+  } catch (err) {
+    console.error('❌ Sitemap generation failed:', err)
+    process.exit(1)
+  }
 }
 
-buildSitemap().catch((err) => {
-  console.error('❌ Sitemap failed:', err)
-  process.exit(1)
-})
+buildSitemap()
