@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "sitemap": "node scripts/generate-sitemap.js",
-    "optimize-images": "node scripts/optimize-images.js",
-    "prebuild": "npm run optimize-images"
+  "dev": "vite",
+  "build": "vite build",
+  "sitemap": "node scripts/generate-sitemap.js",
+  "optimize-images": "node scripts/optimize-images.js",
+  "prebuild": "npm run sitemap && npm run optimize-images",
+  "postbuild": "npm run sitemap"  // re-run sitemap once build is done
+}
+
   },
   "dependencies": {
     "@splinetool/react-spline": "^2.2.6",
