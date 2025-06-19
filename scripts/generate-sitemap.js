@@ -34,9 +34,12 @@ const routes = [
   { url: '/terms-of-service', changefreq: 'monthly', priority: 0.5 }
 ];
 
+// ✅ Write sitemap to the final dist folder so Netlify includes it
+const outputPath = path.resolve(__dirname, '../dist/sitemap.xml');
 const sitemap = new SitemapStream({ hostname: baseUrl });
-const writeStream = createWriteStream(path.resolve(__dirname, '../public/sitemap.xml'));
+const writeStream = createWriteStream(outputPath);
 
 Readable.from(routes).pipe(sitemap).pipe(writeStream);
 
 console.log('✅ Sitemap with hreflang support generated!');
+console.log('📄 Written to:', outputPath);
