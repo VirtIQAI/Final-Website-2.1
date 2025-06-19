@@ -49,9 +49,7 @@ async function buildSitemap() {
     smStream.end()
 
     const xml = await streamToPromise(smStream).then(data => data.toString())
-    const xmlWithDeclaration = `<?xml version="1.0" encoding="UTF-8"?>\n${xml}`
-
-    writeFileSync(outputPath, xmlWithDeclaration, 'utf8')
+    writeFileSync(outputPath, xml, 'utf8')
     console.log('✅ Sitemap generated at:', outputPath)
   } catch (err) {
     console.error('❌ Sitemap generation failed:', err)
