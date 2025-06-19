@@ -5,12 +5,15 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
 const BASE = 'https://virtiq.dk'
 const outputDir = path.resolve(__dirname, '../dist')
 const outputPath = path.join(outputDir, 'sitemap.xml')
 
-// Create dist/ if needed
-if (!existsSync(outputDir)) mkdirSync(outputDir, { recursive: true })
+// Ensure dist directory exists
+if (!existsSync(outputDir)) {
+  mkdirSync(outputDir, { recursive: true })
+}
 
 const routes = [
   {
@@ -46,7 +49,9 @@ async function buildSitemap() {
     smStream.end()
 
     const xml = await streamToPromise(smStream).then(data => data.toString())
-    writeFileSync(outputPath, xml, 'utf8')
+    const xmlWithDeclaration = `<?xml version="1.0" encoding="UTF-8"?>\n${xml}`
+
+    writeFileSync(outputPath, xmlWithDeclaration, 'utf8')
     console.log('✅ Sitemap generated at:', outputPath)
   } catch (err) {
     console.error('❌ Sitemap generation failed:', err)
