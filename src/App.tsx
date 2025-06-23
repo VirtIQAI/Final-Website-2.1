@@ -129,7 +129,12 @@ function App() {
             <Route path={isDanish ? "/om-os" : "/about"} element={<About />} />
             <Route path={isDanish ? "/privatlivspolitik" : "/privacy-policy"} element={<PrivacyPolicy />} />
             <Route path={isDanish ? "/betingelser" : "/terms-of-service"} element={<TermsOfService />} />
-            <Route path={isDanish ? "/værktøjer/youtube-transcript" : "/tools/youtube-transcript"} element={<YouTubeTranscriptTool />} />
+        
+            <Route
+              path={isDanish ? "/da/tools/youtube-transcript" : "/en/tools/youtube-transcript"}
+              element={<YouTubeTranscriptTool />}
+            />
+        
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
