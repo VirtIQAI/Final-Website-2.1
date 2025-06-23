@@ -68,12 +68,14 @@ export const Header: React.FC = () => {
     { name: isDanish ? 'Skræddersyede Hjemmesider' : 'Custom Websites', href: '/services/website-development' },
   ];
 
-  const tools = [
-    {
-      name: isDanish ? 'YouTube Udskrift' : 'YouTube Transcript',
-      href: isDanish ? '/værktøjer/youtube-transcript' : '/tools/youtube-transcript',
-    },
-  ];
+const tools = [
+  {
+    name: isDanish ? 'YouTube Udskrift' : 'YouTube Transcript',
+    href: isDanish
+      ? '/da/tools/youtube-transcript'
+      : '/en/tools/youtube-transcript',
+  },
+];
 
   const navItems = [
     { name: isDanish ? 'Services' : 'Services', isDropdown: 'services' },
