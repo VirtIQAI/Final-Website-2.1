@@ -26,6 +26,7 @@ const routes = [
   { url: '/services/ai-agents', changefreq: 'monthly', priority: 0.9 },
   { url: '/services/ai-automation', changefreq: 'monthly', priority: 0.9 },
   { url: '/services/ai-outreach', changefreq: 'monthly', priority: 0.9 },
+  { url: '/services/ai-voice-caller', changefreq: 'monthly', priority: 0.9 },
   { url: '/services/meta-ads', changefreq: 'monthly', priority: 0.9 },
   { url: '/services/website-development', changefreq: 'monthly', priority: 0.9 },
   { url: '/tools/youtube-transcript', changefreq: 'monthly', priority: 0.85 },
