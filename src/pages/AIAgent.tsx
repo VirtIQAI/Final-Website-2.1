@@ -19,14 +19,6 @@ export const AIAgent: React.FC = () => {
   const pageDescription = isDanish
     ? 'Transformer din virksomhed med intelligente AI-agenter. Automatiser komplekse opgaver, forbedre beslutningsprocesser og optimer kundeservice med vores avancerede AI-løsninger.'
     : 'Transform your business with intelligent AI agents. Automate complex tasks, improve decision-making processes, and optimize customer service with our advanced AI solutions.';
-  
-  return (
-    <>
-  <SEOHead
-    title={pageTitle}
-    description={pageDescription}
-    canonicalUrl="https://virtiq.dk/services/ai-agents"
-  />
 
   const handleDemoClick = () => {
     navigate('/#contact');
@@ -57,6 +49,18 @@ export const AIAgent: React.FC = () => {
       image: '/T-shirt_waves.png'
     }
   ];
+
+  return (
+    <>
+      <SEOHead
+        title={pageTitle}
+        description={pageDescription}
+        canonicalUrl="https://virtiq.dk/services/ai-agents"
+      />
+      {/* Your page content can continue below here */}
+    </>
+  );
+};
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % products.length);
