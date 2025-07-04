@@ -81,6 +81,7 @@ const tools = [
     { name: isDanish ? 'Services' : 'Services', isDropdown: 'services' },
     { name: isDanish ? 'Værktøjer' : 'Tools', isDropdown: 'tools' },
     { name: isDanish ? 'Priser' : 'Pricing', href: isDanish ? '/priser' : '/pricing' },
+    { name: 'Cases', href: '/cases' }, // <-- ADD THIS
     { name: isDanish ? 'Blog' : 'Blog', href: '/blog' },
     { name: isDanish ? 'Om os' : 'About', href: isDanish ? '/om-os' : '/about' },
     { name: isDanish ? 'Kontakt' : 'Contact', href: isDanish ? '/kontakt' : '/contact' },
