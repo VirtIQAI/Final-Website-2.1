@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle2, MessageSquare, ShoppingCart, Scale, BarChart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { SEOHead } from '../components/SEOHead';
 
 export const AIAgent: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +19,14 @@ export const AIAgent: React.FC = () => {
   const pageDescription = isDanish
     ? 'Transformer din virksomhed med intelligente AI-agenter. Automatiser komplekse opgaver, forbedre beslutningsprocesser og optimer kundeservice med vores avancerede AI-løsninger.'
     : 'Transform your business with intelligent AI agents. Automate complex tasks, improve decision-making processes, and optimize customer service with our advanced AI solutions.';
+  
+  return (
+    <>
+  <SEOHead
+    title={pageTitle}
+    description={pageDescription}
+    canonicalUrl="https://virtiq.dk/services/ai-agents"
+  />
 
   const handleDemoClick = () => {
     navigate('/#contact');
