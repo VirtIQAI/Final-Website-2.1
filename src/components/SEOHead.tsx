@@ -51,7 +51,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={canonicalUrl} />
       
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'} />
       
       {alternateLanguages && Object.entries(alternateLanguages).map(([lang, url]) => (
         <link key={lang} rel="alternate" hrefLang={lang} href={url} />
