@@ -49,18 +49,7 @@ export const AIAgent: React.FC = () => {
       image: '/T-shirt_waves.png'
     }
   ];
-
-  return (
-    <>
-      <SEOHead
-        title={pageTitle}
-        description={pageDescription}
-        canonicalUrl="https://virtiq.dk/services/ai-agents"
-      />
-    </>
-  );
-};
-
+  
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % products.length);
   };
@@ -114,6 +103,24 @@ export const AIAgent: React.FC = () => {
     ]
   };
 
+return (
+  <>
+    <SEOHead
+      title={pageTitle}
+      description={pageDescription}
+      canonicalUrl="https://virtiq.dk/services/ai-agents"
+    />
+
+    <main className="py-12 px-6 md:px-12">
+      <h1 className="text-3xl font-bold mb-4">{pageTitle}</h1>
+      <p className="text-lg mb-6">{pageDescription}</p>
+      <Button onClick={handleDemoClick}>
+        {isDanish ? 'Book en demo' : 'Book a demo'}
+      </Button>
+    </main>
+  </>
+);
+  
   const [visibleMessages, setVisibleMessages] = useState({
     shopping: 0,
     legal: 0,
