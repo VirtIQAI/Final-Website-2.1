@@ -57,7 +57,6 @@ export const AIAgent: React.FC = () => {
         description={pageDescription}
         canonicalUrl="https://virtiq.dk/services/ai-agents"
       />
-      {/* Your page content can continue below here */}
     </>
   );
 };
