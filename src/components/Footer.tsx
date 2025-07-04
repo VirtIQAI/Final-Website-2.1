@@ -137,27 +137,49 @@ export const Footer: React.FC<FooterProps> = ({ onNewsletterClick }) => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm">
-              © {year} VirtIQ. {isDanish ? 'Alle rettigheder forbeholdes.' : 'All rights reserved.'} CVR: 45291804
-            </div>
-            <div className="flex space-x-6">
-              <a
-                href={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
-              >
-                {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
-              </a>
-              <a
-                href={isDanish ? "/betingelser" : "/terms-of-service"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
-              >
-                {isDanish ? 'Servicevilkår' : 'Terms of Service'}
+<div className="mt-12 pt-8 border-t border-gray-800">
+
+  {/* TRUSTPILOT START */}
+  <div className="mb-8">
+    <div
+      className="trustpilot-widget"
+      data-locale="da-DK"
+      data-template-id="56278e9abfbbba0bdcd568bc"
+      data-businessunit-id="682c5800632a6ff118e0f227"
+      data-style-height="52px"
+      data-style-width="100%"
+    >
+      <a
+        href="https://dk.trustpilot.com/review/virtiq.dk"
+        target="_blank"
+        rel="noopener"
+      >
+        Trustpilot
+      </a>
+    </div>
+  </div>
+  {/* TRUSTPILOT END */}
+
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="text-gray-400 text-sm">
+            © {year} VirtIQ. {isDanish ? 'Alle rettigheder forbeholdes.' : 'All rights reserved.'} CVR: 45291804
+          </div>
+          <div className="flex space-x-6">
+            <a
+              href={isDanish ? "/privatlivspolitik" : "/privacy-policy"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
+            >
+              {isDanish ? 'Privatlivspolitik' : 'Privacy Policy'}
+            </a>
+            <a
+              href={isDanish ? "/betingelser" : "/terms-of-service"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-purple-400 transition-colors text-sm"
+            >
+              {isDanish ? 'Servicevilkår' : 'Terms of Service'}
               </a>
             </div>
           </div>
